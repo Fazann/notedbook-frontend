@@ -1,0 +1,623 @@
+{
+  "app": {
+    "name": "LifeApp",
+    "description": "តាមដានការចំណាយ រៀបចំផែនការគោលដៅ រៀបចំកាលវិភាគប្រចាំសប្ដាហ៍ និងរៀបចំកិច្ចការ។"
+  },
+  "common": {
+    "save": "រក្សាទុក",
+    "cancel": "បោះបង់",
+    "delete": "លុប",
+    "edit": "កែប្រែ",
+    "loading": "កំពុងផ្ទុក...",
+    "retry": "ព្យាយាមម្តងទៀត",
+    "viewAll": "មើលទាំងអស់",
+    "today": "ថ្ងៃនេះ",
+    "yesterday": "ម្សិលមិញ",
+    "comingSoon": "នឹងមកដល់ឆាប់ៗ",
+    "comingSoonDescription": "ទំព័រនេះស្ថិតនៅក្នុងជំហានបន្ទាប់។ ផ្ទាំងគ្រប់គ្រងអាចសាកល្បងបានហើយ។",
+    "backToDashboard": "ត្រឡប់ទៅផ្ទាំងគ្រប់គ្រង",
+    "charCount": "{count}/{max}"
+  },
+  "nav": {
+    "dashboard": "ផ្ទាំងគ្រប់គ្រង",
+    "expenses": "ការចំណាយ",
+    "planning": "ផែនការ",
+    "schedule": "កាលវិភាគ",
+    "boards": "ក្ដារកិច្ចការ",
+    "settings": "ការកំណត់",
+    "main": "ម៉ឺនុយមេ",
+    "openMenu": "បើកម៉ឺនុយ",
+    "toggleSidebar": "បើក/បិទរបារចំហៀង"
+  },
+  "search": {
+    "open": "ស្វែងរក",
+    "placeholder": "ទៅកាន់ទំព័រ...",
+    "noResults": "រកមិនឃើញលទ្ធផល។",
+    "pages": "ទំព័រ",
+    "title": "ស្វែងរក",
+    "description": "លោតទៅកាន់ទំព័រ"
+  },
+  "language": {
+    "label": "ភាសា",
+    "en": "English",
+    "km": "ខ្មែរ"
+  },
+  "theme": {
+    "label": "រូបរាង",
+    "light": "ភ្លឺ",
+    "dark": "ងងឹត",
+    "system": "តាមប្រព័ន្ធ"
+  },
+  "user": {
+    "menu": "ម៉ឺនុយគណនី",
+    "profile": "ប្រវត្តិរូប",
+    "settings": "ការកំណត់",
+    "logout": "ចាកចេញ"
+  },
+  "monthPicker": {
+    "previous": "ខែមុន",
+    "next": "ខែបន្ទាប់"
+  },
+  "currency": {
+    "label": "រូបិយប័ណ្ណ",
+    "USD": "ដុល្លារ",
+    "KHR": "រៀល"
+  },
+  "list": {
+    "search": "ស្វែងរក…",
+    "clearSearch": "សម្អាតការស្វែងរក",
+    "sortBy": "តម្រៀបតាម",
+    "actions": "សកម្មភាព",
+    "moreActions": "សកម្មភាពបន្ថែម",
+    "noResults": "រកមិនឃើញលទ្ធផលសម្រាប់ «{query}»",
+    "errorTitle": "មិនអាចផ្ទុកទិន្នន័យបានទេ",
+    "retry": "ព្យាយាមម្ដងទៀត",
+    "pagination": {
+      "label": "ការបែងចែកទំព័រ",
+      "previous": "មុន",
+      "next": "បន្ទាប់",
+      "goToPage": "ទៅទំព័រ {page}",
+      "pageOf": "ទំព័រ {page} នៃ {totalPages}",
+      "showing": "បង្ហាញ {from}–{to} នៃ {total}",
+      "rowsPerPage": "ចំនួនជួរក្នុងមួយទំព័រ"
+    },
+    "sortAsc": "តម្រៀបពីតូចទៅធំ",
+    "sortDesc": "តម្រៀបពីធំទៅតូច",
+    "clearSelection": "សម្អាតការជ្រើសរើស"
+  },
+  "category": {
+    "title": "ប្រភេទចំណាយ",
+    "description": "ដាក់ការចំណាយជាក្រុម ដើម្បីដឹងថាលុយរបស់អ្នកចាយទៅលើអ្វីខ្លះ។",
+    "tabExpenses": "ការចំណាយ",
+    "tabCategories": "ប្រភេទ",
+    "add": "បន្ថែមប្រភេទ",
+    "edit": "កែប្រភេទ",
+    "delete": "លុប",
+    "viewExpenses": "មើលការចំណាយ",
+    "manage": "គ្រប់គ្រងប្រភេទ",
+    "searchPlaceholder": "ស្វែងរកប្រភេទ…",
+    "defaultBadge": "លំនាំដើម",
+    "defaultCannotDelete": "មិនអាចលុបប្រភេទលំនាំដើមបានទេ",
+    "defaultNameHint": "ឈ្មោះលំនាំដើមប្តូរតាមភាសារបស់កម្មវិធី",
+    "columns": {
+      "name": "ប្រភេទ",
+      "expenses": "ការចំណាយ",
+      "created": "ថ្ងៃបង្កើត"
+    },
+    "sort": {
+      "nameAsc": "ឈ្មោះ (ក–អ)",
+      "nameDesc": "ឈ្មោះ (អ–ក)",
+      "mostUsed": "ប្រើច្រើនបំផុត",
+      "newest": "ថ្មីបំផុត"
+    },
+    "expenseCount": "{count, plural, =0 {គ្មានការចំណាយ} other {ការចំណាយ # ដង}}",
+    "form": {
+      "name": "ឈ្មោះ",
+      "namePlaceholder": "ឧ. ហាត់ប្រាណ",
+      "icon": "រូបតំណាង",
+      "color": "ពណ៌",
+      "preview": "មើលជាមុន",
+      "save": "រក្សាទុក",
+      "cancel": "បោះបង់",
+      "discardTitle": "បោះបង់ការកែប្រែ?",
+      "discardConfirm": "បោះបង់"
+    },
+    "validation": {
+      "required": "សូមបញ្ចូលឈ្មោះ",
+      "tooLong": "ឈ្មោះវែងពេក (អតិបរមា {max} តួអក្សរ)",
+      "nameTaken": "អ្នកមានប្រភេទដែលមានឈ្មោះនេះរួចហើយ"
+    },
+    "deleteDialog": {
+      "title": "លុប «{name}»?",
+      "descriptionEmpty": "សកម្មភាពនេះមិនអាចត្រឡប់វិញបានទេ។",
+      "descriptionInUse": "មានការចំណាយ {count} ដែលប្រើប្រភេទនេះ។ ផ្លាស់ទីវាទៅ៖",
+      "moveTo": "ផ្លាស់ទីការចំណាយទៅ",
+      "confirm": "លុប",
+      "confirmAndMove": "លុប និងផ្លាស់ទី"
+    },
+    "toast": {
+      "created": "បានបង្កើតប្រភេទ",
+      "updated": "បានរក្សាទុកការកែប្រែ",
+      "deleted": "បានលុបប្រភេទ",
+      "error": "មានបញ្ហាកើតឡើង។ សូមព្យាយាមម្ដងទៀត។"
+    },
+    "empty": {
+      "title": "មិនទាន់មានប្រភេទនៅឡើយ",
+      "description": "បន្ថែមប្រភេទ ដើម្បីរៀបចំការចំណាយរបស់អ្នក។"
+    },
+    "loadError": "មិនអាចផ្ទុកប្រភេទបានទេ",
+    "icons": {
+      "utensils": "អាហារ",
+      "coffee": "កាហ្វេ",
+      "bike": "ម៉ូតូ",
+      "car": "ឡាន",
+      "bus": "ឡានក្រុង",
+      "home": "ផ្ទះ",
+      "wifi": "វ៉ាយហ្វាយ",
+      "smartphone": "ទូរស័ព្ទ",
+      "users": "មនុស្ស",
+      "baby": "ទារក",
+      "shopping-bag": "កាបូបទិញឥវ៉ាន់",
+      "shirt": "សម្លៀកបំពាក់",
+      "heart-pulse": "សុខភាព",
+      "pill": "ថ្នាំ",
+      "book-open": "សៀវភៅ",
+      "graduation-cap": "មួកបញ្ចប់ការសិក្សា",
+      "gift": "កាដូ",
+      "plane": "យន្តហោះ",
+      "gamepad-2": "ហ្គេម",
+      "dumbbell": "ហាត់ប្រាណ",
+      "dog": "សត្វចិញ្ចឹម",
+      "receipt": "វិក្កយបត្រ",
+      "piggy-bank": "សន្សំ",
+      "ellipsis": "ផ្សេងៗ"
+    },
+    "colors": {
+      "chart-1": "ពណ៌ ១",
+      "chart-2": "ពណ៌ ២",
+      "chart-3": "ពណ៌ ៣",
+      "chart-4": "ពណ៌ ៤",
+      "chart-5": "ពណ៌ ៥",
+      "red": "ក្រហម",
+      "orange": "ទឹកក្រូច",
+      "amber": "លឿងទុំ",
+      "green": "បៃតង",
+      "teal": "ខៀវបៃតង",
+      "blue": "ខៀវ",
+      "violet": "ស្វាយ",
+      "pink": "ផ្កាឈូក",
+      "slate": "ប្រផេះ"
+    },
+    "defaults": {
+      "food": "អាហារ",
+      "coffee": "កាហ្វេ",
+      "transport": "ការធ្វើដំណើរ",
+      "rent": "ថ្លៃផ្ទះ",
+      "phoneInternet": "ទូរស័ព្ទ និងអ៊ីនធឺណិត",
+      "family": "គ្រួសារ",
+      "shopping": "ការទិញទំនិញ",
+      "health": "សុខភាព",
+      "education": "ការសិក្សា",
+      "other": "ផ្សេងៗ"
+    }
+  },
+  "dashboard": {
+    "title": "ផ្ទាំងគ្រប់គ្រង",
+    "greeting": {
+      "morning": "អរុណសួស្តី {name}",
+      "afternoon": "ទិវាសួស្តី {name}",
+      "evening": "សាយណ្ហសួស្តី {name}"
+    },
+    "subtitle": "នេះជាទិដ្ឋភាពទូទៅរបស់អ្នកសម្រាប់ {month}។",
+    "stats": {
+      "spentUsd": "ចំណាយ (ដុល្លារ)",
+      "spentKhr": "ចំណាយ (រៀល)",
+      "vsLastMonth": "ធៀបនឹងខែមុន",
+      "tasksDue": "កិច្ចការត្រូវធ្វើសប្តាហ៍នេះ",
+      "expenseCount": "{count, plural, =0 {គ្មានការចំណាយ} other {ការចំណាយ # ដង}}",
+      "up": "កើន {percent}%",
+      "down": "ថយ {percent}%",
+      "same": "មិនប្រែប្រួល",
+      "noCompare": "គ្មានទិន្នន័យខែមុន",
+      "overdueCount": "{count, plural, =0 {គ្មានកិច្ចការហួសកំណត់} other {ហួសកំណត់ # }}"
+    },
+    "daily": {
+      "title": "ការចំណាយប្រចាំថ្ងៃ",
+      "description": "សរុបការចំណាយរៀងរាល់ថ្ងៃក្នុងខែនេះ",
+      "day": "ថ្ងៃទី {day}"
+    },
+    "category": {
+      "title": "តាមប្រភេទ",
+      "description": "លុយរបស់អ្នកបានចាយទៅណាខ្លះ",
+      "others": "ផ្សេងៗទៀត",
+      "empty": "មិនទាន់មានការចំណាយជារូបិយប័ណ្ណនេះទេ។",
+      "openCategory": "បង្ហាញការចំណាយ {category}"
+    },
+    "recent": {
+      "title": "ការចំណាយថ្មីៗ",
+      "empty": "មិនទាន់មានការចំណាយក្នុងខែនេះទេ។",
+      "emptyAction": "បន្ថែមការចំណាយដំបូងរបស់អ្នក"
+    },
+    "tasks": {
+      "title": "កិច្ចការជិតដល់កំណត់",
+      "description": "ពីក្ដារទាំងអស់ ក្នុងរយៈពេល ៧ ថ្ងៃខាងមុខ",
+      "empty": "គ្មានកិច្ចការដល់កំណត់ក្នុង ៧ ថ្ងៃខាងមុខទេ។",
+      "overdue": "ហួសកំណត់",
+      "dueToday": "ដល់កំណត់ថ្ងៃនេះ",
+      "dueOn": "កំណត់ {date}",
+      "onBoard": "{board} · {column}"
+    },
+    "error": "មិនអាចផ្ទុកផ្នែកនេះបានទេ។",
+    "goals": {
+      "empty": "គ្មានគោលដៅកំពុងអនុវត្ត។ កំណត់គោលដៅមួយដើម្បីតាមដានវឌ្ឍនភាព។"
+    }
+  },
+  "expense": {
+    "add": "បន្ថែមការចំណាយ",
+    "edit": "កែប្រែការចំណាយ",
+    "quickAdd": "បន្ថែមការចំណាយរហ័ស",
+    "formDescription": "ចំនួនទឹកប្រាក់ត្រូវបានរក្សាទុកជារូបិយប័ណ្ណដែលអ្នកជ្រើសរើស។",
+    "amount": "ចំនួនទឹកប្រាក់",
+    "currency": "រូបិយប័ណ្ណ",
+    "category": "ប្រភេទ",
+    "date": "កាលបរិច្ឆេទ",
+    "note": "កំណត់ចំណាំ",
+    "notePlaceholder": "ឧ. អាហារថ្ងៃត្រង់ជាមួយក្រុម",
+    "selectCategory": "ជ្រើសរើសប្រភេទ",
+    "searchCategory": "ស្វែងរកប្រភេទ...",
+    "noCategory": "រកមិនឃើញប្រភេទ។",
+    "pickDate": "ជ្រើសរើសកាលបរិច្ឆេទ",
+    "saved": "បានបន្ថែមការចំណាយ",
+    "updated": "បានកែប្រែការចំណាយ",
+    "form": {
+      "amountRequired": "សូមបញ្ចូលចំនួនទឹកប្រាក់",
+      "amountInvalid": "សូមបញ្ចូលចំនួនទឹកប្រាក់ឲ្យត្រឹមត្រូវ",
+      "categoryRequired": "សូមជ្រើសរើសប្រភេទ",
+      "dateRequired": "សូមជ្រើសរើសកាលបរិច្ឆេទ",
+      "noteTooLong": "កំណត់ចំណាំមិនត្រូវលើសពី ២០០ តួអក្សរ"
+    },
+    "title": "ការចំណាយ",
+    "description": "មើល និងគ្រប់គ្រងការចំណាយរបស់អ្នក តាមខែនីមួយៗ។",
+    "searchPlaceholder": "ស្វែងរកកំណត់ចំណាំ…",
+    "noNote": "គ្មានកំណត់ចំណាំ",
+    "loadError": "មិនអាចផ្ទុកការចំណាយបានទេ",
+    "deleted": "បានលុបការចំណាយ",
+    "undo": "មិនធ្វើវិញ",
+    "restored": "បានស្ដារការចំណាយវិញ",
+    "columns": {
+      "date": "កាលបរិច្ឆេទ",
+      "category": "ប្រភេទ",
+      "note": "កំណត់ចំណាំ",
+      "amount": "ចំនួនទឹកប្រាក់"
+    },
+    "sort": {
+      "newest": "ថ្មីបំផុតមុន",
+      "oldest": "ចាស់បំផុតមុន",
+      "amountDesc": "ចំនួនខ្ពស់បំផុត",
+      "amountAsc": "ចំនួនទាបបំផុត"
+    },
+    "filters": {
+      "category": "ត្រងតាមប្រភេទ",
+      "allCategories": "គ្រប់ប្រភេទ",
+      "currency": "ត្រងតាមរូបិយប័ណ្ណ",
+      "allCurrencies": "គ្រប់រូបិយប័ណ្ណ",
+      "noMatch": "គ្មានការចំណាយដែលត្រូវនឹងតម្រងទាំងនេះទេ",
+      "clear": "សម្អាតតម្រង"
+    },
+    "summary": {
+      "spentUsd": "បានចំណាយជាដុល្លារ",
+      "spentKhr": "បានចំណាយជារៀល",
+      "count": "ការចំណាយខែនេះ",
+      "countHint": "{count, plural, =0 {គ្មានការចំណាយ} other {ការចំណាយ # ដង}}",
+      "allFilters": "សរុបសម្រាប់ខែទាំងមូល"
+    },
+    "deleteDialog": {
+      "title": "លុបការចំណាយនេះ?",
+      "description": "{amount} · {category} · {date}",
+      "confirm": "លុប"
+    },
+    "empty": {
+      "title": "មិនមានការចំណាយក្នុងខែនេះទេ",
+      "description": "បន្ថែមការចំណាយ ហើយវានឹងបង្ហាញនៅទីនេះ។",
+      "action": "បន្ថែមការចំណាយដំបូងរបស់អ្នក"
+    }
+  },
+  "planning": {
+    "title": "ផែនការ",
+    "description": "បំបែកគោលដៅធំៗ ជាជំហានតូចៗ។",
+    "newGoal": "គោលដៅថ្មី",
+    "editGoal": "កែគោលដៅ",
+    "backToList": "ត្រឡប់ទៅផែនការ",
+    "searchPlaceholder": "ស្វែងរកគោលដៅ…",
+    "tabs": {
+      "active": "កំពុងធ្វើ",
+      "done": "រួចរាល់",
+      "all": "ទាំងអស់"
+    },
+    "filters": {
+      "area": "វិស័យ",
+      "allAreas": "គ្រប់វិស័យ",
+      "clear": "សម្អាតតម្រង",
+      "areaCount": "{count, plural, other {# វិស័យ}}",
+      "noArea": "រកមិនឃើញវិស័យ។",
+      "noMatch": "គ្មានគោលដៅដែលត្រូវនឹងតម្រងទាំងនេះទេ",
+      "status": "បង្ហាញគោលដៅ"
+    },
+    "sort": {
+      "dueSoonest": "ជិតដល់កំណត់មុន",
+      "newest": "ថ្មីបំផុត",
+      "mostProgress": "វឌ្ឍនភាពខ្ពស់បំផុត",
+      "title": "ចំណងជើង (ក–អ)"
+    },
+    "stats": {
+      "active": "គោលដៅកំពុងធ្វើ",
+      "doneThisYear": "សម្រេចបានឆ្នាំនេះ",
+      "overdue": "ហួសកំណត់",
+      "averageProgress": "វឌ្ឍនភាពមធ្យម"
+    },
+    "status": {
+      "not_started": "មិនទាន់ចាប់ផ្ដើម",
+      "in_progress": "កំពុងដំណើរការ",
+      "done": "រួចរាល់"
+    },
+    "area": {
+      "personal": "ផ្ទាល់ខ្លួន",
+      "career": "ការងារ",
+      "health": "សុខភាព",
+      "finance": "ហិរញ្ញវត្ថុ",
+      "learning": "ការសិក្សា",
+      "family": "គ្រួសារ"
+    },
+    "priority": {
+      "label": "អាទិភាព{priority}",
+      "low": "ទាប",
+      "medium": "មធ្យម",
+      "high": "ខ្ពស់"
+    },
+    "progress": "រួចរាល់ {percent}%",
+    "stepsDone": "{done} នៃ {total} ជំហាន",
+    "due": {
+      "overdue": "ហួសកំណត់ {days} ថ្ងៃ",
+      "dueToday": "ដល់កំណត់ថ្ងៃនេះ",
+      "daysLeft": "នៅសល់ {days} ថ្ងៃ",
+      "dueOn": "កំណត់ {date}",
+      "noDate": "គ្មានកាលបរិច្ឆេទគោលដៅ",
+      "completedOn": "បានសម្រេច {date}"
+    },
+    "actions": {
+      "markDone": "សម្គាល់ថារួចរាល់",
+      "reopen": "បើកឡើងវិញ",
+      "edit": "កែ",
+      "delete": "លុប"
+    },
+    "form": {
+      "title": "ចំណងជើង",
+      "titlePlaceholder": "ឧ. សន្សំ $500 ទិញកុំព្យូទ័រថ្មី",
+      "description": "ការពិពណ៌នា",
+      "descriptionPlaceholder": "ហេតុអ្វីគោលដៅនេះសំខាន់សម្រាប់អ្នក?",
+      "area": "វិស័យ",
+      "priority": "អាទិភាព",
+      "targetDate": "កាលបរិច្ឆេទគោលដៅ",
+      "targetDatePast": "កាលបរិច្ឆេទនេះបានកន្លងផុតហើយ",
+      "status": "ស្ថានភាព",
+      "discardTitle": "បោះបង់ការកែប្រែ?",
+      "discardConfirm": "បោះបង់",
+      "clearDate": "សម្អាតកាលបរិច្ឆេទ",
+      "pickDate": "ជ្រើសរើសកាលបរិច្ឆេទ"
+    },
+    "validation": {
+      "required": "សូមបំពេញចន្លោះនេះ",
+      "tooLong": "វែងពេក (អតិបរមា {max} តួអក្សរ)"
+    },
+    "milestones": {
+      "title": "ជំហាន",
+      "doneCount": "រួចរាល់ {done} នៃ {total}",
+      "addPlaceholder": "បន្ថែមជំហាន…",
+      "add": "បន្ថែមជំហាន",
+      "setDueDate": "កំណត់ថ្ងៃផុតកំណត់",
+      "removeDueDate": "ដកថ្ងៃផុតកំណត់ចេញ",
+      "editTitle": "កែជំហាន",
+      "delete": "លុបជំហាន",
+      "dragHandle": "អូសដើម្បីរៀបលំដាប់",
+      "emptyTitle": "មិនទាន់មានជំហាននៅឡើយ",
+      "emptyDescription": "បំបែកគោលដៅនេះជាជំហានតូចៗ។",
+      "deleted": "បានលុបជំហាន",
+      "undo": "ត្រឡប់វិញ",
+      "allDonePrompt": "ជំហានទាំងអស់រួចរាល់! សម្គាល់គោលដៅនេះថារួចរាល់?",
+      "dnd": {
+        "picked": "បានលើកជំហាន {title}។ ទីតាំង {position} នៃ {total}។",
+        "moved": "ជំហាន {title} ផ្លាស់ទៅទីតាំង {position} នៃ {total}។",
+        "dropped": "ជំហាន {title} ដាក់នៅទីតាំង {position} នៃ {total}។",
+        "cancelled": "បានបោះបង់ការរៀបលំដាប់។",
+        "instructions": "ដើម្បីលើកជំហាន ចុច Space ឬ Enter។ ប្រើគ្រាប់ចុចព្រួញដើម្បីផ្លាស់ទី បន្ទាប់មកចុច Space ឬ Enter ដើម្បីដាក់ ឬ Escape ដើម្បីបោះបង់។"
+      },
+      "dueOn": "កំណត់ {date}",
+      "saving": "កំពុងរក្សាទុក…"
+    },
+    "detail": {
+      "about": "អំពីគោលដៅនេះ",
+      "created": "បានបង្កើត {date}",
+      "showMore": "បង្ហាញបន្ថែម",
+      "showLess": "បង្ហាញតិច",
+      "notFoundTitle": "រកមិនឃើញគោលដៅ",
+      "notFoundDescription": "វាប្រហែលជាត្រូវបានលុបហើយ។",
+      "progress": "វឌ្ឍនភាព",
+      "documentTitle": "{title} · {appName}"
+    },
+    "deleteDialog": {
+      "title": "លុប «{title}»?",
+      "description": "ជំហានទាំងអស់របស់វាក៏នឹងត្រូវលុបដែរ។ សកម្មភាពនេះមិនអាចត្រឡប់វិញបានទេ។",
+      "confirm": "លុបគោលដៅ"
+    },
+    "toast": {
+      "created": "បានបង្កើតគោលដៅ",
+      "updated": "បានរក្សាទុកការកែប្រែ",
+      "deleted": "បានលុបគោលដៅ",
+      "completed": "អបអរសាទរ! អ្នកបានសម្រេចគោលដៅ 🎉",
+      "reopened": "បានបើកគោលដៅឡើងវិញ",
+      "error": "មានបញ្ហាកើតឡើង។ សូមព្យាយាមម្ដងទៀត។"
+    },
+    "empty": {
+      "title": "មិនទាន់មានគោលដៅនៅឡើយ",
+      "description": "កំណត់គោលដៅដំបូងរបស់អ្នក ហើយបំបែកវាជាជំហានតូចៗ។",
+      "doneTitle": "មិនទាន់មានគោលដៅដែលសម្រេចបាន",
+      "doneDescription": "បន្តទៅមុខទៀត — អ្នកធ្វើបាន!"
+    },
+    "loadError": "មិនអាចផ្ទុកគោលដៅបានទេ",
+    "dashboard": {
+      "title": "គោលដៅកំពុងធ្វើ",
+      "viewAll": "មើលទាំងអស់"
+    }
+  },
+  "schedule": {
+    "title": "កាលវិភាគ",
+    "description": "រៀបចំសប្ដាហ៍របស់អ្នក ម្ដងមួយសកម្មភាព។",
+    "newActivity": "សកម្មភាពថ្មី",
+    "editActivity": "កែសកម្មភាព",
+    "today": "ថ្ងៃនេះ",
+    "tomorrow": "ថ្ងៃស្អែក",
+    "previousWeek": "សប្ដាហ៍មុន",
+    "nextWeek": "សប្ដាហ៍ក្រោយ",
+    "previousDay": "ថ្ងៃមុន",
+    "nextDay": "ថ្ងៃបន្ទាប់",
+    "now": "ឥឡូវ",
+    "views": {
+      "week": "សប្ដាហ៍",
+      "day": "ថ្ងៃ",
+      "agenda": "បញ្ជី",
+      "label": "ទិដ្ឋភាព"
+    },
+    "types": {
+      "meeting": "ប្រជុំ",
+      "learning": "ការសិក្សា",
+      "work": "ការងារ",
+      "exercise": "ហាត់ប្រាណ",
+      "personal": "ផ្ទាល់ខ្លួន",
+      "family": "គ្រួសារ",
+      "other": "ផ្សេងៗ"
+    },
+    "summary": {
+      "planned": "បានគ្រោងទុក",
+      "plannedToday": "បានគ្រោងទុកថ្ងៃនេះ",
+      "learning": "ការសិក្សា",
+      "meetings": "ប្រជុំ {count} ដង",
+      "byType": "ពេលវេលាតាមប្រភេទ"
+    },
+    "duration": {
+      "hoursMinutes": "{hours} ម៉ោង {minutes} នាទី",
+      "hours": "{hours} ម៉ោង",
+      "minutes": "{minutes} នាទី"
+    },
+    "form": {
+      "title": "ចំណងជើង",
+      "titlePlaceholder": "ឧ. ប្រជុំក្រុម",
+      "type": "ប្រភេទ",
+      "date": "កាលបរិច្ឆេទ",
+      "start": "ចាប់ផ្ដើម",
+      "end": "បញ្ចប់",
+      "duration": "រយៈពេល",
+      "location": "ទីកន្លែង",
+      "locationPlaceholder": "ឧ. ការិយាល័យ, Zoom, ហាងកាហ្វេ",
+      "note": "កំណត់ចំណាំ",
+      "repeat": "ធ្វើម្ដងទៀត",
+      "repeatNone": "មិនធ្វើម្ដងទៀត",
+      "repeatDaily": "រៀងរាល់ថ្ងៃ",
+      "repeatWeekdays": "រៀងរាល់ថ្ងៃធ្វើការ (ច័ន្ទ–សុក្រ)",
+      "repeatWeekly": "រៀងរាល់សប្ដាហ៍នៅថ្ងៃ…",
+      "repeatOn": "ធ្វើម្ដងទៀតនៅថ្ងៃ",
+      "until": "រហូតដល់",
+      "untilNever": "គ្មានថ្ងៃបញ្ចប់",
+      "overlap": "ជាន់ម៉ោងជាមួយ «{title}» ({time})",
+      "discardTitle": "បោះបង់ការកែប្រែ?",
+      "discardConfirm": "បោះបង់",
+      "pickDate": "ជ្រើសរើសកាលបរិច្ឆេទ",
+      "clearUntil": "ដកថ្ងៃបញ្ចប់ចេញ"
+    },
+    "repeatDescription": {
+      "daily": "រៀងរាល់ថ្ងៃ",
+      "weekdays": "រៀងរាល់ថ្ងៃធ្វើការ",
+      "weekly": "រៀងរាល់ {days}",
+      "until": "{rule} រហូតដល់ {date}"
+    },
+    "validation": {
+      "required": "សូមបំពេញចន្លោះនេះ",
+      "tooLong": "វែងពេក (អតិបរមា {max} តួអក្សរ)",
+      "endAfterStart": "ម៉ោងបញ្ចប់ត្រូវនៅក្រោយម៉ោងចាប់ផ្ដើម",
+      "tooShort": "សកម្មភាពត្រូវមានរយៈពេលយ៉ាងហោចណាស់ {min} នាទី",
+      "pickDay": "សូមជ្រើសរើសយ៉ាងហោចណាស់មួយថ្ងៃ",
+      "untilBeforeStart": "ថ្ងៃបញ្ចប់ត្រូវនៅក្រោយថ្ងៃចាប់ផ្ដើម"
+    },
+    "scope": {
+      "editTitle": "កែសកម្មភាពដែលធ្វើម្ដងទៀត",
+      "deleteTitle": "លុបសកម្មភាពដែលធ្វើម្ដងទៀត",
+      "moveTitle": "ផ្លាស់ទីសកម្មភាពដែលធ្វើម្ដងទៀត",
+      "thisOnly": "តែសកម្មភាពនេះប៉ុណ្ណោះ",
+      "all": "សកម្មភាពទាំងអស់ក្នុងស៊េរីនេះ"
+    },
+    "details": {
+      "repeats": "ធ្វើម្ដងទៀត",
+      "blockLabel": "{title}, {date}, {time}",
+      "blockLabelRecurring": "{title}, {date}, {time}, ធ្វើម្ដងទៀត",
+      "close": "បិទ"
+    },
+    "grid": {
+      "earlier": "+{count} មុននេះ",
+      "later": "+{count} ក្រោយនេះ",
+      "more": "+{count} ទៀត",
+      "addAt": "បន្ថែមសកម្មភាពនៅ {date} ម៉ោង {time}",
+      "hiddenTitle": "សកម្មភាពផ្សេងទៀតនៅម៉ោងនេះ"
+    },
+    "dnd": {
+      "picked": "បានលើក {title}។",
+      "moved": "{title} ផ្លាស់ទៅ {date} ម៉ោង {time}។",
+      "dropped": "{title} ដាក់នៅ {date} ម៉ោង {time}។",
+      "cancelled": "បានបោះបង់ការផ្លាស់ទី។",
+      "instructions": "ដើម្បីផ្លាស់ទីសកម្មភាព ចុច Space។ ប្រើព្រួញឡើងចុះ ដើម្បីប្ដូរម៉ោង ១៥ នាទី និងព្រួញឆ្វេងស្ដាំ ដើម្បីប្ដូរថ្ងៃ បន្ទាប់មកចុច Space ដើម្បីដាក់ ឬ Escape ដើម្បីបោះបង់។"
+    },
+    "agenda": {
+      "loadMore": "ផ្ទុក ១៤ ថ្ងៃបន្ទាប់",
+      "noMore": "គ្មានសកម្មភាពទៀតទេ"
+    },
+    "deleteDialog": {
+      "title": "លុប «{title}»?",
+      "description": "សកម្មភាពនេះមិនអាចត្រឡប់វិញបានទេ។",
+      "confirm": "លុប"
+    },
+    "toast": {
+      "created": "បានបន្ថែមសកម្មភាព",
+      "updated": "បានរក្សាទុកការកែប្រែ",
+      "moved": "បានផ្លាស់ទីសកម្មភាព",
+      "deleted": "បានលុបសកម្មភាព",
+      "undo": "ត្រឡប់វិញ",
+      "error": "មានបញ្ហាកើតឡើង។ សូមព្យាយាមម្ដងទៀត។"
+    },
+    "empty": {
+      "week": "សប្ដាហ៍នេះមិនទាន់មានសកម្មភាព — ចុចលើម៉ោងទំនេរ ដើម្បីបន្ថែម",
+      "weekTouch": "សប្ដាហ៍នេះមិនទាន់មានសកម្មភាព — ចុច + ដើម្បីបន្ថែម",
+      "day": "មិនមានអ្វីគ្រោងទុកសម្រាប់ថ្ងៃនេះទេ"
+    },
+    "loadError": "មិនអាចផ្ទុកកាលវិភាគរបស់អ្នកបានទេ",
+    "shortcuts": {
+      "title": "ផ្លូវកាត់ក្ដារចុច",
+      "hint": "{action} ({key})"
+    },
+    "dashboard": {
+      "title": "កាលវិភាគថ្ងៃនេះ",
+      "now": "ឥឡូវ",
+      "next": "បន្ទាប់",
+      "endsIn": "បញ្ចប់ក្នុងរយៈពេល {time}",
+      "startsIn": "ចាប់ផ្ដើមក្នុងរយៈពេល {time}",
+      "nothingLeft": "គ្មានអ្វីទៀតទេថ្ងៃនេះ 🎉",
+      "viewAll": "មើលកាលវិភាគ"
+    },
+    "weekStrip": "ថ្ងៃក្នុងសប្ដាហ៍នេះ"
+  },
+  "auth": {
+    "loginTitle": "ចូលគណនី"
+  },
+  "errors": {
+    "generic": "មានបញ្ហាកើតឡើង។ សូមព្យាយាមម្តងទៀត។",
+    "network": "បញ្ហាបណ្តាញ។ សូមព្យាយាមម្តងទៀត។",
+    "mock_error": "កំហុសសាកល្បង (របៀបទិន្នន័យគំរូ)។ សូមព្យាយាមម្តងទៀត។"
+  }
+}

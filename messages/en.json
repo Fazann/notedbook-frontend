@@ -1,0 +1,623 @@
+{
+  "app": {
+    "name": "LifeApp",
+    "description": "Track expenses, plan goals, schedule your week and organize tasks."
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "loading": "Loading...",
+    "retry": "Try again",
+    "viewAll": "View all",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "comingSoon": "Coming soon",
+    "comingSoonDescription": "This page is part of the next build step. The dashboard is ready to try.",
+    "backToDashboard": "Back to dashboard",
+    "charCount": "{count}/{max}"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "expenses": "Expenses",
+    "planning": "Planning",
+    "schedule": "Schedule",
+    "boards": "Boards",
+    "settings": "Settings",
+    "main": "Main navigation",
+    "openMenu": "Open menu",
+    "toggleSidebar": "Toggle sidebar"
+  },
+  "search": {
+    "open": "Search",
+    "placeholder": "Go to a page...",
+    "noResults": "No results found.",
+    "pages": "Pages",
+    "title": "Search",
+    "description": "Jump to a page"
+  },
+  "language": {
+    "label": "Language",
+    "en": "English",
+    "km": "ខ្មែរ"
+  },
+  "theme": {
+    "label": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "user": {
+    "menu": "Account menu",
+    "profile": "Profile",
+    "settings": "Settings",
+    "logout": "Log out"
+  },
+  "monthPicker": {
+    "previous": "Previous month",
+    "next": "Next month"
+  },
+  "currency": {
+    "label": "Currency",
+    "USD": "USD",
+    "KHR": "KHR"
+  },
+  "list": {
+    "search": "Search…",
+    "clearSearch": "Clear search",
+    "sortBy": "Sort by",
+    "actions": "Actions",
+    "moreActions": "More actions",
+    "noResults": "No results for “{query}”",
+    "errorTitle": "Could not load data",
+    "retry": "Try again",
+    "pagination": {
+      "label": "Pagination",
+      "previous": "Previous",
+      "next": "Next",
+      "goToPage": "Go to page {page}",
+      "pageOf": "Page {page} of {totalPages}",
+      "showing": "Showing {from}–{to} of {total}",
+      "rowsPerPage": "Rows per page"
+    },
+    "sortAsc": "Sorted ascending",
+    "sortDesc": "Sorted descending",
+    "clearSelection": "Clear selection"
+  },
+  "category": {
+    "title": "Categories",
+    "description": "Group your expenses to see where your money goes.",
+    "tabExpenses": "Expenses",
+    "tabCategories": "Categories",
+    "add": "Add category",
+    "edit": "Edit category",
+    "delete": "Delete",
+    "viewExpenses": "View expenses",
+    "manage": "Manage categories",
+    "searchPlaceholder": "Search categories…",
+    "defaultBadge": "Default",
+    "defaultCannotDelete": "Default categories can't be deleted",
+    "defaultNameHint": "Default names follow the app language",
+    "columns": {
+      "name": "Category",
+      "expenses": "Expenses",
+      "created": "Created"
+    },
+    "sort": {
+      "nameAsc": "Name (A–Z)",
+      "nameDesc": "Name (Z–A)",
+      "mostUsed": "Most used",
+      "newest": "Newest"
+    },
+    "expenseCount": "{count, plural, =0 {No expenses} one {# expense} other {# expenses}}",
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "e.g. Gym",
+      "icon": "Icon",
+      "color": "Color",
+      "preview": "Preview",
+      "save": "Save",
+      "cancel": "Cancel",
+      "discardTitle": "Discard changes?",
+      "discardConfirm": "Discard"
+    },
+    "validation": {
+      "required": "Please enter a name",
+      "tooLong": "Name is too long (max {max} characters)",
+      "nameTaken": "You already have a category with this name"
+    },
+    "deleteDialog": {
+      "title": "Delete “{name}”?",
+      "descriptionEmpty": "This can't be undone.",
+      "descriptionInUse": "{count, plural, one {# expense uses} other {# expenses use}} this category. Move {count, plural, one {it} other {them}} to:",
+      "moveTo": "Move expenses to",
+      "confirm": "Delete",
+      "confirmAndMove": "Delete and move"
+    },
+    "toast": {
+      "created": "Category created",
+      "updated": "Changes saved",
+      "deleted": "Category deleted",
+      "error": "Something went wrong. Please try again."
+    },
+    "empty": {
+      "title": "No categories yet",
+      "description": "Add a category to organize your expenses."
+    },
+    "loadError": "Could not load categories",
+    "icons": {
+      "utensils": "Food",
+      "coffee": "Coffee",
+      "bike": "Motorbike",
+      "car": "Car",
+      "bus": "Bus",
+      "home": "Home",
+      "wifi": "Wi-Fi",
+      "smartphone": "Phone",
+      "users": "People",
+      "baby": "Baby",
+      "shopping-bag": "Shopping bag",
+      "shirt": "Clothes",
+      "heart-pulse": "Health",
+      "pill": "Medicine",
+      "book-open": "Book",
+      "graduation-cap": "Graduation cap",
+      "gift": "Gift",
+      "plane": "Plane",
+      "gamepad-2": "Games",
+      "dumbbell": "Fitness",
+      "dog": "Pet",
+      "receipt": "Receipt",
+      "piggy-bank": "Savings",
+      "ellipsis": "Other"
+    },
+    "colors": {
+      "chart-1": "Color 1",
+      "chart-2": "Color 2",
+      "chart-3": "Color 3",
+      "chart-4": "Color 4",
+      "chart-5": "Color 5",
+      "red": "Red",
+      "orange": "Orange",
+      "amber": "Amber",
+      "green": "Green",
+      "teal": "Teal",
+      "blue": "Blue",
+      "violet": "Violet",
+      "pink": "Pink",
+      "slate": "Gray"
+    },
+    "defaults": {
+      "food": "Food",
+      "coffee": "Coffee",
+      "transport": "Transport",
+      "rent": "Rent",
+      "phoneInternet": "Phone & Internet",
+      "family": "Family",
+      "shopping": "Shopping",
+      "health": "Health",
+      "education": "Education",
+      "other": "Other"
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "greeting": {
+      "morning": "Good morning, {name}",
+      "afternoon": "Good afternoon, {name}",
+      "evening": "Good evening, {name}"
+    },
+    "subtitle": "Here is your overview for {month}.",
+    "stats": {
+      "spentUsd": "Spent (USD)",
+      "spentKhr": "Spent (KHR)",
+      "vsLastMonth": "vs last month",
+      "tasksDue": "Tasks due this week",
+      "expenseCount": "{count, plural, =0 {No expenses} one {# expense} other {# expenses}}",
+      "up": "Up {percent}%",
+      "down": "Down {percent}%",
+      "same": "No change",
+      "noCompare": "No data last month",
+      "overdueCount": "{count, plural, =0 {Nothing overdue} other {# overdue}}"
+    },
+    "daily": {
+      "title": "Daily spending",
+      "description": "Total spent each day this month",
+      "day": "Day {day}"
+    },
+    "category": {
+      "title": "By category",
+      "description": "Where your money went",
+      "others": "Others",
+      "empty": "No spending in this currency yet.",
+      "openCategory": "Show {category} expenses"
+    },
+    "recent": {
+      "title": "Recent expenses",
+      "empty": "No expenses this month yet.",
+      "emptyAction": "Add your first expense"
+    },
+    "tasks": {
+      "title": "Tasks due soon",
+      "description": "From all boards, next 7 days",
+      "empty": "Nothing due in the next 7 days.",
+      "overdue": "Overdue",
+      "dueToday": "Due today",
+      "dueOn": "Due {date}",
+      "onBoard": "{board} · {column}"
+    },
+    "error": "Could not load this section.",
+    "goals": {
+      "empty": "No active goals. Set one to start tracking progress."
+    }
+  },
+  "expense": {
+    "add": "Add expense",
+    "edit": "Edit expense",
+    "quickAdd": "Quick add expense",
+    "formDescription": "Amounts are saved in the currency you choose.",
+    "amount": "Amount",
+    "currency": "Currency",
+    "category": "Category",
+    "date": "Date",
+    "note": "Note",
+    "notePlaceholder": "e.g. Lunch with team",
+    "selectCategory": "Select a category",
+    "searchCategory": "Search categories...",
+    "noCategory": "No category found.",
+    "pickDate": "Pick a date",
+    "saved": "Expense added",
+    "updated": "Expense updated",
+    "form": {
+      "amountRequired": "Enter an amount",
+      "amountInvalid": "Enter a valid amount",
+      "categoryRequired": "Choose a category",
+      "dateRequired": "Choose a date",
+      "noteTooLong": "Keep the note under 200 characters"
+    },
+    "title": "Expenses",
+    "description": "See and manage what you spent, month by month.",
+    "searchPlaceholder": "Search notes…",
+    "noNote": "No note",
+    "loadError": "Could not load expenses",
+    "deleted": "Expense deleted",
+    "undo": "Undo",
+    "restored": "Expense restored",
+    "columns": {
+      "date": "Date",
+      "category": "Category",
+      "note": "Note",
+      "amount": "Amount"
+    },
+    "sort": {
+      "newest": "Newest first",
+      "oldest": "Oldest first",
+      "amountDesc": "Highest amount",
+      "amountAsc": "Lowest amount"
+    },
+    "filters": {
+      "category": "Filter by category",
+      "allCategories": "All categories",
+      "currency": "Filter by currency",
+      "allCurrencies": "All currencies",
+      "noMatch": "No expenses match these filters",
+      "clear": "Clear filters"
+    },
+    "summary": {
+      "spentUsd": "Spent in USD",
+      "spentKhr": "Spent in KHR",
+      "count": "Expenses this month",
+      "countHint": "{count, plural, =0 {No expenses} one {# expense} other {# expenses}}",
+      "allFilters": "Totals for the whole month"
+    },
+    "deleteDialog": {
+      "title": "Delete this expense?",
+      "description": "{amount} · {category} · {date}",
+      "confirm": "Delete"
+    },
+    "empty": {
+      "title": "No expenses this month",
+      "description": "Add an expense and it will show up here.",
+      "action": "Add your first expense"
+    }
+  },
+  "planning": {
+    "title": "Planning",
+    "description": "Break big goals into small steps.",
+    "newGoal": "New goal",
+    "editGoal": "Edit goal",
+    "backToList": "Back to Planning",
+    "searchPlaceholder": "Search goals…",
+    "tabs": {
+      "active": "Active",
+      "done": "Done",
+      "all": "All"
+    },
+    "filters": {
+      "area": "Area",
+      "allAreas": "All areas",
+      "clear": "Clear filters",
+      "areaCount": "{count, plural, one {# area} other {# areas}}",
+      "noArea": "No area found.",
+      "noMatch": "No goals match these filters",
+      "status": "Show goals"
+    },
+    "sort": {
+      "dueSoonest": "Due soonest",
+      "newest": "Newest",
+      "mostProgress": "Most progress",
+      "title": "Title (A–Z)"
+    },
+    "stats": {
+      "active": "Active goals",
+      "doneThisYear": "Done this year",
+      "overdue": "Overdue",
+      "averageProgress": "Average progress"
+    },
+    "status": {
+      "not_started": "Not started",
+      "in_progress": "In progress",
+      "done": "Done"
+    },
+    "area": {
+      "personal": "Personal",
+      "career": "Career",
+      "health": "Health",
+      "finance": "Finance",
+      "learning": "Learning",
+      "family": "Family"
+    },
+    "priority": {
+      "label": "{priority} priority",
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High"
+    },
+    "progress": "{percent}% done",
+    "stepsDone": "{done} of {total} steps",
+    "due": {
+      "overdue": "{days, plural, one {Overdue by # day} other {Overdue by # days}}",
+      "dueToday": "Due today",
+      "daysLeft": "{days, plural, one {# day left} other {# days left}}",
+      "dueOn": "Due {date}",
+      "noDate": "No target date",
+      "completedOn": "Completed {date}"
+    },
+    "actions": {
+      "markDone": "Mark as done",
+      "reopen": "Reopen",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "form": {
+      "title": "Title",
+      "titlePlaceholder": "e.g. Save $500 for a new laptop",
+      "description": "Description",
+      "descriptionPlaceholder": "Why does this goal matter to you?",
+      "area": "Area",
+      "priority": "Priority",
+      "targetDate": "Target date",
+      "targetDatePast": "This date is in the past",
+      "status": "Status",
+      "discardTitle": "Discard changes?",
+      "discardConfirm": "Discard",
+      "clearDate": "Clear date",
+      "pickDate": "Pick a date"
+    },
+    "validation": {
+      "required": "Please fill in this field",
+      "tooLong": "Too long (max {max} characters)"
+    },
+    "milestones": {
+      "title": "Steps",
+      "doneCount": "{done} of {total} done",
+      "addPlaceholder": "Add a step…",
+      "add": "Add step",
+      "setDueDate": "Set due date",
+      "removeDueDate": "Remove due date",
+      "editTitle": "Edit step",
+      "delete": "Delete step",
+      "dragHandle": "Drag to reorder",
+      "emptyTitle": "No steps yet",
+      "emptyDescription": "Break this goal into small steps.",
+      "deleted": "Step deleted",
+      "undo": "Undo",
+      "allDonePrompt": "All steps done! Mark this goal as done?",
+      "dnd": {
+        "picked": "Picked up step {title}. Position {position} of {total}.",
+        "moved": "Step {title} moved to position {position} of {total}.",
+        "dropped": "Step {title} dropped at position {position} of {total}.",
+        "cancelled": "Reordering cancelled.",
+        "instructions": "To pick up a step, press Space or Enter. Use the arrow keys to move it, then Space or Enter to drop it, or Escape to cancel."
+      },
+      "dueOn": "Due {date}",
+      "saving": "Saving…"
+    },
+    "detail": {
+      "about": "About this goal",
+      "created": "Created {date}",
+      "showMore": "Show more",
+      "showLess": "Show less",
+      "notFoundTitle": "Goal not found",
+      "notFoundDescription": "It may have been deleted.",
+      "progress": "Progress",
+      "documentTitle": "{title} · {appName}"
+    },
+    "deleteDialog": {
+      "title": "Delete “{title}”?",
+      "description": "All its steps will be deleted too. This can't be undone.",
+      "confirm": "Delete goal"
+    },
+    "toast": {
+      "created": "Goal created",
+      "updated": "Changes saved",
+      "deleted": "Goal deleted",
+      "completed": "Goal completed! 🎉",
+      "reopened": "Goal reopened",
+      "error": "Something went wrong. Please try again."
+    },
+    "empty": {
+      "title": "No goals yet",
+      "description": "Set your first goal and break it into small steps.",
+      "doneTitle": "No completed goals yet",
+      "doneDescription": "Keep going — you've got this!"
+    },
+    "loadError": "Could not load goals",
+    "dashboard": {
+      "title": "Active goals",
+      "viewAll": "View all"
+    }
+  },
+  "schedule": {
+    "title": "Schedule",
+    "description": "Plan your week, one activity at a time.",
+    "newActivity": "New activity",
+    "editActivity": "Edit activity",
+    "today": "Today",
+    "tomorrow": "Tomorrow",
+    "previousWeek": "Previous week",
+    "nextWeek": "Next week",
+    "previousDay": "Previous day",
+    "nextDay": "Next day",
+    "now": "Now",
+    "views": {
+      "week": "Week",
+      "day": "Day",
+      "agenda": "Agenda",
+      "label": "View"
+    },
+    "types": {
+      "meeting": "Meeting",
+      "learning": "Learning",
+      "work": "Work",
+      "exercise": "Exercise",
+      "personal": "Personal",
+      "family": "Family",
+      "other": "Other"
+    },
+    "summary": {
+      "planned": "Planned",
+      "plannedToday": "Planned today",
+      "learning": "Learning",
+      "meetings": "{count, plural, one {# meeting} other {# meetings}}",
+      "byType": "Time by type"
+    },
+    "duration": {
+      "hoursMinutes": "{hours} h {minutes} min",
+      "hours": "{hours} h",
+      "minutes": "{minutes} min"
+    },
+    "form": {
+      "title": "Title",
+      "titlePlaceholder": "e.g. Team meeting",
+      "type": "Type",
+      "date": "Date",
+      "start": "Start",
+      "end": "End",
+      "duration": "Duration",
+      "location": "Location",
+      "locationPlaceholder": "e.g. Office, Zoom, Coffee shop",
+      "note": "Note",
+      "repeat": "Repeat",
+      "repeatNone": "Does not repeat",
+      "repeatDaily": "Every day",
+      "repeatWeekdays": "Every weekday (Mon–Fri)",
+      "repeatWeekly": "Every week on…",
+      "repeatOn": "Repeat on",
+      "until": "Until",
+      "untilNever": "No end date",
+      "overlap": "Overlaps with “{title}” ({time})",
+      "discardTitle": "Discard changes?",
+      "discardConfirm": "Discard",
+      "pickDate": "Pick a date",
+      "clearUntil": "Remove end date"
+    },
+    "repeatDescription": {
+      "daily": "Every day",
+      "weekdays": "Every weekday",
+      "weekly": "Every {days}",
+      "until": "{rule} until {date}"
+    },
+    "validation": {
+      "required": "Please fill in this field",
+      "tooLong": "Too long (max {max} characters)",
+      "endAfterStart": "End time must be after start time",
+      "tooShort": "An activity must be at least {min} minutes",
+      "pickDay": "Choose at least one day",
+      "untilBeforeStart": "End date must be after the start date"
+    },
+    "scope": {
+      "editTitle": "Edit repeating activity",
+      "deleteTitle": "Delete repeating activity",
+      "moveTitle": "Move repeating activity",
+      "thisOnly": "This activity only",
+      "all": "All activities in the series"
+    },
+    "details": {
+      "repeats": "Repeats",
+      "blockLabel": "{title}, {date}, {time}",
+      "blockLabelRecurring": "{title}, {date}, {time}, repeats",
+      "close": "Close"
+    },
+    "grid": {
+      "earlier": "{count, plural, one {+# earlier} other {+# earlier}}",
+      "later": "{count, plural, one {+# later} other {+# later}}",
+      "more": "+{count} more",
+      "addAt": "Add activity on {date} at {time}",
+      "hiddenTitle": "More activities at this time"
+    },
+    "dnd": {
+      "picked": "Picked up {title}.",
+      "moved": "{title} moved to {date} at {time}.",
+      "dropped": "{title} dropped on {date} at {time}.",
+      "cancelled": "Move cancelled.",
+      "instructions": "To move an activity, press Space. Use the up and down arrows to change the time by 15 minutes and the left and right arrows to change the day, then Space to drop it or Escape to cancel."
+    },
+    "agenda": {
+      "loadMore": "Load next 14 days",
+      "noMore": "No more activities"
+    },
+    "deleteDialog": {
+      "title": "Delete “{title}”?",
+      "description": "This can't be undone.",
+      "confirm": "Delete"
+    },
+    "toast": {
+      "created": "Activity added",
+      "updated": "Changes saved",
+      "moved": "Activity moved",
+      "deleted": "Activity deleted",
+      "undo": "Undo",
+      "error": "Something went wrong. Please try again."
+    },
+    "empty": {
+      "week": "No activities this week — click a time slot to add one",
+      "weekTouch": "No activities this week — tap + to add one",
+      "day": "Nothing planned for this day"
+    },
+    "loadError": "Could not load your schedule",
+    "shortcuts": {
+      "title": "Keyboard shortcuts",
+      "hint": "{action} ({key})"
+    },
+    "dashboard": {
+      "title": "Today's schedule",
+      "now": "Now",
+      "next": "Next",
+      "endsIn": "Ends in {time}",
+      "startsIn": "Starts in {time}",
+      "nothingLeft": "Nothing else today 🎉",
+      "viewAll": "View schedule"
+    },
+    "weekStrip": "Days of this week"
+  },
+  "auth": {
+    "loginTitle": "Log in"
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "network": "Network error. Please try again.",
+    "mock_error": "Simulated error (mock mode). Please try again."
+  }
+}
