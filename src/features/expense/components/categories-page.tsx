@@ -19,7 +19,8 @@ import { Link, useRouter } from '@/i18n/navigation';
 
 import { useCategories, useCategoryOptions, useDeleteCategory } from '../hooks';
 import { CATEGORY_SORT_KEYS, type Category } from '../types';
-import { categoryErrorMessage, getCategoryName } from '../utils';
+import { useCategoryName } from '../use-category-name';
+import { categoryErrorMessage } from '../utils';
 
 import { CategoryBadge } from './category-badge';
 import { CategoryDeleteDialog } from './category-delete-dialog';
@@ -53,7 +54,7 @@ export function CategoriesPage() {
     if (meta && meta.totalPages > 0 && params.page > meta.totalPages) setPage(meta.totalPages);
   }, [meta, params.page, setPage]);
 
-  const name = (c: Category) => getCategoryName(c, t);
+  const name = useCategoryName();
   const openEdit = (category: Category) => setForm({ open: true, category });
   const viewExpenses = (category: Category) =>
     router.push({ pathname: '/expenses', query: { category: String(category.id) } });

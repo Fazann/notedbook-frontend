@@ -59,3 +59,14 @@ Draft Khmer from the spec — please review every key in the `schedule` namespac
   `schedule.weekStrip`, `schedule.details.close`, `schedule.grid.hiddenTitle`.
 - `app.description` — now mentions both goals and the weekly schedule; please check the wording.
 - Weekday / month names, times and date ranges come from Intl — nothing to translate there.
+
+## Language switcher
+
+- `language.km` — now "ភាសាខ្មែរ" (shown in Khmer in both languages, like "English" is always English).
+- `language.current` — "ភាសា៖ {name}", the switcher button's screen-reader label.
+
+## Category Khmer name
+
+- `category.form.nameKm`, `category.form.nameKmPlaceholder`, `category.form.nameKmHint` — the new optional
+  "Khmer name" field in the category form.
+- Seed data (mock only): Khmer names of the sample user categories in `src/mocks/seed.ts`.

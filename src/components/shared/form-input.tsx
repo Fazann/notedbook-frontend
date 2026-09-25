@@ -11,7 +11,7 @@ import { FormField, type FormFieldBaseProps } from './form-field';
 export type FormInputProps<T extends FieldValues, N extends FieldPath<T>> = FormFieldBaseProps<T, N> &
   Pick<
     React.ComponentProps<'input'>,
-    'type' | 'placeholder' | 'maxLength' | 'autoFocus' | 'autoComplete' | 'inputMode' | 'disabled'
+    'type' | 'placeholder' | 'maxLength' | 'autoFocus' | 'autoComplete' | 'inputMode' | 'disabled' | 'lang'
   > & {
     /** Shows "12/50" next to the label (needs `maxLength`). */
     showCount?: boolean;
@@ -35,6 +35,7 @@ export function FormInput<T extends FieldValues, N extends FieldPath<T>>({
   autoComplete,
   inputMode,
   disabled,
+  lang,
   hint,
   ...base
 }: FormInputProps<T, N>) {
@@ -59,6 +60,7 @@ export function FormInput<T extends FieldValues, N extends FieldPath<T>>({
           autoFocus={autoFocus}
           autoComplete={autoComplete}
           inputMode={inputMode}
+          lang={lang}
           disabled={disabled}
           aria-invalid={invalid}
           aria-describedby={describedBy}

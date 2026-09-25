@@ -8,7 +8,7 @@ import { OptionSelect } from '@/components/shared/option-select';
 import { Label } from '@/components/ui/label';
 
 import type { Category } from '../types';
-import { getCategoryName } from '../utils';
+import { useCategoryName } from '../use-category-name';
 
 import { CategoryIcon } from './category-icon';
 
@@ -24,12 +24,13 @@ export type CategoryDeleteDialogProps = {
 
 export function CategoryDeleteDialog({ category, options, onOpenChange, onConfirm }: CategoryDeleteDialogProps) {
   const t = useTranslations();
+  const categoryName = useCategoryName();
   const selectId = useId();
   const [picked, setPicked] = useState<{ for: number; id: number } | undefined>();
 
   if (!category) return null;
 
-  const name = getCategoryName(category, t);
+  const name = categoryName(category);
   const inUse = category.expenseCount > 0;
   const targets = options.filter((c) => c.id !== category.id);
   const fallback = targets.find((c) => c.key === 'other')?.id;
@@ -58,7 +59,7 @@ export function CategoryDeleteDialog({ category, options, onOpenChange, onConfir
             id={selectId}
             options={targets.map((c) => ({
               value: String(c.id),
-              label: getCategoryName(c, t),
+              label: categoryName(c),
               icon: <CategoryIcon icon={c.icon} color={c.color} className="size-5 rounded [&_svg]:size-3" />,
             }))}
             value={reassignTo === undefined ? undefined : String(reassignTo)}

@@ -7,13 +7,19 @@ import type { Category, CategoryColor, ExpenseFilterKey } from './types';
 type Translate = { (key: string, values?: Record<string, string | number>): string; has: (key: string) => boolean };
 
 /**
- * The name to display for a category: default categories are translated by `key`,
- * user-created ones are shown exactly as typed. Use it everywhere a category name is shown.
+ * The name to display for a category: default categories are translated by `key`; user-created ones are shown
+ * exactly as typed — the Khmer name in the Khmer UI when there is one, otherwise the name.
+ * Use it everywhere a category name is shown.
  */
-export function getCategoryName(category: Pick<Category, 'key' | 'name'> | undefined, t: Translate): string {
+export function getCategoryName(
+  category: (Pick<Category, 'key' | 'name'> & Partial<Pick<Category, 'nameKm'>>) | undefined,
+  t: Translate,
+  locale: string
+): string {
   if (!category) return '';
   const key = `category.defaults.${category.key}`;
-  return category.key && t.has(key) ? t(key) : category.name;
+  if (category.key && t.has(key)) return t(key);
+  return (locale === 'km' && category.nameKm?.trim()) || category.name;
 }
 
 /** Maps category API errors to translated text. */

@@ -69,7 +69,8 @@ export function CategoryCombobox({ categories, value, onChange, onManage, id, ..
               {categories.map((c) => (
                 <CommandItem
                   key={c.id}
-                  value={`${categoryName(c)} ${c.name}`}
+                  // Search matches the shown name and both typed names.
+                  value={`${categoryName(c)} ${c.name} ${c.nameKm}`}
                   className="min-h-10"
                   onSelect={() => {
                     onChange(c.id);

@@ -16,7 +16,15 @@ export const demoUser: User = { id: 1, name: 'Sokha', email: 'demo@example.com',
 /** Stored shape: `expenseCount` is computed from the expenses when read. */
 export type StoredCategory = Omit<Category, 'expenseCount'>;
 
-type CategorySeed = [id: number, key: string | null, name: string, icon: CategoryIcon, color: CategoryColor];
+type CategorySeed = [
+  id: number,
+  key: string | null,
+  name: string,
+  icon: CategoryIcon,
+  color: CategoryColor,
+  /** Khmer name of a user category (a few are left without one, to show the fallback). */
+  nameKm?: string,
+];
 
 const CATEGORY_SEEDS: CategorySeed[] = [
   // Defaults (translated by key, cannot be deleted)
@@ -31,29 +39,29 @@ const CATEGORY_SEEDS: CategorySeed[] = [
   [9, 'education', 'Education', 'book-open', 'chart-2'],
   [10, 'other', 'Other', 'ellipsis', 'slate'],
   // User-created (shown as typed)
-  [11, null, 'Gym', 'dumbbell', 'green'],
+  [11, null, 'Gym', 'dumbbell', 'green', 'ហាត់ប្រាណ'],
   [12, null, 'Netflix', 'gamepad-2', 'red'],
-  [13, null, 'Wedding gifts', 'gift', 'pink'],
-  [14, null, 'Motorbike repair', 'bike', 'orange'],
-  [15, null, 'Pet food', 'dog', 'amber'],
-  [16, null, 'Books', 'book-open', 'blue'],
-  [17, null, 'Haircut', 'receipt', 'violet'],
-  [18, null, 'Water & electricity', 'receipt', 'teal'],
-  [19, null, 'Clothes', 'shirt', 'chart-4'],
-  [20, null, 'Medicine', 'pill', 'green'],
-  [21, null, 'Travel', 'plane', 'chart-5'],
-  [22, null, 'Baby supplies', 'baby', 'pink'],
-  [23, null, 'Savings', 'piggy-bank', 'chart-2'],
+  [13, null, 'Wedding gifts', 'gift', 'pink', 'ចំណងដៃការ'],
+  [14, null, 'Motorbike repair', 'bike', 'orange', 'ជួសជុលម៉ូតូ'],
+  [15, null, 'Pet food', 'dog', 'amber', 'ចំណីសត្វ'],
+  [16, null, 'Books', 'book-open', 'blue', 'សៀវភៅ'],
+  [17, null, 'Haircut', 'receipt', 'violet', 'កាត់សក់'],
+  [18, null, 'Water & electricity', 'receipt', 'teal', 'ទឹក និងភ្លើង'],
+  [19, null, 'Clothes', 'shirt', 'chart-4', 'សម្លៀកបំពាក់'],
+  [20, null, 'Medicine', 'pill', 'green', 'ថ្នាំពេទ្យ'],
+  [21, null, 'Travel', 'plane', 'chart-5', 'ដំណើរកម្សាន្ត'],
+  [22, null, 'Baby supplies', 'baby', 'pink', 'សម្ភារៈទារក'],
+  [23, null, 'Savings', 'piggy-bank', 'chart-2', 'សន្សំ'],
   [24, null, 'Taxi', 'car', 'slate'],
-  [25, null, 'Online courses', 'graduation-cap', 'chart-3'],
+  [25, null, 'Online courses', 'graduation-cap', 'chart-3', 'វគ្គសិក្សាអនឡាញ'],
 ];
 
 export function seedCategories(today: Date): StoredCategory[] {
-  return CATEGORY_SEEDS.map(([id, key, name, icon, color]) => {
+  return CATEGORY_SEEDS.map(([id, key, name, icon, color, nameKm = '']) => {
     // Defaults exist from "sign-up" (2 months ago); user categories were added one by one since then.
     const created = key ? subMonths(today, 2) : addDays(subMonths(today, 2), (id - 10) * 3);
     const stamp = `${iso(created)}T09:00:00+07:00`;
-    return { id, key, name, icon, color, isDefault: key !== null, createdAt: stamp, updatedAt: stamp };
+    return { id, key, name, nameKm, icon, color, isDefault: key !== null, createdAt: stamp, updatedAt: stamp };
   });
 }
 

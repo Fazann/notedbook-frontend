@@ -40,7 +40,8 @@
   "language": {
     "label": "Language",
     "en": "English",
-    "km": "ខ្មែរ"
+    "km": "ភាសាខ្មែរ",
+    "current": "Language: {name}"
   },
   "theme": {
     "label": "Theme",
@@ -114,6 +115,9 @@
     "form": {
       "name": "Name",
       "namePlaceholder": "e.g. Gym",
+      "nameKm": "Khmer name (optional)",
+      "nameKmPlaceholder": "e.g. ហាត់ប្រាណ",
+      "nameKmHint": "Shown instead of the name when the app is in Khmer.",
       "icon": "Icon",
       "color": "Color",
       "preview": "Preview",

@@ -2,7 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Loader2 } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -36,10 +36,11 @@ export function CategoryFormDialog({ open, onOpenChange, category }: CategoryFor
   return <CategoryForm key={category?.id ?? 'new'} category={category} onClose={() => onOpenChange(false)} />;
 }
 
-const NEW_CATEGORY: CategoryFormValues = { name: '', icon: 'ellipsis', color: 'chart-1' };
+const NEW_CATEGORY: CategoryFormValues = { name: '', nameKm: '', icon: 'ellipsis', color: 'chart-1' };
 
 function CategoryForm({ category, onClose }: { category?: Category; onClose: () => void }) {
   const t = useTranslations();
+  const locale = useLocale();
   const create = useCreateCategory();
   const update = useUpdateCategory();
   const [confirmDiscard, setConfirmDiscard] = useState(false);
@@ -47,9 +48,11 @@ function CategoryForm({ category, onClose }: { category?: Category; onClose: () 
 
   const form = useForm<CategoryFormValues>({
     resolver: zodResolver(categoryFormSchema),
-    defaultValues: category ? { name: category.name, icon: category.icon, color: category.color } : NEW_CATEGORY,
+    defaultValues: category
+      ? { name: category.name, nameKm: category.nameKm, icon: category.icon, color: category.color }
+      : NEW_CATEGORY,
   });
-  const [name, icon, color] = useWatch({ control: form.control, name: ['name', 'icon', 'color'] });
+  const [name, nameKm, icon, color] = useWatch({ control: form.control, name: ['name', 'nameKm', 'icon', 'color'] });
   // Read during render: react-hook-form only tracks form state that is subscribed to this way.
   const { isDirty, isSubmitting } = form.formState;
 
@@ -82,7 +85,10 @@ function CategoryForm({ category, onClose }: { category?: Category; onClose: () 
   const errorText = (key: string) =>
     t.has(`category.validation.${key}`) ? t(`category.validation.${key}`, { max: CATEGORY_NAME_MAX }) : key;
 
-  const displayName = isDefault ? getCategoryName(category, t) : name.trim() || t('category.form.namePlaceholder');
+  // The preview shows what this language will show: the Khmer name in the Khmer UI when there is one.
+  const displayName = isDefault
+    ? getCategoryName(category, t, locale)
+    : getCategoryName({ key: null, name, nameKm }, t, locale).trim() || t('category.form.namePlaceholder');
 
   return (
     <>
@@ -101,10 +107,24 @@ function CategoryForm({ category, onClose }: { category?: Category; onClose: () 
               maxLength={CATEGORY_NAME_MAX}
               showCount
               autoFocus={!isDefault}
-              readOnlyValue={isDefault ? getCategoryName(category, t) : undefined}
+              readOnlyValue={isDefault ? getCategoryName(category, t, locale) : undefined}
               description={isDefault ? t('category.defaultNameHint') : undefined}
               translateError={errorText}
             />
+
+            {!isDefault && (
+              <FormInput
+                control={form.control}
+                name="nameKm"
+                label={t('category.form.nameKm')}
+                placeholder={t('category.form.nameKmPlaceholder')}
+                description={t('category.form.nameKmHint')}
+                maxLength={CATEGORY_NAME_MAX}
+                showCount
+                lang="km"
+                translateError={errorText}
+              />
+            )}
 
             <FormField control={form.control} name="icon" label={t('category.form.icon')}>
               {({ field, labelId }) => (

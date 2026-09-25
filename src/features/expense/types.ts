@@ -55,8 +55,10 @@ export const categorySchema = z.object({
   id: z.number(),
   /** "food" for default categories → translated as `category.defaults.<key>`; null for user-created. */
   key: z.string().nullable(),
-  /** The user's text — shown as-is when `key` is null. */
+  /** The user's text — shown as-is when `key` is null (and in English, or when `nameKm` is empty). */
   name: z.string(),
+  /** Optional Khmer name, shown instead of `name` in the Khmer UI; '' when not set. Unused for defaults. */
+  nameKm: z.string(),
   icon: z.enum(CATEGORY_ICONS),
   color: z.enum(CATEGORY_COLORS),
   /** Default categories cannot be deleted, and their name follows the app language. */
@@ -77,6 +79,8 @@ export const CATEGORY_SORT_KEYS = ['name', 'expenseCount', 'createdAt'] as const
 /** Form schema. Messages are keys under `category.validation`, translated in the form. */
 export const categoryFormSchema = z.object({
   name: z.string().trim().min(1, 'required').max(50, 'tooLong'),
+  /** Optional. */
+  nameKm: z.string().trim().max(50, 'tooLong'),
   icon: z.enum(CATEGORY_ICONS),
   color: z.enum(CATEGORY_COLORS),
 });

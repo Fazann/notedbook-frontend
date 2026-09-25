@@ -20,6 +20,10 @@ export function listAllCategories(): Promise<Category[]> {
   return apiClient.get('/categories/all');
 }
 
+/**
+ * TODO(api): the backend must store and return `nameKm` (optional Khmer name, max 50) on categories, and match it in
+ * `q` search. Until then it is ignored by the real API.
+ */
 export function createCategory(input: CategoryFormValues): Promise<Category> {
   if (env.useMocks) return mockCategory.createCategory(input);
   return apiClient.post('/categories', input);

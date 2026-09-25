@@ -1,6 +1,6 @@
 'use client';
 
-import { Check, Languages } from 'lucide-react';
+import { Check } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useTransition } from 'react';
 
@@ -16,9 +16,11 @@ import { usePathname, useRouter } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
 import { cn } from '@/lib/utils';
 
+import { LocaleFlag } from './locale-flag';
+
 export type LanguageSwitcherProps = {
   className?: string;
-  /** Show the language name next to the icon. */
+  /** Always show the language name next to the flag. Otherwise it is hidden on phones (header). */
   showLabel?: boolean;
 };
 
@@ -37,19 +39,22 @@ export function LanguageSwitcher({ className, showLabel = false }: LanguageSwitc
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
-          size={showLabel ? 'touch' : 'icon-touch'}
-          className={cn(showLabel && 'justify-start', className)}
-          aria-label={showLabel ? undefined : t('label')}
+          size="touch"
+          className={cn('justify-start gap-2', className)}
+          aria-label={t('current', { name: t(locale) })}
           disabled={isPending}
         >
-          <Languages aria-hidden />
-          {showLabel && <span>{t(locale)}</span>}
+          <LocaleFlag locale={locale} />
+          <span lang={locale} className={cn(!showLabel && 'sr-only sm:not-sr-only')}>
+            {t(locale)}
+          </span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>{t('label')}</DropdownMenuLabel>
         {routing.locales.map((l) => (
-          <DropdownMenuItem key={l} lang={l} onSelect={() => switchTo(l)} className="min-h-10">
+          <DropdownMenuItem key={l} lang={l} onSelect={() => switchTo(l)} className="min-h-10 gap-2">
+            <LocaleFlag locale={l} />
             <span className="flex-1">{t(l)}</span>
             {l === locale && <Check aria-hidden />}
           </DropdownMenuItem>

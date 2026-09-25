@@ -15,7 +15,15 @@ const DEFAULT_NAMES: Record<string, Record<string, string>> = {
 
 /** The name the user sees — what search and sort use (the real API does the same with Accept-Language). */
 function displayName(category: StoredCategory, locale: string): string {
-  return (category.key && DEFAULT_NAMES[locale]?.[category.key]) || category.name;
+  if (category.key && DEFAULT_NAMES[locale]?.[category.key]) return DEFAULT_NAMES[locale][category.key];
+  return (locale === 'km' && category.nameKm.trim()) || category.name;
+}
+
+/** Search matches the shown name and both typed names, so "gym" and "ហាត់ប្រាណ" both find Gym in any language. */
+function matches(category: StoredCategory, query: string, locale: string): boolean {
+  return [displayName(category, locale), category.name, category.nameKm].some((n) =>
+    n.toLocaleLowerCase(locale).includes(query)
+  );
 }
 
 function withCount(category: StoredCategory): Category {
@@ -39,9 +47,7 @@ function find(id: number): StoredCategory {
 export async function listCategories(params: ListParams, locale = 'en'): Promise<Paginated<Category>> {
   await delay();
   const query = params.search.trim().toLocaleLowerCase(locale);
-  const items = db.categories
-    .filter((c) => !query || displayName(c, locale).toLocaleLowerCase(locale).includes(query))
-    .map(withCount);
+  const items = db.categories.filter((c) => !query || matches(c, query, locale)).map(withCount);
 
   const sort = parseSort(params.sort) ?? { key: 'name', dir: 'asc' };
   const byName = (a: Category, b: Category) => displayName(a, locale).localeCompare(displayName(b, locale), locale);
@@ -71,6 +77,7 @@ export async function createCategory(input: CategoryFormValues): Promise<Categor
     id: nextId(db.categories),
     key: null,
     name: input.name.trim(),
+    nameKm: input.nameKm.trim(),
     icon: input.icon,
     color: input.color,
     isDefault: false,
@@ -88,6 +95,7 @@ export async function updateCategory(id: number, input: CategoryFormValues): Pro
   if (!category.isDefault) assertNameFree(input.name, id);
   Object.assign(category, {
     name: category.isDefault ? category.name : input.name.trim(),
+    nameKm: category.isDefault ? category.nameKm : input.nameKm.trim(),
     icon: input.icon,
     color: input.color,
     updatedAt: new Date().toISOString(),

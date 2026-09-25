@@ -11,6 +11,7 @@ const base: Category = {
   id: 11,
   key: null,
   name: 'Gym',
+  nameKm: '',
   icon: 'dumbbell',
   color: 'green',
   isDefault: false,

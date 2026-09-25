@@ -19,6 +19,7 @@ const gym: Category = {
   id: 11,
   key: null,
   name: 'Gym',
+  nameKm: '',
   icon: 'dumbbell',
   color: 'green',
   isDefault: false,
@@ -58,7 +59,7 @@ describe('CategoryFormDialog', () => {
     save();
 
     await waitFor(() =>
-      expect(api.createCategory).toHaveBeenCalledWith({ name: 'Books', icon: 'book-open', color: 'blue' })
+      expect(api.createCategory).toHaveBeenCalledWith({ name: 'Books', nameKm: '', icon: 'book-open', color: 'blue' })
     );
     expect(api.updateCategory).not.toHaveBeenCalled();
     await waitFor(() => expect(onOpenChange).toHaveBeenCalledWith(false));
@@ -71,7 +72,12 @@ describe('CategoryFormDialog', () => {
     fireEvent.change(nameInput(), { target: { value: 'Fitness' } });
     save();
     await waitFor(() =>
-      expect(api.updateCategory).toHaveBeenCalledWith(11, { name: 'Fitness', icon: 'dumbbell', color: 'green' })
+      expect(api.updateCategory).toHaveBeenCalledWith(11, {
+        name: 'Fitness',
+        nameKm: '',
+        icon: 'dumbbell',
+        color: 'green',
+      })
     );
     expect(api.createCategory).not.toHaveBeenCalled();
   });
@@ -85,6 +91,31 @@ describe('CategoryFormDialog', () => {
     expect(await screen.findByText('You already have a category with this name')).toBeInTheDocument();
     expect(nameInput()).toHaveAttribute('aria-invalid', 'true');
     expect(onOpenChange).not.toHaveBeenCalled();
+  });
+
+  it('saves an optional Khmer name and previews it in the Khmer UI', async () => {
+    vi.mocked(api.createCategory).mockResolvedValue({ ...gym, id: 31, name: 'Rice', nameKm: 'អង្ករ' });
+    renderWithIntl(<CategoryFormDialog open onOpenChange={() => {}} />, { locale: 'km' });
+    fireEvent.change(screen.getByRole('textbox', { name: /^ឈ្មោះ$/ }), { target: { value: 'Rice' } });
+    const khmer = screen.getByRole('textbox', { name: /ឈ្មោះជាភាសាខ្មែរ/ });
+    expect(khmer).toHaveAttribute('lang', 'km');
+    fireEvent.change(khmer, { target: { value: 'អង្ករ' } });
+    expect(screen.getByText('អង្ករ')).toBeInTheDocument(); // preview
+    fireEvent.click(screen.getByRole('button', { name: 'រក្សាទុក' }));
+    await waitFor(() =>
+      expect(api.createCategory).toHaveBeenCalledWith({
+        name: 'Rice',
+        nameKm: 'អង្ករ',
+        icon: 'ellipsis',
+        color: 'chart-1',
+      })
+    );
+  });
+
+  it('has no Khmer name field for default categories (they are translated)', () => {
+    const food: Category = { ...gym, id: 1, key: 'food', name: 'Food', isDefault: true };
+    renderWithIntl(<CategoryFormDialog open onOpenChange={() => {}} category={food} />);
+    expect(screen.queryByRole('textbox', { name: /Khmer name/ })).not.toBeInTheDocument();
   });
 
   it('shows a default category name read-only and translated', () => {

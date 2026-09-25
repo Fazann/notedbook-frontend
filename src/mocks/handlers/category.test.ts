@@ -40,18 +40,34 @@ describe('mock category handler', () => {
   });
 
   it('rejects a duplicate name (case-insensitive, trimmed)', async () => {
-    await expect(createCategory({ name: '  gym ', icon: 'dumbbell', color: 'green' })).rejects.toMatchObject({
+    await expect(
+      createCategory({ name: '  gym ', nameKm: '', icon: 'dumbbell', color: 'green' })
+    ).rejects.toMatchObject({
       status: 409,
       code: 'CATEGORY_NAME_TAKEN',
     });
-    await expect(updateCategory(12, { name: 'GYM', icon: 'receipt', color: 'red' })).rejects.toMatchObject({
+    await expect(updateCategory(12, { name: 'GYM', nameKm: '', icon: 'receipt', color: 'red' })).rejects.toMatchObject({
       code: 'CATEGORY_NAME_TAKEN',
     });
   });
 
+  it('finds user categories by either name, and sorts by the name shown in each language', async () => {
+    const byKhmer = await listCategories({ ...params, search: 'ហាត់' });
+    expect(byKhmer.data.map((c) => c.name)).toEqual(['Gym']);
+    const inKhmerUi = await listCategories({ ...params, search: 'gym' }, 'km');
+    expect(inKhmerUi.data.map((c) => c.nameKm)).toEqual(['ហាត់ប្រាណ']);
+  });
+
+  it('saves and trims the Khmer name', async () => {
+    const created = await createCategory({ name: 'Rice', nameKm: ' អង្ករ ', icon: 'utensils', color: 'green' });
+    expect(created).toMatchObject({ name: 'Rice', nameKm: 'អង្ករ' });
+    const updated = await updateCategory(created.id, { name: 'Rice', nameKm: '', icon: 'utensils', color: 'green' });
+    expect(updated.nameKm).toBe('');
+  });
+
   it('never renames a default category', async () => {
-    const updated = await updateCategory(1, { name: 'Snacks', icon: 'coffee', color: 'red' });
-    expect(updated).toMatchObject({ name: 'Food', icon: 'coffee', color: 'red' });
+    const updated = await updateCategory(1, { name: 'Snacks', nameKm: '', icon: 'coffee', color: 'red' });
+    expect(updated).toMatchObject({ name: 'Food', nameKm: '', icon: 'coffee', color: 'red' });
   });
 
   it('refuses to delete defaults, and in-use categories without reassignTo', async () => {
@@ -72,7 +88,7 @@ describe('mock category handler', () => {
   });
 
   it('deletes an unused category without reassignTo', async () => {
-    const created = await createCategory({ name: 'Lottery', icon: 'gift', color: 'amber' });
+    const created = await createCategory({ name: 'Lottery', nameKm: '', icon: 'gift', color: 'amber' });
     expect(created).toMatchObject({ key: null, isDefault: false, expenseCount: 0 });
     await deleteCategory(created.id);
     expect(db.categories.some((c) => c.id === created.id)).toBe(false);
