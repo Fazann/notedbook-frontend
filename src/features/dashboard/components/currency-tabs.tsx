@@ -7,7 +7,7 @@ import { CURRENCIES, type Currency } from '@/lib/money';
 
 export type CurrencyTabsProps = { value: Currency; onChange: (currency: Currency) => void };
 
-/** USD / KHR switch in a chart card header. Currencies are never summed together. */
+/** USD / KHR / MYR switch in a chart card header. Currencies are never summed together. */
 export function CurrencyTabs({ value, onChange }: CurrencyTabsProps) {
   const t = useTranslations('currency');
   return (

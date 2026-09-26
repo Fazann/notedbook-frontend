@@ -15,8 +15,33 @@ export function LocaleFlag({ locale, className }: LocaleFlagProps) {
       className={cn('inline-flex h-4 w-6 shrink-0 overflow-hidden rounded-[3px] ring-1 ring-foreground/10', className)}
       aria-hidden
     >
-      {locale === 'km' ? <CambodiaFlag /> : <UnitedKingdomFlag />}
+      {FLAGS[locale]()}
     </span>
+  );
+}
+
+const FLAGS: Record<Locale, () => React.ReactNode> = {
+  en: () => <UnitedKingdomFlag />,
+  km: () => <CambodiaFlag />,
+  ms: () => <MalaysiaFlag />,
+};
+
+function MalaysiaFlag() {
+  return (
+    <svg viewBox="0 0 28 14" className="size-full" preserveAspectRatio="xMidYMid slice">
+      <rect width="28" height="14" fill="#FFFFFF" />
+      {[0, 2, 4, 6, 8, 10, 12].map((y) => (
+        <rect key={y} y={y} width="28" height="1" fill="#CC0001" />
+      ))}
+      <rect width="14" height="8" fill="#010066" />
+      {/* Crescent and star, simplified */}
+      <circle cx="5.2" cy="4" r="3" fill="#FFCC00" />
+      <circle cx="6.1" cy="4" r="2.5" fill="#010066" />
+      <polygon
+        points="10,1.6 10.55,3.25 12.3,3.25 10.9,4.25 11.4,5.9 10,4.9 8.6,5.9 9.1,4.25 7.7,3.25 9.45,3.25"
+        fill="#FFCC00"
+      />
+    </svg>
   );
 }
 

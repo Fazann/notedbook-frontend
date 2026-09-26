@@ -41,6 +41,7 @@
     "label": "Language",
     "en": "English",
     "km": "ភាសាខ្មែរ",
+    "ms": "Bahasa Melayu",
     "current": "Language: {name}"
   },
   "theme": {
@@ -62,7 +63,8 @@
   "currency": {
     "label": "Currency",
     "USD": "USD",
-    "KHR": "KHR"
+    "KHR": "KHR",
+    "MYR": "MYR"
   },
   "list": {
     "search": "Search…",
@@ -216,6 +218,7 @@
     "stats": {
       "spentUsd": "Spent (USD)",
       "spentKhr": "Spent (KHR)",
+      "spentMyr": "Spent (MYR)",
       "vsLastMonth": "vs last month",
       "tasksDue": "Tasks due this week",
       "expenseCount": "{count, plural, =0 {No expenses} one {# expense} other {# expenses}}",
@@ -311,6 +314,7 @@
     "summary": {
       "spentUsd": "Spent in USD",
       "spentKhr": "Spent in KHR",
+      "spentMyr": "Spent in MYR",
       "count": "Expenses this month",
       "countHint": "{count, plural, =0 {No expenses} one {# expense} other {# expenses}}",
       "allFilters": "Totals for the whole month"

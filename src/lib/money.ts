@@ -1,12 +1,18 @@
-export const CURRENCIES = ['USD', 'KHR'] as const;
+export const CURRENCIES = ['USD', 'KHR', 'MYR'] as const;
 export type Currency = (typeof CURRENCIES)[number];
 
-/** Number of minor units per major unit: USD is stored in cents, KHR in whole riel. */
-const MINOR_DIGITS: Record<Currency, number> = { USD: 2, KHR: 0 };
+/** Number of minor units per major unit: USD is stored in cents, KHR in whole riel, MYR in sen. */
+const MINOR_DIGITS: Record<Currency, number> = { USD: 2, KHR: 0, MYR: 2 };
+
+/** Whether amounts in this currency have a decimal part (USD, MYR) or not (KHR). */
+export function hasDecimals(currency: Currency): boolean {
+  return MINOR_DIGITS[currency] > 0;
+}
 
 /**
  * Formats an integer amount in minor units.
- * formatMoney(1250, 'USD', 'en') → "$12.50", formatMoney(40000, 'KHR', 'en') → "៛40,000"
+ * formatMoney(1250, 'USD', 'en') → "$12.50", formatMoney(40000, 'KHR', 'en') → "៛40,000",
+ * formatMoney(1250, 'MYR', 'en') → "RM 12.50"
  */
 export function formatMoney(amount: number, currency: Currency, locale: string): string {
   const digits = MINOR_DIGITS[currency];
@@ -44,7 +50,7 @@ export function parseMoneyInput(input: string, currency: Currency): number | nul
   return Number.isSafeInteger(minor) ? minor : null;
 }
 
-/** The currency symbol for display next to inputs: "$" or "៛". */
+/** The currency symbol for display next to inputs: "$", "៛" or "RM". */
 export function currencySymbol(currency: Currency, locale: string): string {
   const parts = new Intl.NumberFormat(locale, { style: 'currency', currency, currencyDisplay: 'narrowSymbol' });
   return parts.formatToParts(0).find((p) => p.type === 'currency')?.value ?? currency;

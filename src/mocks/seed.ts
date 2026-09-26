@@ -86,6 +86,8 @@ const DAILY: Template[] = [
   { note: 'Haircut', category_id: 17, amount: 12000, currency: 'KHR' },
   { note: 'Taxi home in the rain', category_id: 24, amount: 300, currency: 'USD' },
   { note: 'Dog food', category_id: 15, amount: 850, currency: 'USD' },
+  { note: 'Nasi lemak at KL airport', category_id: 1, amount: 1250, currency: 'MYR' },
+  { note: 'Teh tarik', category_id: 2, amount: 350, currency: 'MYR' },
 ];
 
 /** Fixed monthly expenses: [day of month, template]. */

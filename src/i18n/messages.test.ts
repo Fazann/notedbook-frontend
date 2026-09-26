@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import en from '../../messages/en.json';
 import km from '../../messages/km.json';
+import ms from '../../messages/ms.json';
 
 function keys(obj: object, prefix = ''): string[] {
   return Object.entries(obj).flatMap(([key, value]) =>
@@ -9,9 +10,11 @@ function keys(obj: object, prefix = ''): string[] {
   );
 }
 
+const TRANSLATIONS = { km, ms };
+
 describe('messages', () => {
-  it('en.json and km.json have exactly the same keys', () => {
-    expect(keys(km).sort()).toEqual(keys(en).sort());
+  it.each(Object.entries(TRANSLATIONS))('en.json and %s.json have exactly the same keys', (_, messages) => {
+    expect(keys(messages).sort()).toEqual(keys(en).sort());
   });
 
   it('has no empty strings', () => {
@@ -19,5 +22,6 @@ describe('messages', () => {
       keys(obj).filter((k) => k.split('.').reduce<unknown>((o, p) => (o as Record<string, unknown>)[p], obj) === '');
     expect(empty(en)).toEqual([]);
     expect(empty(km)).toEqual([]);
+    expect(empty(ms)).toEqual([]);
   });
 });

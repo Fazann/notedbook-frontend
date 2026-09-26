@@ -2,11 +2,11 @@
 
 import { format as formatDate } from 'date-fns';
 import { useLocale, useTranslations } from 'next-intl';
-import { enUS, km } from 'react-day-picker/locale';
 
 import { ResponsiveDialog } from '@/components/shared/responsive-dialog';
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
+import { calendarLocale } from '@/lib/calendar-locale';
 import { parseDate } from '@/lib/dates';
 
 export type MilestoneDueDateDialogProps = {
@@ -33,7 +33,7 @@ export function MilestoneDueDateDialog({ open, onOpenChange, value, onChange }: 
       <div className="flex flex-col items-center gap-4 pb-2">
         <Calendar
           mode="single"
-          locale={locale === 'km' ? km : enUS}
+          locale={calendarLocale(locale)}
           selected={value ? parseDate(value) : undefined}
           defaultMonth={value ? parseDate(value) : undefined}
           onSelect={(date) => date && pick(formatDate(date, 'yyyy-MM-dd'))}

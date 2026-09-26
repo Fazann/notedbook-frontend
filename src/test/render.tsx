@@ -4,10 +4,11 @@ import { NextIntlClientProvider } from 'next-intl';
 
 import en from '../../messages/en.json';
 import km from '../../messages/km.json';
+import ms from '../../messages/ms.json';
 
-const MESSAGES = { en, km };
+const MESSAGES = { en, km, ms };
 
-type Options = Omit<RenderOptions, 'wrapper'> & { locale?: 'en' | 'km'; queryClient?: QueryClient };
+type Options = Omit<RenderOptions, 'wrapper'> & { locale?: keyof typeof MESSAGES; queryClient?: QueryClient };
 
 export function createTestQueryClient() {
   return new QueryClient({ defaultOptions: { queries: { retry: false }, mutations: { retry: false } } });

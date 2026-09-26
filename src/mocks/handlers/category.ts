@@ -4,6 +4,7 @@ import { paginate, parseSort, type ListParams, type Paginated } from '@/lib/list
 
 import en from '../../../messages/en.json';
 import km from '../../../messages/km.json';
+import ms from '../../../messages/ms.json';
 import { db, nextId } from '../db';
 import { copy, delay } from '../delay';
 import type { StoredCategory } from '../seed';
@@ -11,6 +12,7 @@ import type { StoredCategory } from '../seed';
 const DEFAULT_NAMES: Record<string, Record<string, string>> = {
   en: en.category.defaults,
   km: km.category.defaults,
+  ms: ms.category.defaults,
 };
 
 /** The name the user sees — what search and sort use (the real API does the same with Accept-Language). */

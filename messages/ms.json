@@ -1,0 +1,631 @@
+{
+  "app": {
+    "name": "LifeApp",
+    "description": "Jejak perbelanjaan, rancang matlamat, jadualkan minggu anda dan susun tugasan."
+  },
+  "common": {
+    "save": "Simpan",
+    "cancel": "Batal",
+    "delete": "Padam",
+    "edit": "Sunting",
+    "loading": "Memuatkan...",
+    "retry": "Cuba lagi",
+    "viewAll": "Lihat semua",
+    "today": "Hari ini",
+    "yesterday": "Semalam",
+    "comingSoon": "Akan datang",
+    "comingSoonDescription": "Halaman ini sebahagian daripada langkah pembinaan seterusnya. Papan pemuka sudah sedia untuk dicuba.",
+    "backToDashboard": "Kembali ke papan pemuka",
+    "charCount": "{count}/{max}"
+  },
+  "nav": {
+    "dashboard": "Papan Pemuka",
+    "expenses": "Perbelanjaan",
+    "planning": "Perancangan",
+    "schedule": "Jadual",
+    "boards": "Papan",
+    "settings": "Tetapan",
+    "main": "Navigasi utama",
+    "openMenu": "Buka menu",
+    "toggleSidebar": "Togol bar sisi"
+  },
+  "search": {
+    "open": "Cari",
+    "placeholder": "Pergi ke halaman...",
+    "noResults": "Tiada hasil ditemui.",
+    "pages": "Halaman",
+    "title": "Cari",
+    "description": "Lompat ke halaman"
+  },
+  "language": {
+    "label": "Bahasa",
+    "en": "English",
+    "km": "ភាសាខ្មែរ",
+    "ms": "Bahasa Melayu",
+    "current": "Bahasa: {name}"
+  },
+  "theme": {
+    "label": "Tema",
+    "light": "Cerah",
+    "dark": "Gelap",
+    "system": "Sistem"
+  },
+  "user": {
+    "menu": "Menu akaun",
+    "profile": "Profil",
+    "settings": "Tetapan",
+    "logout": "Log keluar"
+  },
+  "monthPicker": {
+    "previous": "Bulan sebelumnya",
+    "next": "Bulan seterusnya"
+  },
+  "currency": {
+    "label": "Mata wang",
+    "USD": "USD",
+    "KHR": "KHR",
+    "MYR": "MYR"
+  },
+  "list": {
+    "search": "Cari…",
+    "clearSearch": "Kosongkan carian",
+    "sortBy": "Isih mengikut",
+    "actions": "Tindakan",
+    "moreActions": "Lagi tindakan",
+    "noResults": "Tiada hasil untuk “{query}”",
+    "errorTitle": "Tidak dapat memuatkan data",
+    "retry": "Cuba lagi",
+    "pagination": {
+      "label": "Penomboran halaman",
+      "previous": "Sebelumnya",
+      "next": "Seterusnya",
+      "goToPage": "Pergi ke halaman {page}",
+      "pageOf": "Halaman {page} daripada {totalPages}",
+      "showing": "Menunjukkan {from}–{to} daripada {total}",
+      "rowsPerPage": "Baris setiap halaman"
+    },
+    "sortAsc": "Diisih menaik",
+    "sortDesc": "Diisih menurun",
+    "clearSelection": "Kosongkan pilihan"
+  },
+  "category": {
+    "title": "Kategori",
+    "description": "Kumpulkan perbelanjaan anda untuk melihat ke mana wang anda pergi.",
+    "tabExpenses": "Perbelanjaan",
+    "tabCategories": "Kategori",
+    "add": "Tambah kategori",
+    "edit": "Sunting kategori",
+    "delete": "Padam",
+    "viewExpenses": "Lihat perbelanjaan",
+    "manage": "Urus kategori",
+    "searchPlaceholder": "Cari kategori…",
+    "defaultBadge": "Lalai",
+    "defaultCannotDelete": "Kategori lalai tidak boleh dipadam",
+    "defaultNameHint": "Nama lalai mengikut bahasa aplikasi",
+    "columns": {
+      "name": "Kategori",
+      "expenses": "Perbelanjaan",
+      "created": "Dicipta"
+    },
+    "sort": {
+      "nameAsc": "Nama (A–Z)",
+      "nameDesc": "Nama (Z–A)",
+      "mostUsed": "Paling kerap digunakan",
+      "newest": "Terbaru"
+    },
+    "expenseCount": "{count, plural, =0 {Tiada perbelanjaan} other {# perbelanjaan}}",
+    "form": {
+      "name": "Nama",
+      "namePlaceholder": "cth. Gim",
+      "nameKm": "Nama Khmer (pilihan)",
+      "nameKmPlaceholder": "cth. ហាត់ប្រាណ",
+      "nameKmHint": "Dipaparkan sebagai ganti nama apabila aplikasi dalam bahasa Khmer.",
+      "icon": "Ikon",
+      "color": "Warna",
+      "preview": "Pratonton",
+      "save": "Simpan",
+      "cancel": "Batal",
+      "discardTitle": "Buang perubahan?",
+      "discardConfirm": "Buang"
+    },
+    "validation": {
+      "required": "Sila masukkan nama",
+      "tooLong": "Nama terlalu panjang (maksimum {max} aksara)",
+      "nameTaken": "Anda sudah mempunyai kategori dengan nama ini"
+    },
+    "deleteDialog": {
+      "title": "Padam “{name}”?",
+      "descriptionEmpty": "Tindakan ini tidak boleh dibuat asal.",
+      "descriptionInUse": "{count, plural, other {# perbelanjaan}} menggunakan kategori ini. Pindahkan ke:",
+      "moveTo": "Pindahkan perbelanjaan ke",
+      "confirm": "Padam",
+      "confirmAndMove": "Padam dan pindahkan"
+    },
+    "toast": {
+      "created": "Kategori dicipta",
+      "updated": "Perubahan disimpan",
+      "deleted": "Kategori dipadam",
+      "error": "Berlaku ralat. Sila cuba lagi."
+    },
+    "empty": {
+      "title": "Belum ada kategori",
+      "description": "Tambah kategori untuk menyusun perbelanjaan anda."
+    },
+    "loadError": "Tidak dapat memuatkan kategori",
+    "icons": {
+      "utensils": "Makanan",
+      "coffee": "Kopi",
+      "bike": "Motosikal",
+      "car": "Kereta",
+      "bus": "Bas",
+      "home": "Rumah",
+      "wifi": "Wi-Fi",
+      "smartphone": "Telefon",
+      "users": "Orang",
+      "baby": "Bayi",
+      "shopping-bag": "Beg beli-belah",
+      "shirt": "Pakaian",
+      "heart-pulse": "Kesihatan",
+      "pill": "Ubat",
+      "book-open": "Buku",
+      "graduation-cap": "Topi graduasi",
+      "gift": "Hadiah",
+      "plane": "Kapal terbang",
+      "gamepad-2": "Permainan",
+      "dumbbell": "Kecergasan",
+      "dog": "Haiwan peliharaan",
+      "receipt": "Resit",
+      "piggy-bank": "Simpanan",
+      "ellipsis": "Lain-lain"
+    },
+    "colors": {
+      "chart-1": "Warna 1",
+      "chart-2": "Warna 2",
+      "chart-3": "Warna 3",
+      "chart-4": "Warna 4",
+      "chart-5": "Warna 5",
+      "red": "Merah",
+      "orange": "Oren",
+      "amber": "Ambar",
+      "green": "Hijau",
+      "teal": "Hijau kebiruan",
+      "blue": "Biru",
+      "violet": "Ungu",
+      "pink": "Merah jambu",
+      "slate": "Kelabu"
+    },
+    "defaults": {
+      "food": "Makanan",
+      "coffee": "Kopi",
+      "transport": "Pengangkutan",
+      "rent": "Sewa",
+      "phoneInternet": "Telefon & Internet",
+      "family": "Keluarga",
+      "shopping": "Beli-belah",
+      "health": "Kesihatan",
+      "education": "Pendidikan",
+      "other": "Lain-lain"
+    }
+  },
+  "dashboard": {
+    "title": "Papan Pemuka",
+    "greeting": {
+      "morning": "Selamat pagi, {name}",
+      "afternoon": "Selamat tengah hari, {name}",
+      "evening": "Selamat petang, {name}"
+    },
+    "subtitle": "Ini gambaran keseluruhan anda untuk {month}.",
+    "stats": {
+      "spentUsd": "Dibelanjakan (USD)",
+      "spentKhr": "Dibelanjakan (KHR)",
+      "spentMyr": "Dibelanjakan (MYR)",
+      "vsLastMonth": "berbanding bulan lepas",
+      "tasksDue": "Tugasan perlu siap minggu ini",
+      "expenseCount": "{count, plural, =0 {Tiada perbelanjaan} other {# perbelanjaan}}",
+      "up": "Naik {percent}%",
+      "down": "Turun {percent}%",
+      "same": "Tiada perubahan",
+      "noCompare": "Tiada data bulan lepas",
+      "overdueCount": "{count, plural, =0 {Tiada yang lewat} other {# lewat}}"
+    },
+    "daily": {
+      "title": "Perbelanjaan harian",
+      "description": "Jumlah dibelanjakan setiap hari bulan ini",
+      "day": "Hari {day}"
+    },
+    "category": {
+      "title": "Mengikut kategori",
+      "description": "Ke mana wang anda pergi",
+      "others": "Lain-lain",
+      "empty": "Belum ada perbelanjaan dalam mata wang ini.",
+      "openCategory": "Tunjukkan perbelanjaan {category}"
+    },
+    "recent": {
+      "title": "Perbelanjaan terkini",
+      "empty": "Belum ada perbelanjaan bulan ini.",
+      "emptyAction": "Tambah perbelanjaan pertama anda"
+    },
+    "tasks": {
+      "title": "Tugasan hampir tamat tempoh",
+      "description": "Daripada semua papan, 7 hari akan datang",
+      "empty": "Tiada tugasan dalam 7 hari akan datang.",
+      "overdue": "Lewat",
+      "dueToday": "Perlu siap hari ini",
+      "dueOn": "Tarikh akhir {date}",
+      "onBoard": "{board} · {column}"
+    },
+    "error": "Tidak dapat memuatkan bahagian ini.",
+    "goals": {
+      "empty": "Tiada matlamat aktif. Tetapkan satu untuk mula menjejak kemajuan."
+    }
+  },
+  "expense": {
+    "add": "Tambah perbelanjaan",
+    "edit": "Sunting perbelanjaan",
+    "quickAdd": "Tambah perbelanjaan pantas",
+    "formDescription": "Jumlah disimpan dalam mata wang yang anda pilih.",
+    "amount": "Jumlah",
+    "currency": "Mata wang",
+    "category": "Kategori",
+    "date": "Tarikh",
+    "note": "Catatan",
+    "notePlaceholder": "cth. Makan tengah hari dengan pasukan",
+    "selectCategory": "Pilih kategori",
+    "searchCategory": "Cari kategori...",
+    "noCategory": "Tiada kategori ditemui.",
+    "pickDate": "Pilih tarikh",
+    "saved": "Perbelanjaan ditambah",
+    "updated": "Perbelanjaan dikemas kini",
+    "form": {
+      "amountRequired": "Masukkan jumlah",
+      "amountInvalid": "Masukkan jumlah yang sah",
+      "categoryRequired": "Pilih kategori",
+      "dateRequired": "Pilih tarikh",
+      "noteTooLong": "Catatan mestilah kurang daripada 200 aksara"
+    },
+    "title": "Perbelanjaan",
+    "description": "Lihat dan urus perbelanjaan anda, bulan demi bulan.",
+    "searchPlaceholder": "Cari catatan…",
+    "noNote": "Tiada catatan",
+    "loadError": "Tidak dapat memuatkan perbelanjaan",
+    "deleted": "Perbelanjaan dipadam",
+    "undo": "Buat asal",
+    "restored": "Perbelanjaan dipulihkan",
+    "columns": {
+      "date": "Tarikh",
+      "category": "Kategori",
+      "note": "Catatan",
+      "amount": "Jumlah"
+    },
+    "sort": {
+      "newest": "Terbaru dahulu",
+      "oldest": "Terlama dahulu",
+      "amountDesc": "Jumlah tertinggi",
+      "amountAsc": "Jumlah terendah"
+    },
+    "filters": {
+      "category": "Tapis mengikut kategori",
+      "allCategories": "Semua kategori",
+      "currency": "Tapis mengikut mata wang",
+      "allCurrencies": "Semua mata wang",
+      "noMatch": "Tiada perbelanjaan sepadan dengan penapis ini",
+      "clear": "Kosongkan penapis"
+    },
+    "summary": {
+      "spentUsd": "Dibelanjakan dalam USD",
+      "spentKhr": "Dibelanjakan dalam KHR",
+      "spentMyr": "Dibelanjakan dalam MYR",
+      "count": "Perbelanjaan bulan ini",
+      "countHint": "{count, plural, =0 {Tiada perbelanjaan} other {# perbelanjaan}}",
+      "allFilters": "Jumlah untuk sebulan penuh"
+    },
+    "deleteDialog": {
+      "title": "Padam perbelanjaan ini?",
+      "description": "{amount} · {category} · {date}",
+      "confirm": "Padam"
+    },
+    "empty": {
+      "title": "Tiada perbelanjaan bulan ini",
+      "description": "Tambah perbelanjaan dan ia akan dipaparkan di sini.",
+      "action": "Tambah perbelanjaan pertama anda"
+    }
+  },
+  "planning": {
+    "title": "Perancangan",
+    "description": "Pecahkan matlamat besar kepada langkah kecil.",
+    "newGoal": "Matlamat baharu",
+    "editGoal": "Sunting matlamat",
+    "backToList": "Kembali ke Perancangan",
+    "searchPlaceholder": "Cari matlamat…",
+    "tabs": {
+      "active": "Aktif",
+      "done": "Selesai",
+      "all": "Semua"
+    },
+    "filters": {
+      "area": "Bidang",
+      "allAreas": "Semua bidang",
+      "clear": "Kosongkan penapis",
+      "areaCount": "{count, plural, other {# bidang}}",
+      "noArea": "Tiada bidang ditemui.",
+      "noMatch": "Tiada matlamat sepadan dengan penapis ini",
+      "status": "Tunjukkan matlamat"
+    },
+    "sort": {
+      "dueSoonest": "Tarikh akhir terdekat",
+      "newest": "Terbaru",
+      "mostProgress": "Kemajuan tertinggi",
+      "title": "Tajuk (A–Z)"
+    },
+    "stats": {
+      "active": "Matlamat aktif",
+      "doneThisYear": "Selesai tahun ini",
+      "overdue": "Lewat",
+      "averageProgress": "Purata kemajuan"
+    },
+    "status": {
+      "not_started": "Belum dimulakan",
+      "in_progress": "Sedang berjalan",
+      "done": "Selesai"
+    },
+    "area": {
+      "personal": "Peribadi",
+      "career": "Kerjaya",
+      "health": "Kesihatan",
+      "finance": "Kewangan",
+      "learning": "Pembelajaran",
+      "family": "Keluarga"
+    },
+    "priority": {
+      "label": "Keutamaan {priority}",
+      "low": "Rendah",
+      "medium": "Sederhana",
+      "high": "Tinggi"
+    },
+    "progress": "{percent}% selesai",
+    "stepsDone": "{done} daripada {total} langkah",
+    "due": {
+      "overdue": "{days, plural, other {Lewat # hari}}",
+      "dueToday": "Perlu siap hari ini",
+      "daysLeft": "{days, plural, other {# hari lagi}}",
+      "dueOn": "Tarikh akhir {date}",
+      "noDate": "Tiada tarikh sasaran",
+      "completedOn": "Selesai pada {date}"
+    },
+    "actions": {
+      "markDone": "Tandakan selesai",
+      "reopen": "Buka semula",
+      "edit": "Sunting",
+      "delete": "Padam"
+    },
+    "form": {
+      "title": "Tajuk",
+      "titlePlaceholder": "cth. Simpan $500 untuk komputer riba baharu",
+      "description": "Penerangan",
+      "descriptionPlaceholder": "Mengapa matlamat ini penting bagi anda?",
+      "area": "Bidang",
+      "priority": "Keutamaan",
+      "targetDate": "Tarikh sasaran",
+      "targetDatePast": "Tarikh ini sudah berlalu",
+      "status": "Status",
+      "discardTitle": "Buang perubahan?",
+      "discardConfirm": "Buang",
+      "clearDate": "Kosongkan tarikh",
+      "pickDate": "Pilih tarikh"
+    },
+    "validation": {
+      "required": "Sila isi medan ini",
+      "tooLong": "Terlalu panjang (maksimum {max} aksara)"
+    },
+    "milestones": {
+      "title": "Langkah",
+      "doneCount": "{done} daripada {total} selesai",
+      "addPlaceholder": "Tambah langkah…",
+      "add": "Tambah langkah",
+      "setDueDate": "Tetapkan tarikh akhir",
+      "removeDueDate": "Buang tarikh akhir",
+      "editTitle": "Sunting langkah",
+      "delete": "Padam langkah",
+      "dragHandle": "Seret untuk menyusun semula",
+      "emptyTitle": "Belum ada langkah",
+      "emptyDescription": "Pecahkan matlamat ini kepada langkah kecil.",
+      "deleted": "Langkah dipadam",
+      "undo": "Buat asal",
+      "allDonePrompt": "Semua langkah selesai! Tandakan matlamat ini sebagai selesai?",
+      "dnd": {
+        "picked": "Langkah {title} diambil. Kedudukan {position} daripada {total}.",
+        "moved": "Langkah {title} dialihkan ke kedudukan {position} daripada {total}.",
+        "dropped": "Langkah {title} diletakkan di kedudukan {position} daripada {total}.",
+        "cancelled": "Penyusunan semula dibatalkan.",
+        "instructions": "Untuk mengambil langkah, tekan Space atau Enter. Gunakan kekunci anak panah untuk mengalihkannya, kemudian Space atau Enter untuk meletakkannya, atau Escape untuk membatalkan."
+      },
+      "dueOn": "Tarikh akhir {date}",
+      "saving": "Menyimpan…"
+    },
+    "detail": {
+      "about": "Tentang matlamat ini",
+      "created": "Dicipta {date}",
+      "showMore": "Tunjuk lagi",
+      "showLess": "Tunjuk kurang",
+      "notFoundTitle": "Matlamat tidak ditemui",
+      "notFoundDescription": "Ia mungkin telah dipadam.",
+      "progress": "Kemajuan",
+      "documentTitle": "{title} · {appName}"
+    },
+    "deleteDialog": {
+      "title": "Padam “{title}”?",
+      "description": "Semua langkahnya juga akan dipadam. Tindakan ini tidak boleh dibuat asal.",
+      "confirm": "Padam matlamat"
+    },
+    "toast": {
+      "created": "Matlamat dicipta",
+      "updated": "Perubahan disimpan",
+      "deleted": "Matlamat dipadam",
+      "completed": "Matlamat tercapai! 🎉",
+      "reopened": "Matlamat dibuka semula",
+      "error": "Berlaku ralat. Sila cuba lagi."
+    },
+    "empty": {
+      "title": "Belum ada matlamat",
+      "description": "Tetapkan matlamat pertama anda dan pecahkannya kepada langkah kecil.",
+      "doneTitle": "Belum ada matlamat yang selesai",
+      "doneDescription": "Teruskan — anda boleh!"
+    },
+    "loadError": "Tidak dapat memuatkan matlamat",
+    "dashboard": {
+      "title": "Matlamat aktif",
+      "viewAll": "Lihat semua"
+    }
+  },
+  "schedule": {
+    "title": "Jadual",
+    "description": "Rancang minggu anda, satu aktiviti pada satu masa.",
+    "newActivity": "Aktiviti baharu",
+    "editActivity": "Sunting aktiviti",
+    "today": "Hari ini",
+    "tomorrow": "Esok",
+    "previousWeek": "Minggu sebelumnya",
+    "nextWeek": "Minggu seterusnya",
+    "previousDay": "Hari sebelumnya",
+    "nextDay": "Hari seterusnya",
+    "now": "Sekarang",
+    "views": {
+      "week": "Minggu",
+      "day": "Hari",
+      "agenda": "Agenda",
+      "label": "Paparan"
+    },
+    "types": {
+      "meeting": "Mesyuarat",
+      "learning": "Pembelajaran",
+      "work": "Kerja",
+      "exercise": "Senaman",
+      "personal": "Peribadi",
+      "family": "Keluarga",
+      "other": "Lain-lain"
+    },
+    "summary": {
+      "planned": "Dirancang",
+      "plannedToday": "Dirancang hari ini",
+      "learning": "Pembelajaran",
+      "meetings": "{count, plural, other {# mesyuarat}}",
+      "byType": "Masa mengikut jenis"
+    },
+    "duration": {
+      "hoursMinutes": "{hours} j {minutes} min",
+      "hours": "{hours} j",
+      "minutes": "{minutes} min"
+    },
+    "form": {
+      "title": "Tajuk",
+      "titlePlaceholder": "cth. Mesyuarat pasukan",
+      "type": "Jenis",
+      "date": "Tarikh",
+      "start": "Mula",
+      "end": "Tamat",
+      "duration": "Tempoh",
+      "location": "Lokasi",
+      "locationPlaceholder": "cth. Pejabat, Zoom, Kedai kopi",
+      "note": "Catatan",
+      "repeat": "Ulang",
+      "repeatNone": "Tidak berulang",
+      "repeatDaily": "Setiap hari",
+      "repeatWeekdays": "Setiap hari bekerja (Isn–Jum)",
+      "repeatWeekly": "Setiap minggu pada…",
+      "repeatOn": "Ulang pada",
+      "until": "Sehingga",
+      "untilNever": "Tiada tarikh tamat",
+      "overlap": "Bertindih dengan “{title}” ({time})",
+      "discardTitle": "Buang perubahan?",
+      "discardConfirm": "Buang",
+      "pickDate": "Pilih tarikh",
+      "clearUntil": "Buang tarikh tamat"
+    },
+    "repeatDescription": {
+      "daily": "Setiap hari",
+      "weekdays": "Setiap hari bekerja",
+      "weekly": "Setiap {days}",
+      "until": "{rule} sehingga {date}"
+    },
+    "validation": {
+      "required": "Sila isi medan ini",
+      "tooLong": "Terlalu panjang (maksimum {max} aksara)",
+      "endAfterStart": "Masa tamat mesti selepas masa mula",
+      "tooShort": "Aktiviti mestilah sekurang-kurangnya {min} minit",
+      "pickDay": "Pilih sekurang-kurangnya satu hari",
+      "untilBeforeStart": "Tarikh tamat mesti selepas tarikh mula"
+    },
+    "scope": {
+      "editTitle": "Sunting aktiviti berulang",
+      "deleteTitle": "Padam aktiviti berulang",
+      "moveTitle": "Alihkan aktiviti berulang",
+      "thisOnly": "Aktiviti ini sahaja",
+      "all": "Semua aktiviti dalam siri ini"
+    },
+    "details": {
+      "repeats": "Berulang",
+      "blockLabel": "{title}, {date}, {time}",
+      "blockLabelRecurring": "{title}, {date}, {time}, berulang",
+      "close": "Tutup"
+    },
+    "grid": {
+      "earlier": "{count, plural, other {+# lebih awal}}",
+      "later": "{count, plural, other {+# kemudian}}",
+      "more": "+{count} lagi",
+      "addAt": "Tambah aktiviti pada {date} jam {time}",
+      "hiddenTitle": "Lagi aktiviti pada masa ini"
+    },
+    "dnd": {
+      "picked": "{title} diambil.",
+      "moved": "{title} dialihkan ke {date} jam {time}.",
+      "dropped": "{title} diletakkan pada {date} jam {time}.",
+      "cancelled": "Pengalihan dibatalkan.",
+      "instructions": "Untuk mengalihkan aktiviti, tekan Space. Gunakan anak panah atas dan bawah untuk menukar masa sebanyak 15 minit dan anak panah kiri dan kanan untuk menukar hari, kemudian Space untuk meletakkannya atau Escape untuk membatalkan."
+    },
+    "agenda": {
+      "loadMore": "Muatkan 14 hari seterusnya",
+      "noMore": "Tiada lagi aktiviti"
+    },
+    "deleteDialog": {
+      "title": "Padam “{title}”?",
+      "description": "Tindakan ini tidak boleh dibuat asal.",
+      "confirm": "Padam"
+    },
+    "toast": {
+      "created": "Aktiviti ditambah",
+      "updated": "Perubahan disimpan",
+      "moved": "Aktiviti dialihkan",
+      "deleted": "Aktiviti dipadam",
+      "undo": "Buat asal",
+      "error": "Berlaku ralat. Sila cuba lagi."
+    },
+    "empty": {
+      "week": "Tiada aktiviti minggu ini — klik slot masa untuk menambah",
+      "weekTouch": "Tiada aktiviti minggu ini — ketik + untuk menambah",
+      "day": "Tiada rancangan untuk hari ini"
+    },
+    "loadError": "Tidak dapat memuatkan jadual anda",
+    "shortcuts": {
+      "title": "Pintasan papan kekunci",
+      "hint": "{action} ({key})"
+    },
+    "dashboard": {
+      "title": "Jadual hari ini",
+      "now": "Sekarang",
+      "next": "Seterusnya",
+      "endsIn": "Tamat dalam {time}",
+      "startsIn": "Bermula dalam {time}",
+      "nothingLeft": "Tiada apa-apa lagi hari ini 🎉",
+      "viewAll": "Lihat jadual"
+    },
+    "weekStrip": "Hari dalam minggu ini"
+  },
+  "auth": {
+    "loginTitle": "Log masuk"
+  },
+  "errors": {
+    "generic": "Berlaku ralat. Sila cuba lagi.",
+    "network": "Ralat rangkaian. Sila cuba lagi.",
+    "mock_error": "Ralat simulasi (mod olok-olok). Sila cuba lagi."
+  }
+}

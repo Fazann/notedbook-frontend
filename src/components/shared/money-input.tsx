@@ -3,7 +3,7 @@
 import { useLocale } from 'next-intl';
 
 import { Input } from '@/components/ui/input';
-import { currencySymbol, type Currency } from '@/lib/money';
+import { currencySymbol, hasDecimals, type Currency } from '@/lib/money';
 import { cn } from '@/lib/utils';
 
 export type MoneyInputProps = Omit<React.ComponentProps<typeof Input>, 'type'> & {
@@ -23,7 +23,7 @@ export function MoneyInput({ currency, className, ...props }: MoneyInputProps) {
       </span>
       <Input
         type="text"
-        inputMode={currency === 'USD' ? 'decimal' : 'numeric'}
+        inputMode={hasDecimals(currency) ? 'decimal' : 'numeric'}
         autoComplete="off"
         className={cn('h-11 pl-8 text-base tabular-nums md:h-9', className)}
         {...props}

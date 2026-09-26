@@ -89,7 +89,7 @@ export const CATEGORY_NAME_MAX = 50;
 
 export const expenseSchema = z.object({
   id: z.number(),
-  /** Integer minor units: USD cents, KHR riel. */
+  /** Integer minor units: USD cents, KHR riel, MYR sen. */
   amount: z.number().int(),
   currency: currencySchema,
   category_id: z.number(),

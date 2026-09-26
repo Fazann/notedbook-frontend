@@ -5,7 +5,8 @@ to review wording and tone. Pay special attention to:
 
 - `dashboard.greeting.*` — formal greetings; a more casual tone may fit the app better.
 - `dashboard.stats.*` and `dashboard.goals.*` — plural messages (Khmer uses only `other`).
-- `currency.USD` / `currency.KHR` — "ដុល្លារ" / "រៀល" vs. keeping the ISO codes.
+- `currency.USD` / `currency.KHR` / `currency.MYR` — "ដុល្លារ" / "រៀល" / "រីងហ្គីត" vs. keeping the ISO codes.
+- `dashboard.stats.spentMyr` / `expense.summary.spentMyr` — Malaysian ringgit totals.
 - `nav.boards` — "ក្ដារកិច្ចការ" (from AGENTS.md example).
 
 ## Expense categories (docs/category-exspense.md)

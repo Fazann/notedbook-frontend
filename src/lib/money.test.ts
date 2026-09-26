@@ -11,6 +11,10 @@ describe('formatMoney', () => {
   it('formats KHR riel without decimals', () => {
     expect(formatMoney(40000, 'KHR', 'en')).toBe('៛40,000');
   });
+
+  it('formats MYR sen', () => {
+    expect(formatMoney(1250, 'MYR', 'en')).toBe('RM\u00a012.50');
+  });
 });
 
 describe('parseMoneyInput', () => {
@@ -25,6 +29,12 @@ describe('parseMoneyInput', () => {
   it('parses KHR as whole riel', () => {
     expect(parseMoneyInput('40,000', 'KHR')).toBe(40000);
     expect(parseMoneyInput('40 000', 'KHR')).toBe(40000);
+  });
+
+  it('parses MYR into sen', () => {
+    expect(parseMoneyInput('12.5', 'MYR')).toBe(1250);
+    expect(parseMoneyInput('1,250.90', 'MYR')).toBe(125090);
+    expect(parseMoneyInput('1.234', 'MYR')).toBeNull();
   });
 
   it('accepts Khmer digits', () => {
@@ -46,6 +56,7 @@ describe('minorToInput', () => {
     expect(minorToInput(1250, 'USD')).toBe('12.50');
     expect(minorToInput(5, 'USD')).toBe('0.05');
     expect(minorToInput(40000, 'KHR')).toBe('40000');
+    expect(minorToInput(1250, 'MYR')).toBe('12.50');
   });
 
   it('round-trips with parseMoneyInput', () => {

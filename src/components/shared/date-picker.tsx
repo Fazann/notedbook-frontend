@@ -4,11 +4,11 @@ import { format as formatDate } from 'date-fns';
 import { CalendarIcon } from 'lucide-react';
 import { useFormatter, useLocale } from 'next-intl';
 import { useState } from 'react';
-import { enUS, km } from 'react-day-picker/locale';
 
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { calendarLocale } from '@/lib/calendar-locale';
 import { parseDate, utcDate } from '@/lib/dates';
 import { cn } from '@/lib/utils';
 
@@ -62,7 +62,7 @@ export function DatePicker({ value, onChange, placeholder, iconOnly, id, classNa
       <PopoverContent className="w-auto p-0" align="start">
         <Calendar
           mode="single"
-          locale={locale === 'km' ? km : enUS}
+          locale={calendarLocale(locale)}
           selected={value ? parseDate(value) : undefined}
           defaultMonth={value ? parseDate(value) : undefined}
           onSelect={(date) => {

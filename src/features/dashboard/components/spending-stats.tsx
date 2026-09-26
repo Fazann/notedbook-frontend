@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowDownRight, ArrowUpRight, CalendarClock, Coins, Minus, TrendingUp, Wallet } from 'lucide-react';
+import { ArrowDownRight, ArrowUpRight, Banknote, CalendarClock, Coins, Minus, TrendingUp, Wallet } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 import { ErrorState } from '@/components/shared/error-state';
@@ -16,6 +16,12 @@ import { cn } from '@/lib/utils';
 import { percentChange, totalFor } from '../utils';
 
 export type SpendingStatsProps = { month: string };
+
+const CURRENCY_CARDS = {
+  USD: { label: 'stats.spentUsd', icon: <Wallet /> },
+  KHR: { label: 'stats.spentKhr', icon: <Coins /> },
+  MYR: { label: 'stats.spentMyr', icon: <Banknote /> },
+} as const satisfies Record<Currency, { label: string; icon: React.ReactNode }>;
 
 export function SpendingStats({ month }: SpendingStatsProps) {
   const t = useTranslations('dashboard');
@@ -38,27 +44,24 @@ export function SpendingStats({ month }: SpendingStatsProps) {
   }
 
   const isLoading = summary.isPending || previous.isPending;
-  const usd = totalFor(summary.data, 'USD');
-  const khr = totalFor(summary.data, 'KHR');
   const today = todayIso();
   const overdue = dueCards.data?.filter((c) => c.due_date !== null && c.due_date < today).length ?? 0;
 
   return (
-    <div className="col-span-full grid grid-cols-2 gap-3 md:gap-4 lg:grid-cols-4">
-      <StatCard
-        label={t('stats.spentUsd')}
-        icon={<Wallet />}
-        isLoading={isLoading}
-        value={<MoneyText amount={usd.amount} currency="USD" />}
-        hint={t('stats.expenseCount', { count: usd.count })}
-      />
-      <StatCard
-        label={t('stats.spentKhr')}
-        icon={<Coins />}
-        isLoading={isLoading}
-        value={<MoneyText amount={khr.amount} currency="KHR" />}
-        hint={t('stats.expenseCount', { count: khr.count })}
-      />
+    <div className="col-span-full grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4 xl:grid-cols-5">
+      {CURRENCIES.map((c) => {
+        const total = totalFor(summary.data, c);
+        return (
+          <StatCard
+            key={c}
+            label={t(CURRENCY_CARDS[c].label)}
+            icon={CURRENCY_CARDS[c].icon}
+            isLoading={isLoading}
+            value={<MoneyText amount={total.amount} currency={c} />}
+            hint={t('stats.expenseCount', { count: total.count })}
+          />
+        );
+      })}
       <StatCard
         label={t('stats.vsLastMonth')}
         icon={<TrendingUp />}

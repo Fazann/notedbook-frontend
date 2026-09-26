@@ -41,6 +41,7 @@
     "label": "ភាសា",
     "en": "English",
     "km": "ភាសាខ្មែរ",
+    "ms": "Bahasa Melayu",
     "current": "ភាសា៖ {name}"
   },
   "theme": {
@@ -62,7 +63,8 @@
   "currency": {
     "label": "រូបិយប័ណ្ណ",
     "USD": "ដុល្លារ",
-    "KHR": "រៀល"
+    "KHR": "រៀល",
+    "MYR": "រីងហ្គីត"
   },
   "list": {
     "search": "ស្វែងរក…",
@@ -216,6 +218,7 @@
     "stats": {
       "spentUsd": "ចំណាយ (ដុល្លារ)",
       "spentKhr": "ចំណាយ (រៀល)",
+      "spentMyr": "ចំណាយ (រីងហ្គីត)",
       "vsLastMonth": "ធៀបនឹងខែមុន",
       "tasksDue": "កិច្ចការត្រូវធ្វើសប្តាហ៍នេះ",
       "expenseCount": "{count, plural, =0 {គ្មានការចំណាយ} other {ការចំណាយ # ដង}}",
@@ -311,6 +314,7 @@
     "summary": {
       "spentUsd": "បានចំណាយជាដុល្លារ",
       "spentKhr": "បានចំណាយជារៀល",
+      "spentMyr": "បានចំណាយជារីងហ្គីត",
       "count": "ការចំណាយខែនេះ",
       "countHint": "{count, plural, =0 {គ្មានការចំណាយ} other {ការចំណាយ # ដង}}",
       "allFilters": "សរុបសម្រាប់ខែទាំងមូល"

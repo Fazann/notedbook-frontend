@@ -13,7 +13,7 @@ export type CurrencySelectProps = {
   id?: string;
 };
 
-/** A two-option segmented control (USD / KHR) — one tap instead of opening a list. */
+/** A segmented control with one option per currency (USD / KHR / MYR) — one tap instead of opening a list. */
 export function CurrencySelect({ value, onChange, className, id }: CurrencySelectProps) {
   const t = useTranslations('currency');
   return (
