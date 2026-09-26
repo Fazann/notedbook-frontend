@@ -71,3 +71,14 @@ Draft Khmer from the spec — please review every key in the `schedule` namespac
 - `category.form.nameKm`, `category.form.nameKmPlaceholder`, `category.form.nameKmHint` — the new optional
   "Khmer name" field in the category form.
 - Seed data (mock only): Khmer names of the sample user categories in `src/mocks/seed.ts`.
+
+## Login (`/login`, `/register`, `/forgot-password`)
+
+Draft Khmer — please review every key in the `auth` namespace, especially `auth.noAccount` / `auth.hasAccount`
+(the `<link>` tag wraps the clickable part) and `auth.errors.invalidCredentials`.
+
+## Register (`/register`)
+
+Draft Khmer — please review the new register keys in `auth`: `registerDescription`, `fullname*`, `usernameHint`,
+`emailOptional`, `passwordHint`, `registerSubmit`, the new `auth.validation.*` messages and
+`auth.errors.USERNAME_TAKEN` / `auth.errors.EMAIL_TAKEN`.

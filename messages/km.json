@@ -621,7 +621,46 @@
     "weekStrip": "ថ្ងៃក្នុងសប្ដាហ៍នេះ"
   },
   "auth": {
-    "loginTitle": "ចូលគណនី"
+    "loginTitle": "ចូលគណនី",
+    "loginDescription": "សូមស្វាគមន៍ការត្រឡប់មកវិញ! ចូលគណនីដើម្បីបន្ត។",
+    "username": "ឈ្មោះអ្នកប្រើ",
+    "usernamePlaceholder": "ឧ. sokha",
+    "password": "ពាក្យសម្ងាត់",
+    "showPassword": "បង្ហាញពាក្យសម្ងាត់",
+    "hidePassword": "លាក់ពាក្យសម្ងាត់",
+    "forgotPassword": "ភ្លេចពាក្យសម្ងាត់?",
+    "submit": "ចូលគណនី",
+    "noAccount": "មិនទាន់មានគណនីមែនទេ? <link>ចុះឈ្មោះ</link>",
+    "hasAccount": "មានគណនីរួចហើយ? <link>ចូលគណនី</link>",
+    "demoHint": "របៀបសាកល្បង៖ ចូលដោយប្រើ {username} / {password}",
+    "registerTitle": "បង្កើតគណនី",
+    "registerDescription": "ចុះឈ្មោះដើម្បីចាប់ផ្ដើមតាមដានការចំណាយ គោលដៅ និងកិច្ចការរបស់អ្នក។",
+    "fullname": "ឈ្មោះពេញ",
+    "fullnamePlaceholder": "ឧ. សុខ សុខា",
+    "usernameHint": "ប្រើតែអក្សរ លេខ ចំណុច និងសញ្ញា _ ប៉ុណ្ណោះ។ អ្នកនឹងប្រើវាដើម្បីចូលគណនី។",
+    "emailOptional": "អ៊ីមែល (ស្រេចចិត្ត)",
+    "emailPlaceholder": "ឧ. sokha@example.com",
+    "passwordHint": "យ៉ាងហោចណាស់ {min} តួអក្សរ។",
+    "registerSubmit": "បង្កើតគណនី",
+    "forgotPasswordTitle": "កំណត់ពាក្យសម្ងាត់ឡើងវិញ",
+    "notReady": "ទំព័រនេះមិនទាន់រួចរាល់នៅឡើយទេ។ សូមត្រឡប់មកវិញពេលក្រោយ។",
+    "backToLogin": "ត្រឡប់ទៅចូលគណនី",
+    "validation": {
+      "required": "សូមបំពេញប្រអប់នេះ",
+      "fullnameTooLong": "ឈ្មោះពេញវែងពេក",
+      "usernameTooShort": "ឈ្មោះអ្នកប្រើត្រូវមានយ៉ាងហោចណាស់ ៣ តួអក្សរ",
+      "usernameTooLong": "ឈ្មោះអ្នកប្រើវែងពេក",
+      "usernameFormat": "ប្រើតែអក្សរ លេខ ចំណុច (.) និងសញ្ញា (_) ប៉ុណ្ណោះ",
+      "emailInvalid": "សូមបញ្ចូលអាសយដ្ឋានអ៊ីមែលឱ្យបានត្រឹមត្រូវ",
+      "emailTooLong": "អ៊ីមែលវែងពេក",
+      "passwordTooShort": "ពាក្យសម្ងាត់ត្រូវមានយ៉ាងហោចណាស់ {min} តួអក្សរ",
+      "passwordTooLong": "ពាក្យសម្ងាត់វែងពេក"
+    },
+    "errors": {
+      "invalidCredentials": "ឈ្មោះអ្នកប្រើ ឬពាក្យសម្ងាត់មិនត្រឹមត្រូវ។ សូមព្យាយាមម្ដងទៀត។",
+      "USERNAME_TAKEN": "ឈ្មោះអ្នកប្រើនេះមានគេប្រើរួចហើយ។ សូមជ្រើសរើសឈ្មោះផ្សេង។",
+      "EMAIL_TAKEN": "អ៊ីមែលនេះត្រូវបានប្រើដោយគណនីផ្សេងរួចហើយ។"
+    }
   },
   "errors": {
     "generic": "មានបញ្ហាកើតឡើង។ សូមព្យាយាមម្តងទៀត។",

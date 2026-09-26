@@ -36,7 +36,8 @@ async function request<T>(method: string, path: string, body?: unknown): Promise
     throw new ApiError(0, 'network', 'Network error');
   }
 
-  if (res.status === 401) {
+  // A 401 from /auth/* means wrong credentials (shown by the form), not an expired session.
+  if (res.status === 401 && !path.startsWith('/auth/')) {
     onUnauthorized?.();
   }
 

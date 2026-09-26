@@ -621,7 +621,46 @@
     "weekStrip": "Days of this week"
   },
   "auth": {
-    "loginTitle": "Log in"
+    "loginTitle": "Log in",
+    "loginDescription": "Welcome back! Log in to continue.",
+    "username": "Username",
+    "usernamePlaceholder": "e.g. sokha",
+    "password": "Password",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "forgotPassword": "Forgot password?",
+    "submit": "Log in",
+    "noAccount": "Don't have an account? <link>Sign up</link>",
+    "hasAccount": "Already have an account? <link>Log in</link>",
+    "demoHint": "Demo mode: log in with {username} / {password}",
+    "registerTitle": "Create an account",
+    "registerDescription": "Sign up to start tracking your expenses, goals and tasks.",
+    "fullname": "Full name",
+    "fullnamePlaceholder": "e.g. Sok Sokha",
+    "usernameHint": "Letters, numbers, dots and underscores only. You will use it to log in.",
+    "emailOptional": "Email (optional)",
+    "emailPlaceholder": "e.g. sokha@example.com",
+    "passwordHint": "At least {min} characters.",
+    "registerSubmit": "Create account",
+    "forgotPasswordTitle": "Reset your password",
+    "notReady": "This page is not ready yet. Please check back soon.",
+    "backToLogin": "Back to log in",
+    "validation": {
+      "required": "Please fill in this field",
+      "fullnameTooLong": "Full name is too long",
+      "usernameTooShort": "Username must be at least 3 characters",
+      "usernameTooLong": "Username is too long",
+      "usernameFormat": "Use only letters, numbers, dots (.) and underscores (_)",
+      "emailInvalid": "Please enter a valid email address",
+      "emailTooLong": "Email is too long",
+      "passwordTooShort": "Password must be at least {min} characters",
+      "passwordTooLong": "Password is too long"
+    },
+    "errors": {
+      "invalidCredentials": "Wrong username or password. Please try again.",
+      "USERNAME_TAKEN": "This username is already taken. Please choose another one.",
+      "EMAIL_TAKEN": "This email is already used by another account."
+    }
   },
   "errors": {
     "generic": "Something went wrong. Please try again.",

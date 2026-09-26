@@ -621,7 +621,46 @@
     "weekStrip": "Hari dalam minggu ini"
   },
   "auth": {
-    "loginTitle": "Log masuk"
+    "loginTitle": "Log masuk",
+    "loginDescription": "Selamat kembali! Log masuk untuk meneruskan.",
+    "username": "Nama pengguna",
+    "usernamePlaceholder": "cth. sokha",
+    "password": "Kata laluan",
+    "showPassword": "Tunjukkan kata laluan",
+    "hidePassword": "Sembunyikan kata laluan",
+    "forgotPassword": "Lupa kata laluan?",
+    "submit": "Log masuk",
+    "noAccount": "Belum mempunyai akaun? <link>Daftar</link>",
+    "hasAccount": "Sudah mempunyai akaun? <link>Log masuk</link>",
+    "demoHint": "Mod demo: log masuk dengan {username} / {password}",
+    "registerTitle": "Cipta akaun",
+    "registerDescription": "Daftar untuk mula menjejak perbelanjaan, matlamat dan tugasan anda.",
+    "fullname": "Nama penuh",
+    "fullnamePlaceholder": "cth. Sok Sokha",
+    "usernameHint": "Huruf, nombor, titik dan garis bawah sahaja. Anda akan menggunakannya untuk log masuk.",
+    "emailOptional": "E-mel (pilihan)",
+    "emailPlaceholder": "cth. sokha@example.com",
+    "passwordHint": "Sekurang-kurangnya {min} aksara.",
+    "registerSubmit": "Cipta akaun",
+    "forgotPasswordTitle": "Tetapkan semula kata laluan",
+    "notReady": "Halaman ini belum sedia. Sila semak semula nanti.",
+    "backToLogin": "Kembali ke log masuk",
+    "validation": {
+      "required": "Sila isi medan ini",
+      "fullnameTooLong": "Nama penuh terlalu panjang",
+      "usernameTooShort": "Nama pengguna mesti sekurang-kurangnya 3 aksara",
+      "usernameTooLong": "Nama pengguna terlalu panjang",
+      "usernameFormat": "Gunakan huruf, nombor, titik (.) dan garis bawah (_) sahaja",
+      "emailInvalid": "Sila masukkan alamat e-mel yang sah",
+      "emailTooLong": "E-mel terlalu panjang",
+      "passwordTooShort": "Kata laluan mesti sekurang-kurangnya {min} aksara",
+      "passwordTooLong": "Kata laluan terlalu panjang"
+    },
+    "errors": {
+      "invalidCredentials": "Nama pengguna atau kata laluan salah. Sila cuba lagi.",
+      "USERNAME_TAKEN": "Nama pengguna ini sudah diambil. Sila pilih yang lain.",
+      "EMAIL_TAKEN": "E-mel ini sudah digunakan oleh akaun lain."
+    }
   },
   "errors": {
     "generic": "Berlaku ralat. Sila cuba lagi.",
