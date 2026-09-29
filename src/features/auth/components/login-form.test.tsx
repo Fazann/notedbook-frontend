@@ -19,7 +19,14 @@ vi.mock('@/i18n/navigation', () => ({
 }));
 vi.mock('../api', () => ({ login: vi.fn() }));
 
-const user = { id: 1, name: 'Sokha', email: 'demo@example.com', locale: 'en' as const };
+const user = {
+  id: 1,
+  username: 'demo',
+  fullname: 'Sokha',
+  email: 'demo@example.com',
+  avatar: null,
+  created_at: '2026-01-01T00:00:00Z',
+};
 
 const fill = (username: string, password: string) => {
   fireEvent.change(screen.getByRole('textbox', { name: 'Username' }), { target: { value: username } });

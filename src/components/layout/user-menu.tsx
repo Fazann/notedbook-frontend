@@ -3,7 +3,7 @@
 import { ChevronsUpDown, LogOut, Settings, User as UserIcon } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -18,7 +18,8 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Link } from '@/i18n/navigation';
 
 export type UserMenuProps = {
-  user?: { name: string; email: string };
+  /** `detail` is the second line under the name (e.g. email or username). */
+  user?: { name: string; detail: string; avatarUrl?: string };
   onLogout: () => void;
   /** `avatar`: round button for the header. `sidebar`: full row with name and email. */
   variant?: 'avatar' | 'sidebar';
@@ -33,6 +34,7 @@ export function UserMenu({ user, onLogout, variant = 'avatar' }: UserMenuProps) 
 
   const avatar = (
     <Avatar className="size-8 rounded-lg">
+      {user?.avatarUrl && <AvatarImage src={user.avatarUrl} alt="" className="rounded-lg object-cover" />}
       <AvatarFallback className="bg-primary/10 text-primary rounded-lg font-medium">
         {user ? initials(user.name) : ''}
       </AvatarFallback>
@@ -50,7 +52,7 @@ export function UserMenu({ user, onLogout, variant = 'avatar' }: UserMenuProps) 
                 {user ? (
                   <>
                     <span className="truncate font-medium">{user.name}</span>
-                    <span className="text-muted-foreground truncate text-xs">{user.email}</span>
+                    <span className="text-muted-foreground truncate text-xs">{user.detail}</span>
                   </>
                 ) : (
                   <Skeleton className="h-4 w-24" />
@@ -76,13 +78,15 @@ export function UserMenu({ user, onLogout, variant = 'avatar' }: UserMenuProps) 
         {user && (
           <DropdownMenuLabel className="font-normal">
             <p className="truncate font-medium">{user.name}</p>
-            <p className="text-muted-foreground truncate text-xs">{user.email}</p>
+            <p className="text-muted-foreground truncate text-xs">{user.detail}</p>
           </DropdownMenuLabel>
         )}
         <DropdownMenuSeparator />
-        <DropdownMenuItem disabled className="min-h-10">
-          <UserIcon aria-hidden />
-          {t('profile')}
+        <DropdownMenuItem asChild className="min-h-10">
+          <Link href="/settings/profile">
+            <UserIcon aria-hidden />
+            {t('profile')}
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild className="min-h-10">
           <Link href="/settings">

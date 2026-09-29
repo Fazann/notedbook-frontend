@@ -654,17 +654,65 @@
       "emailInvalid": "Please enter a valid email address",
       "emailTooLong": "Email is too long",
       "passwordTooShort": "Password must be at least {min} characters",
-      "passwordTooLong": "Password is too long"
+      "passwordTooLong": "Password is too long",
+      "fullnameTooShort": "Full name must be at least {min} characters",
+      "usernameMinLength": "Username must be at least {min} characters",
+      "profileUsernameFormat": "Use only letters and numbers, with single spaces between words",
+      "emailCannotClear": "Your email cannot be removed. Enter a new email instead.",
+      "passwordMismatch": "Passwords do not match",
+      "passwordSame": "Choose a password that is different from your current one"
     },
     "errors": {
       "invalidCredentials": "Wrong username or password. Please try again.",
       "USERNAME_TAKEN": "This username is already taken. Please choose another one.",
-      "EMAIL_TAKEN": "This email is already used by another account."
+      "EMAIL_TAKEN": "This email is already used by another account.",
+      "INCORRECT_PASSWORD": "Your current password is incorrect.",
+      "INVALID_USERNAME": "This username is not valid.",
+      "INVALID_EMAIL": "This email address is not valid.",
+      "INVALID_FULLNAME": "This full name is not valid."
     }
   },
   "errors": {
     "generic": "Something went wrong. Please try again.",
     "network": "Network error. Please try again.",
-    "mock_error": "Simulated error (mock mode). Please try again."
+    "mock_error": "Simulated error (mock mode). Please try again.",
+    "VALIDATION_FAILED": "Some fields are not valid. Please check them and try again.",
+    "FILE_TOO_LARGE": "The file is too large.",
+    "INVALID_ATTACHMENT_TYPE": "This file type is not allowed.",
+    "ATTACHMENT_IN_USE": "This file is already used. Please upload it again."
+  },
+  "settings": {
+    "title": "Settings",
+    "description": "Manage your profile and password.",
+    "navLabel": "Settings sections",
+    "tabProfile": "Profile",
+    "tabPassword": "Password",
+    "profile": {
+      "title": "Profile",
+      "description": "Your name, username and email.",
+      "photo": "Profile photo",
+      "photoHint": "JPG, PNG, WebP or GIF, up to {max} MB.",
+      "changePhoto": "Change photo",
+      "uploading": "Uploading...",
+      "photoSaved": "Profile photo updated",
+      "photoNotImage": "Please choose an image file.",
+      "photoTooLarge": "The image is larger than {max} MB. Please choose a smaller one.",
+      "usernameHint": "Letters and numbers only. You use it to log in.",
+      "email": "Email",
+      "emailHint": "Used to reset your password if you forget it.",
+      "save": "Save changes",
+      "saved": "Profile saved",
+      "loadError": "Could not load your profile."
+    },
+    "password": {
+      "title": "Change password",
+      "description": "Enter your current password, then choose a new one.",
+      "current": "Current password",
+      "new": "New password",
+      "newHint": "{min} to {max} characters.",
+      "confirm": "Confirm new password",
+      "submit": "Change password",
+      "changed": "Password changed"
+    }
   }
 }

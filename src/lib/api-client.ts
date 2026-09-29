@@ -14,7 +14,19 @@ export class ApiError extends Error {
   }
 }
 
-type ErrorBody = { code?: string; message?: string; fields?: Record<string, string> };
+type ErrorBody = {
+  code?: string;
+  message?: string;
+  fields?: Record<string, string>;
+  /** The Go API lists invalid fields here when `code` is `VALIDATION_FAILED`. */
+  errors?: { field: string; message: string }[];
+};
+
+function fieldErrors(data: ErrorBody): Record<string, string> | undefined {
+  if (data.fields) return data.fields;
+  if (!data.errors?.length) return undefined;
+  return Object.fromEntries(data.errors.map((e) => [e.field, e.message]));
+}
 
 let onUnauthorized: (() => void) | undefined;
 
@@ -29,8 +41,9 @@ async function request<T>(method: string, path: string, body?: unknown): Promise
     res = await fetch(`${env.apiUrl}${path}`, {
       method,
       credentials: 'include',
-      headers: body === undefined ? undefined : { 'Content-Type': 'application/json' },
-      body: body === undefined ? undefined : JSON.stringify(body),
+      // FormData sets its own multipart Content-Type (with the boundary).
+      headers: body === undefined || body instanceof FormData ? undefined : { 'Content-Type': 'application/json' },
+      body: body === undefined || body instanceof FormData ? body : JSON.stringify(body),
     });
   } catch {
     throw new ApiError(0, 'network', 'Network error');
@@ -43,7 +56,7 @@ async function request<T>(method: string, path: string, body?: unknown): Promise
 
   if (!res.ok) {
     const data = (await res.json().catch(() => ({}))) as ErrorBody;
-    throw new ApiError(res.status, data.code ?? 'unknown', data.message ?? res.statusText, data.fields);
+    throw new ApiError(res.status, data.code ?? 'unknown', data.message ?? res.statusText, fieldErrors(data));
   }
 
   if (res.status === 204) {

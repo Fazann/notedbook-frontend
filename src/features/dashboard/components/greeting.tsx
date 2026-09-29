@@ -17,5 +17,5 @@ export function Greeting() {
   if (!mounted || !me.data) {
     return <Skeleton className="h-8 w-56 md:h-9 md:w-72" />;
   }
-  return <>{t(dayPeriod(new Date().getHours()), { name: me.data.name })}</>;
+  return <>{t(dayPeriod(new Date().getHours()), { name: me.data.fullname })}</>;
 }

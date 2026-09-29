@@ -654,17 +654,65 @@
       "emailInvalid": "Sila masukkan alamat e-mel yang sah",
       "emailTooLong": "E-mel terlalu panjang",
       "passwordTooShort": "Kata laluan mesti sekurang-kurangnya {min} aksara",
-      "passwordTooLong": "Kata laluan terlalu panjang"
+      "passwordTooLong": "Kata laluan terlalu panjang",
+      "fullnameTooShort": "Nama penuh mesti sekurang-kurangnya {min} aksara",
+      "usernameMinLength": "Nama pengguna mesti sekurang-kurangnya {min} aksara",
+      "profileUsernameFormat": "Gunakan huruf dan nombor sahaja, dengan satu ruang di antara perkataan",
+      "emailCannotClear": "E-mel anda tidak boleh dibuang. Masukkan e-mel baharu sebagai ganti.",
+      "passwordMismatch": "Kata laluan tidak sepadan",
+      "passwordSame": "Pilih kata laluan yang berbeza daripada kata laluan semasa"
     },
     "errors": {
       "invalidCredentials": "Nama pengguna atau kata laluan salah. Sila cuba lagi.",
       "USERNAME_TAKEN": "Nama pengguna ini sudah diambil. Sila pilih yang lain.",
-      "EMAIL_TAKEN": "E-mel ini sudah digunakan oleh akaun lain."
+      "EMAIL_TAKEN": "E-mel ini sudah digunakan oleh akaun lain.",
+      "INCORRECT_PASSWORD": "Kata laluan semasa anda tidak betul.",
+      "INVALID_USERNAME": "Nama pengguna ini tidak sah.",
+      "INVALID_EMAIL": "Alamat e-mel ini tidak sah.",
+      "INVALID_FULLNAME": "Nama penuh ini tidak sah."
     }
   },
   "errors": {
     "generic": "Berlaku ralat. Sila cuba lagi.",
     "network": "Ralat rangkaian. Sila cuba lagi.",
-    "mock_error": "Ralat simulasi (mod olok-olok). Sila cuba lagi."
+    "mock_error": "Ralat simulasi (mod olok-olok). Sila cuba lagi.",
+    "VALIDATION_FAILED": "Sesetengah medan tidak sah. Sila semak dan cuba lagi.",
+    "FILE_TOO_LARGE": "Fail terlalu besar.",
+    "INVALID_ATTACHMENT_TYPE": "Jenis fail ini tidak dibenarkan.",
+    "ATTACHMENT_IN_USE": "Fail ini sudah digunakan. Sila muat naik semula."
+  },
+  "settings": {
+    "title": "Tetapan",
+    "description": "Urus profil dan kata laluan anda.",
+    "navLabel": "Bahagian tetapan",
+    "tabProfile": "Profil",
+    "tabPassword": "Kata laluan",
+    "profile": {
+      "title": "Profil",
+      "description": "Nama, nama pengguna dan e-mel anda.",
+      "photo": "Foto profil",
+      "photoHint": "JPG, PNG, WebP atau GIF, sehingga {max} MB.",
+      "changePhoto": "Tukar foto",
+      "uploading": "Memuat naik...",
+      "photoSaved": "Foto profil dikemas kini",
+      "photoNotImage": "Sila pilih fail imej.",
+      "photoTooLarge": "Imej lebih besar daripada {max} MB. Sila pilih yang lebih kecil.",
+      "usernameHint": "Huruf dan nombor sahaja. Anda menggunakannya untuk log masuk.",
+      "email": "E-mel",
+      "emailHint": "Digunakan untuk menetapkan semula kata laluan jika anda terlupa.",
+      "save": "Simpan perubahan",
+      "saved": "Profil disimpan",
+      "loadError": "Tidak dapat memuatkan profil anda."
+    },
+    "password": {
+      "title": "Tukar kata laluan",
+      "description": "Masukkan kata laluan semasa, kemudian pilih yang baharu.",
+      "current": "Kata laluan semasa",
+      "new": "Kata laluan baharu",
+      "newHint": "{min} hingga {max} aksara.",
+      "confirm": "Sahkan kata laluan baharu",
+      "submit": "Tukar kata laluan",
+      "changed": "Kata laluan ditukar"
+    }
   }
 }

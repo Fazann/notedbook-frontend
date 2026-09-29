@@ -82,3 +82,13 @@ Draft Khmer — please review every key in the `auth` namespace, especially `aut
 Draft Khmer — please review the new register keys in `auth`: `registerDescription`, `fullname*`, `usernameHint`,
 `emailOptional`, `passwordHint`, `registerSubmit`, the new `auth.validation.*` messages and
 `auth.errors.USERNAME_TAKEN` / `auth.errors.EMAIL_TAKEN`.
+
+## Settings (profile + change password)
+
+Machine-drafted — please review:
+
+- `settings.*` — page title, tabs, profile photo, profile form, change password form, toasts.
+- `auth.validation.fullnameTooShort` / `usernameMinLength` / `profileUsernameFormat` / `emailCannotClear` /
+  `passwordMismatch` / `passwordSame`.
+- `auth.errors.INCORRECT_PASSWORD` / `INVALID_USERNAME` / `INVALID_EMAIL` / `INVALID_FULLNAME`.
+- `errors.VALIDATION_FAILED` / `FILE_TOO_LARGE` / `INVALID_ATTACHMENT_TYPE` / `ATTACHMENT_IN_USE`.

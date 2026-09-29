@@ -24,5 +24,11 @@ export function AccountMenu({ variant }: AccountMenuProps) {
     router.push('/login');
   };
 
-  return <UserMenu user={me.data} onLogout={logout} variant={variant} />;
+  const user = me.data && {
+    name: me.data.fullname,
+    detail: me.data.email || me.data.username,
+    avatarUrl: me.data.avatar?.thumbnail_url || me.data.avatar?.url,
+  };
+
+  return <UserMenu user={user} onLogout={logout} variant={variant} />;
 }

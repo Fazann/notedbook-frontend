@@ -1,7 +1,8 @@
-import { placeholderPage } from '@/app/[locale]/(app)/placeholder-page';
+import { redirect } from '@/i18n/navigation';
+import type { Locale } from '@/i18n/routing';
 
-// Placeholder until this module is built (see docs/starter.md, build order).
-const { generateMetadata, Page } = placeholderPage('settings');
-
-export { generateMetadata };
-export default Page;
+/** Settings has no page of its own: open the first section. */
+export default async function Page({ params }: PageProps<'/[locale]/settings'>) {
+  const { locale } = await params;
+  redirect({ href: '/settings/profile', locale: locale as Locale });
+}

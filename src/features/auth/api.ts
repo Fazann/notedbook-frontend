@@ -2,11 +2,37 @@ import { apiClient } from '@/lib/api-client';
 import { env } from '@/lib/env';
 import * as mock from '@/mocks/handlers/auth';
 
-import type { LoginValues, RegisterValues, User } from './types';
+import type { Attachment, ChangePasswordValues, LoginValues, ProfileUpdate, RegisterValues, User } from './types';
 
+// TODO(api): the Go API serves under /api/v1 and wraps success bodies in `{ message, data, status_code }`;
+// apiClient does not unwrap `data` yet, and the API authenticates with a Bearer token, not a cookie.
 export function getMe(): Promise<User> {
   if (env.useMocks) return mock.getMe();
-  return apiClient.get('/me');
+  return apiClient.get('/auth/profile');
+}
+
+/**
+ * PATCH /auth/profile — changes only the fields sent and returns the updated profile.
+ * Taken username / email: 409 with `USERNAME_TAKEN` / `EMAIL_TAKEN`.
+ */
+export function updateProfile(values: ProfileUpdate): Promise<User> {
+  if (env.useMocks) return mock.updateProfile(values);
+  return apiClient.patch('/auth/profile', values);
+}
+
+/** PUT /auth/change-password — wrong current password: 400 with `INCORRECT_PASSWORD`. Returns the profile. */
+export function changePassword({ currentPassword, newPassword }: ChangePasswordValues): Promise<User> {
+  const body = { current_password: currentPassword, new_password: newPassword };
+  if (env.useMocks) return mock.changePassword(body);
+  return apiClient.put('/auth/change-password', body);
+}
+
+/** POST /attachments (multipart, field `file`). The returned id is then sent as the profile's `avatar_id`. */
+export function uploadImage(file: File): Promise<Attachment> {
+  if (env.useMocks) return mock.uploadImage(file);
+  const body = new FormData();
+  body.append('file', file);
+  return apiClient.post('/attachments', body);
 }
 
 /**

@@ -27,3 +27,32 @@ export function useRegister() {
     onSuccess: (user) => queryClient.setQueryData(qk.me, user),
   });
 }
+
+/** Saves profile fields and caches the returned profile (menu, greeting and form update at once). */
+export function useUpdateProfile() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: api.updateProfile,
+    onSuccess: (user) => queryClient.setQueryData(qk.me, user),
+  });
+}
+
+/** Uploads the image, then sets it as the avatar. */
+export function useChangeAvatar() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (file: File) => {
+      const image = await api.uploadImage(file);
+      return api.updateProfile({ avatar_id: image.id });
+    },
+    onSuccess: (user) => queryClient.setQueryData(qk.me, user),
+  });
+}
+
+export function useChangePassword() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: api.changePassword,
+    onSuccess: (user) => queryClient.setQueryData(qk.me, user),
+  });
+}

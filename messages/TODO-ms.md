@@ -11,3 +11,10 @@ wording and tone. Pay special attention to:
 - `auth.*` — login, register and forgot-password pages ("Daftar" for sign up, "Kata laluan" for password).
 - `auth.*` register keys — `registerDescription`, `fullname*`, `usernameHint`, `emailOptional` ("E-mel (pilihan)"),
   `passwordHint`, the new `auth.validation.*` messages and `auth.errors.USERNAME_TAKEN` / `EMAIL_TAKEN`.
+
+## Settings (profile + change password)
+
+Machine-drafted — please review `settings.*`, the new `auth.validation.*` keys (`fullnameTooShort`,
+`usernameMinLength`, `profileUsernameFormat`, `emailCannotClear`, `passwordMismatch`, `passwordSame`), the new
+`auth.errors.*` codes (`INCORRECT_PASSWORD`, `INVALID_*`) and `errors.VALIDATION_FAILED` / `FILE_TOO_LARGE` /
+`INVALID_ATTACHMENT_TYPE` / `ATTACHMENT_IN_USE`.

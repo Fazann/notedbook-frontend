@@ -19,7 +19,14 @@ vi.mock('@/i18n/navigation', () => ({
 }));
 vi.mock('../api', () => ({ register: vi.fn() }));
 
-const user = { id: 2, name: 'Sok Sokha', email: '', locale: 'en' as const };
+const user = {
+  id: 2,
+  username: 'sokha',
+  fullname: 'Sok Sokha',
+  email: '',
+  avatar: null,
+  created_at: '2026-01-01T00:00:00Z',
+};
 
 const fill = (values: { fullname?: string; username?: string; email?: string; password?: string }) => {
   if (values.fullname !== undefined)
