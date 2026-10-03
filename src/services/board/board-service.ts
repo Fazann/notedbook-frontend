@@ -1,9 +1,15 @@
 import type { BoardListItem, DueCard } from '@/features/board/types';
-import { isMocked } from '@/lib/env';
+import { isMocked, usesRealApi } from '@/lib/env';
 import * as mock from '@/mocks/handlers/board';
 
 import { apiCall } from '../core/api-call';
 import { ApiEndpoint } from '../core/api-endpoints';
+
+/**
+ * TODO(api): the backend has no board / card routes yet. Until it does, board data is demo data from the mock and is
+ * only used when the whole app runs on mocks, so it never mixes with real data (e.g. on the dashboard).
+ */
+export const hasBoardData = () => isMocked('board') && !usesRealApi();
 
 export function listBoards(): Promise<BoardListItem[]> {
   if (isMocked('board')) return mock.listBoards();

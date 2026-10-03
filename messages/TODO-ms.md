@@ -22,3 +22,7 @@ Machine-drafted — please review `settings.*`, the new `auth.validation.*` keys
 ## Planning (real API)
 
 Machine-drafted — please review `planning.validation.tooShort`.
+
+## Dashboard (real API)
+
+Machine-drafted — please review `dashboard.tasks.comingSoon`.

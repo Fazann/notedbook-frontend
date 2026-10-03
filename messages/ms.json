@@ -249,6 +249,7 @@
     "tasks": {
       "title": "Tugasan hampir tamat tempoh",
       "description": "Daripada semua papan, 7 hari akan datang",
+      "comingSoon": "Tugasan daripada papan anda akan dipaparkan di sini apabila papan sudah sedia.",
       "empty": "Tiada tugasan dalam 7 hari akan datang.",
       "overdue": "Lewat",
       "dueToday": "Perlu siap hari ini",

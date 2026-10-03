@@ -9,9 +9,8 @@ import type {
   MilestoneFormValues,
   MilestoneInput,
 } from '@/features/planning/types';
-import { computeGoalStats, matchesGoalFilters, sortGoals } from '@/features/planning/utils';
 import { isMocked } from '@/lib/env';
-import { paginate, type Paginated } from '@/lib/list';
+import type { Paginated } from '@/lib/list';
 import { todayInTz } from '@/lib/time';
 import * as mock from '@/mocks/handlers/planning';
 
@@ -22,11 +21,15 @@ import {
   type ApiPlan,
   type ApiPlanArea,
   type ApiPlanDetail,
+  type ApiPlanStats,
   type ApiPlanStep,
   type AreaMap,
+  toApiSort,
   toApiStatus,
+  toApiStatusFilter,
   toAreaMap,
   toGoalDetail,
+  toGoalStats,
   toGoalSummary,
   toMilestone,
   toPlanBody,
@@ -34,9 +37,6 @@ import {
 } from './planning-mappers';
 
 // Goals are `plans` and milestones are `steps` in the API.
-
-/** Most plans loaded at once (the API's page limit). */
-const ALL_LIMIT = 1000;
 
 let areasRequest: Promise<AreaMap> | null = null;
 
@@ -52,34 +52,25 @@ function getAreas(): Promise<AreaMap> {
   return areasRequest;
 }
 
-/** Every plan matching the filters the API supports (one status, one area, title search). */
-async function listAllGoals(params: Partial<Pick<GoalListParams, 'status' | 'areas' | 'search'>> = {}) {
-  const areas = await getAreas();
-  const page = await apiCall.getPage<ApiPlan>(ApiEndpoint.Plans, {
-    page: 1,
-    pageSize: ALL_LIMIT,
-    status: params.status === 'done' ? 'DONE' : undefined,
-    area_id: params.areas?.length === 1 ? areas.idOf(params.areas[0]) : undefined,
-    q: params.search?.trim() || undefined,
-  });
-  return page.data.map((p) => toGoalSummary(p, areas));
-}
-
-/**
- * One page of goals. The API cannot filter `active` (two statuses) or several areas, nor sort by progress, so the
- * matching goals are loaded at once and filtered, sorted and paged here.
- * TODO(api): accept `status=NOT_START,IN_PROGRESS`, several `area_id`s and `sort=progress`, then page on the server.
- */
+/** One page of goals; `areas` are sent as their API ids. */
 export async function listGoals(params: GoalListParams): Promise<Paginated<GoalSummary>> {
   if (isMocked('planning')) return mock.listGoals(params);
-  const goals = (await listAllGoals(params)).filter((g) => matchesGoalFilters(g, params));
-  return paginate(sortGoals(goals, params.sort), params.page, params.pageSize);
+  const areas = await getAreas();
+  const page = await apiCall.getPage<ApiPlan>(ApiEndpoint.Plans, {
+    page: params.page,
+    pageSize: params.pageSize,
+    status: toApiStatusFilter(params.status),
+    area_id: params.areas.length ? params.areas.map(areas.idOf).join(',') : undefined,
+    q: params.search.trim() || undefined,
+    sort: params.sort ? toApiSort(params.sort) : undefined,
+  });
+  return { ...page, data: page.data.map((p) => toGoalSummary(p, areas)) };
 }
 
-/** TODO(api): GET /plans/stats is not in the backend yet; computed here from every plan. */
+/** `today` is sent so "overdue" and "this year" follow the app's time zone. */
 export async function getGoalStats(): Promise<GoalStats> {
   if (isMocked('planning')) return mock.getGoalStats();
-  return computeGoalStats(await listAllGoals(), todayInTz());
+  return toGoalStats(await apiCall.get<ApiPlanStats>(ApiEndpoint.PlanStats, { today: todayInTz() }));
 }
 
 export async function getGoal(id: number): Promise<GoalDetail> {
@@ -130,29 +121,22 @@ export function deleteGoal(id: number): Promise<void> {
   return apiCall.delete(buildPath(ApiEndpoint.PlanDetail, { id }));
 }
 
-/**
- * Added at the end of the goal. The API returns no position, so the step keeps the one the caller gave it.
- * TODO(api): POST /plans/:id/steps should accept an optional `position` (used to undo a delete).
- */
+/** Added at the end of the goal, or at `input.position` (restoring a deleted step). */
 export async function addMilestone(goalId: number, input: MilestoneInput): Promise<Milestone> {
   if (isMocked('planning')) return mock.addMilestone(goalId, input);
   const step = await apiCall.post<ApiPlanStep>(
     buildPath(ApiEndpoint.PlanSteps, { id: goalId }),
     toStepBody(input, 'create')
   );
-  return toMilestone(step, input.position ?? 0);
+  return toMilestone(step);
 }
 
-/** The returned step has no position (the API has none); read positions from the goal. */
 export async function updateMilestone(id: number, input: MilestoneFormValues): Promise<Milestone> {
   if (isMocked('planning')) return mock.updateMilestone(id, input);
-  return toMilestone(
-    await apiCall.put<ApiPlanStep>(buildPath(ApiEndpoint.StepDetail, { id }), toStepBody(input, 'update')),
-    0
-  );
+  const path = buildPath(ApiEndpoint.StepDetail, { id });
+  return toMilestone(await apiCall.put<ApiPlanStep>(path, toStepBody(input, 'update')));
 }
 
-/** The returned step has no position (the API has none); read positions from the goal. */
 export async function toggleMilestone(
   id: number,
   isDone: boolean
@@ -162,15 +146,13 @@ export async function toggleMilestone(
     getAreas(),
     apiCall.patch<{ step: ApiPlanStep; plan: ApiPlan }>(buildPath(ApiEndpoint.StepToggle, { id }), { done: isDone }),
   ]);
-  return { milestone: toMilestone(res.step, 0), goal: toGoalSummary(res.plan, areas) };
+  return { milestone: toMilestone(res.step), goal: toGoalSummary(res.plan, areas) };
 }
 
-/** TODO(api): the backend has no step ordering yet (PATCH /steps/:id/move); until then steps can't be reordered. */
-export const canMoveMilestones = () => isMocked('planning');
-
-export function moveMilestone(id: number, position: number): Promise<Milestone> {
+/** `position` is computed by the client from the new neighbours (see `calcPosition`). */
+export async function moveMilestone(id: number, position: number): Promise<Milestone> {
   if (isMocked('planning')) return mock.moveMilestone(id, position);
-  return Promise.reject(new Error('Reordering steps is not supported by the API yet'));
+  return toMilestone(await apiCall.patch<ApiPlanStep>(buildPath(ApiEndpoint.StepMove, { id }), { position }));
 }
 
 export async function deleteMilestone(id: number): Promise<{ goal: GoalSummary }> {

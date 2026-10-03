@@ -1,13 +1,14 @@
 'use client';
 
 import { Plus } from 'lucide-react';
-import { useFormatter, useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 import { MonthPicker } from '@/components/shared/month-picker';
 import { PageHeader } from '@/components/shared/page-header';
 import { Button } from '@/components/ui/button';
 import { TodaySchedule } from '@/features/schedule/components/today-schedule';
-import { currentMonth, utcDate } from '@/lib/dates';
+import { formatMonth } from '@/lib/calendar-locale';
+import { currentMonth } from '@/lib/dates';
 import { useUiStore } from '@/stores/ui-store';
 
 import { ActiveGoals } from './active-goals';
@@ -25,12 +26,12 @@ import { TasksDueSoon } from './tasks-due-soon';
 export function DashboardView() {
   const t = useTranslations('dashboard');
   const te = useTranslations('expense');
-  const format = useFormatter();
+  const locale = useLocale();
   const month = useUiStore((s) => s.month);
   const setMonth = useUiStore((s) => s.setMonth);
   const openQuickAdd = useUiStore((s) => s.openQuickAdd);
 
-  const monthLabel = format.dateTime(utcDate(month), { month: 'long', year: 'numeric', timeZone: 'UTC' });
+  const monthLabel = formatMonth(month, locale);
 
   return (
     <div className="space-y-4 md:space-y-6">

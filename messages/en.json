@@ -249,6 +249,7 @@
     "tasks": {
       "title": "Tasks due soon",
       "description": "From all boards, next 7 days",
+      "comingSoon": "Tasks from your boards will show here once boards are ready.",
       "empty": "Nothing due in the next 7 days.",
       "overdue": "Overdue",
       "dueToday": "Due today",

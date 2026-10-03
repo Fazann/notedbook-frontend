@@ -18,7 +18,6 @@ vi.mock('@/services/planning/planning-service', () => ({
   deleteMilestone: vi.fn(),
   updateMilestone: vi.fn(),
   moveMilestone: vi.fn(),
-  canMoveMilestones: vi.fn(),
   updateGoalStatus: vi.fn(),
 }));
 vi.mock('sonner', () => ({ toast: { success: vi.fn(), error: vi.fn() } }));
@@ -70,10 +69,7 @@ const openMenuOf = async (title: string) => {
 };
 
 describe('MilestoneList', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-    vi.mocked(api.canMoveMilestones).mockReturnValue(true);
-  });
+  beforeEach(() => vi.clearAllMocks());
 
   it('adds a step with Enter and keeps focus for the next one', async () => {
     vi.mocked(api.addMilestone).mockResolvedValue(step(4, 'Compare prices', false));
@@ -187,12 +183,5 @@ describe('MilestoneList', () => {
   it('gives every step a translated drag handle', () => {
     renderList(goal);
     expect(screen.getAllByRole('button', { name: 'Drag to reorder' })).toHaveLength(3);
-  });
-
-  it('shows no drag handles when the API cannot reorder steps', () => {
-    vi.mocked(api.canMoveMilestones).mockReturnValue(false);
-    renderList(goal);
-    expect(screen.getAllByRole('checkbox')).toHaveLength(3);
-    expect(screen.queryByRole('button', { name: 'Drag to reorder' })).not.toBeInTheDocument();
   });
 });

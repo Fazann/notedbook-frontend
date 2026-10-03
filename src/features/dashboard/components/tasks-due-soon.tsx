@@ -1,13 +1,13 @@
 'use client';
 
-import { CheckCircle2 } from 'lucide-react';
+import { CheckCircle2, Construction } from 'lucide-react';
 import { useFormatter, useTranslations } from 'next-intl';
 
 import { EmptyState } from '@/components/shared/empty-state';
 import { ErrorState } from '@/components/shared/error-state';
 import { SectionCard } from '@/components/shared/section-card';
 import { Badge } from '@/components/ui/badge';
-import { useDueCards } from '@/features/board/hooks';
+import { hasBoardData, useDueCards } from '@/features/board/hooks';
 import type { LabelColor } from '@/features/board/types';
 import { Link } from '@/i18n/navigation';
 import { todayIso, utcDate } from '@/lib/dates';
@@ -27,10 +27,14 @@ export type TasksDueSoonProps = { className?: string };
 
 export function TasksDueSoon({ className }: TasksDueSoonProps) {
   const t = useTranslations('dashboard');
+  const tc = useTranslations('common');
   const format = useFormatter();
   const cards = useDueCards(7);
 
   const renderBody = () => {
+    if (!hasBoardData()) {
+      return <EmptyState icon={<Construction />} title={tc('comingSoon')} description={t('tasks.comingSoon')} />;
+    }
     if (cards.isPending) return <ListSkeleton rows={3} />;
     if (cards.isError) return <ErrorState message={t('error')} onRetry={() => void cards.refetch()} />;
     if (cards.data.length === 0) return <EmptyState icon={<CheckCircle2 />} title={t('tasks.empty')} />;

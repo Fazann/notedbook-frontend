@@ -3,9 +3,12 @@ import { describe, expect, it } from 'vitest';
 import {
   type ApiPlan,
   type ApiPlanStep,
+  toApiSort,
   toApiStatus,
+  toApiStatusFilter,
   toAreaMap,
   toGoalDetail,
+  toGoalStats,
   toGoalSummary,
   toPlanBody,
   toStepBody,
@@ -34,12 +37,13 @@ const apiPlan = (over: Partial<ApiPlan> = {}): ApiPlan => ({
   ...over,
 });
 
-const apiStep = (id: number, done = false): ApiPlanStep => ({
+const apiStep = (id: number, position: number, done = false): ApiPlanStep => ({
   id,
   plan_id: 7,
   title: `Step ${id}`,
   done,
   due_date: null,
+  position,
   created_at: '2026-09-01T08:00:00+07:00',
   updated_at: '2026-09-01T08:00:00+07:00',
 });
@@ -83,8 +87,8 @@ describe('toGoalSummary', () => {
 });
 
 describe('toGoalDetail', () => {
-  it('keeps the API step order and numbers the positions', () => {
-    const detail = toGoalDetail({ ...apiPlan(), steps: [apiStep(5, true), apiStep(2)] }, areas);
+  it('keeps the API step order and positions', () => {
+    const detail = toGoalDetail({ ...apiPlan(), steps: [apiStep(5, 1000, true), apiStep(2, 2000)] }, areas);
     expect(detail.description).toBe('For a laptop');
     expect(detail.milestones).toEqual([
       { id: 5, goalId: 7, title: 'Step 5', isDone: true, dueDate: null, position: 1000, doneAt: null },
@@ -113,9 +117,31 @@ describe('request bodies', () => {
     });
     expect(toStepBody({ title: 'x', dueDate: null }, 'create').due_date).toBeNull();
     expect(toStepBody({ title: 'x', dueDate: null }, 'update').due_date).toBe('');
+    expect(toStepBody({ title: 'x', dueDate: null, position: 1500 }, 'create').position).toBe(1500);
     expect(toStepBody({ title: 'Call the bank', dueDate: '2026-10-31' }, 'create')).toEqual({
       title: 'Call the bank',
       due_date: '2026-10-31',
+    });
+  });
+});
+
+describe('list query', () => {
+  it('sends the status filter and sort the API expects', () => {
+    expect(toApiStatusFilter('active')).toBe('NOT_START,IN_PROGRESS');
+    expect(toApiStatusFilter('done')).toBe('DONE');
+    expect(toApiStatusFilter('all')).toBeUndefined();
+    expect(toApiSort('-targetDate')).toBe('-target_date');
+    expect(toApiSort('progress')).toBe('progress');
+  });
+});
+
+describe('toGoalStats', () => {
+  it('maps the stats', () => {
+    expect(toGoalStats({ active: 2, done_this_year: 1, overdue: 1, average_progress: 17 })).toEqual({
+      active: 2,
+      doneThisYear: 1,
+      overdue: 1,
+      averageProgress: 17,
     });
   });
 });

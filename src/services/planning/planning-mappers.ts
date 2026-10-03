@@ -4,7 +4,9 @@ import {
   type GoalDetail,
   type GoalFormValues,
   type GoalPriority,
+  type GoalStats,
   type GoalStatus,
+  type GoalStatusFilter,
   type GoalSummary,
   type Milestone,
   type MilestoneFormValues,
@@ -43,11 +45,16 @@ export type ApiPlanStep = {
   title: string;
   done: boolean;
   due_date: string | null;
+  /** Steps are listed by position, ascending. */
+  position: number;
   created_at: string;
   updated_at: string;
 };
 
-/** `PlanDetailRes`: steps oldest first. */
+/** `PlanStatsRes` of the Go API. */
+export type ApiPlanStats = { active: number; done_this_year: number; overdue: number; average_progress: number };
+
+/** `PlanDetailRes`: steps by position. */
 export type ApiPlanDetail = ApiPlan & { steps: ApiPlanStep[] };
 
 const STATUS_FROM_API: Record<ApiPlanStatus, GoalStatus> = {
@@ -62,6 +69,15 @@ const STATUS_TO_API: Record<GoalStatus, ApiPlanStatus> = {
 };
 
 export const toApiStatus = (status: GoalStatus): ApiPlanStatus => STATUS_TO_API[status];
+
+/** `status` query of GET /plans: `active` is the not-done statuses; `all` sends none. */
+export function toApiStatusFilter(filter: GoalStatusFilter): string | undefined {
+  if (filter === 'all') return undefined;
+  return filter === 'done' ? 'DONE' : 'NOT_START,IN_PROGRESS';
+}
+
+/** List sort keys are camelCase in the app and snake_case in the API: "-targetDate" → "-target_date". */
+export const toApiSort = (sort: string) => sort.replace(/[A-Z]/g, (c) => `_${c.toLowerCase()}`);
 const toPriority = (priority: ApiPlanPriority) => priority.toLowerCase() as GoalPriority;
 const toApiPriority = (priority: GoalPriority) => priority.toUpperCase() as ApiPlanPriority;
 
@@ -109,18 +125,15 @@ export function toGoalSummary(p: ApiPlan, areas: AreaMap): GoalSummary {
   };
 }
 
-/**
- * The API keeps steps in creation order and has no `position` or done time.
- * `position` is the step's place in the list (1000, 2000…); a single step gets `position` from the caller.
- */
-export function toMilestone(s: ApiPlanStep, position: number): Milestone {
+/** The API has no done time for steps. */
+export function toMilestone(s: ApiPlanStep): Milestone {
   return {
     id: s.id,
     goalId: s.plan_id,
     title: s.title,
     isDone: s.done,
     dueDate: s.due_date,
-    position,
+    position: s.position,
     doneAt: null,
   };
 }
@@ -129,7 +142,7 @@ export function toGoalDetail(p: ApiPlanDetail, areas: AreaMap): GoalDetail {
   return {
     ...toGoalSummary(p, areas),
     description: p.description,
-    milestones: p.steps.map((s, i) => toMilestone(s, (i + 1) * 1000)),
+    milestones: p.steps.map(toMilestone),
   };
 }
 
@@ -151,7 +164,16 @@ export function toPlanBody(input: GoalFormValues, areas: AreaMap, mode: BodyMode
   };
 }
 
-/** Body of POST /plans/:id/steps and PUT /steps/:id. */
-export function toStepBody(input: MilestoneFormValues, mode: BodyMode) {
-  return { title: input.title, due_date: optionalDate(input.dueDate, mode) };
+/** Body of POST /plans/:id/steps and PUT /steps/:id. `position` (create only) is left out to add at the end. */
+export function toStepBody(input: MilestoneFormValues & { position?: number }, mode: BodyMode) {
+  return { title: input.title, due_date: optionalDate(input.dueDate, mode), position: input.position };
+}
+
+export function toGoalStats(s: ApiPlanStats): GoalStats {
+  return {
+    active: s.active,
+    doneThisYear: s.done_this_year,
+    overdue: s.overdue,
+    averageProgress: s.average_progress,
+  };
 }

@@ -1,10 +1,11 @@
 'use client';
 
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { useFormatter, useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 import { Button } from '@/components/ui/button';
-import { shiftMonth, utcDate } from '@/lib/dates';
+import { formatMonth } from '@/lib/calendar-locale';
+import { shiftMonth } from '@/lib/dates';
 import { cn } from '@/lib/utils';
 
 export type MonthPickerProps = Omit<React.ComponentProps<'div'>, 'onChange'> & {
@@ -17,8 +18,8 @@ export type MonthPickerProps = Omit<React.ComponentProps<'div'>, 'onChange'> & {
 
 export function MonthPicker({ value, onChange, max, className, ...props }: MonthPickerProps) {
   const t = useTranslations('monthPicker');
-  const format = useFormatter();
-  const label = format.dateTime(utcDate(value), { month: 'short', year: 'numeric', timeZone: 'UTC' });
+  const locale = useLocale();
+  const label = formatMonth(value, locale, 'short');
 
   return (
     <div className={cn('bg-card flex items-center rounded-lg border', className)} {...props}>

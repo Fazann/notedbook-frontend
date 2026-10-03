@@ -7,7 +7,7 @@ import { ErrorState } from '@/components/shared/error-state';
 import { MoneyText } from '@/components/shared/money-text';
 import { StatCard } from '@/components/shared/stat-card';
 import { Card } from '@/components/ui/card';
-import { useDueCards } from '@/features/board/hooks';
+import { hasBoardData, useDueCards } from '@/features/board/hooks';
 import { useExpenseSummary } from '@/features/expense/hooks';
 import { shiftMonth, todayIso } from '@/lib/dates';
 import { CURRENCIES, type Currency } from '@/lib/money';
@@ -28,6 +28,7 @@ export function SpendingStats({ month }: SpendingStatsProps) {
   const summary = useExpenseSummary(month);
   const previous = useExpenseSummary(shiftMonth(month, -1));
   const dueCards = useDueCards(7);
+  const showTasks = hasBoardData();
 
   if (summary.isError || previous.isError) {
     return (
@@ -48,7 +49,12 @@ export function SpendingStats({ month }: SpendingStatsProps) {
   const overdue = dueCards.data?.filter((c) => c.due_date !== null && c.due_date < today).length ?? 0;
 
   return (
-    <div className="col-span-full grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4 xl:grid-cols-5">
+    <div
+      className={cn(
+        'col-span-full grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4',
+        showTasks ? 'xl:grid-cols-5' : 'xl:grid-cols-4'
+      )}
+    >
       {CURRENCIES.map((c) => {
         const total = totalFor(summary.data, c);
         return (
@@ -78,17 +84,19 @@ export function SpendingStats({ month }: SpendingStatsProps) {
           </span>
         }
       />
-      <StatCard
-        label={t('stats.tasksDue')}
-        icon={<CalendarClock />}
-        isLoading={dueCards.isPending}
-        value={dueCards.isError ? '—' : (dueCards.data?.length ?? 0)}
-        hint={
-          <span className={cn(overdue > 0 && 'text-destructive font-medium')}>
-            {t('stats.overdueCount', { count: overdue })}
-          </span>
-        }
-      />
+      {showTasks && (
+        <StatCard
+          label={t('stats.tasksDue')}
+          icon={<CalendarClock />}
+          isLoading={dueCards.isPending}
+          value={dueCards.isError ? '—' : (dueCards.data?.length ?? 0)}
+          hint={
+            <span className={cn(overdue > 0 && 'text-destructive font-medium')}>
+              {t('stats.overdueCount', { count: overdue })}
+            </span>
+          }
+        />
+      )}
     </div>
   );
 }

@@ -9,6 +9,13 @@ export function useBoards() {
   return useQuery({ queryKey: qk.boards.list(), queryFn: api.listBoards });
 }
 
+/** False while there is no real board data to show (see `hasBoardData`); `useDueCards` then does not fetch. */
+export const hasBoardData = () => api.hasBoardData();
+
 export function useDueCards(days: number) {
-  return useQuery({ queryKey: qk.boards.dueCards(days), queryFn: () => api.listDueCards(days) });
+  return useQuery({
+    queryKey: qk.boards.dueCards(days),
+    queryFn: () => api.listDueCards(days),
+    enabled: api.hasBoardData(),
+  });
 }

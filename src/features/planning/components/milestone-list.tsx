@@ -10,7 +10,6 @@ import { SortableList } from '@/components/shared/sortable-list';
 import { cn } from '@/lib/utils';
 
 import {
-  canReorderMilestones,
   nextTempMilestoneId,
   useAddMilestone,
   useDeleteMilestone,
@@ -27,8 +26,7 @@ import { MilestoneItem } from './milestone-item';
 export type MilestoneListProps = { goal: GoalDetail };
 
 /**
- * The goal's steps: check, rename, set a due date, reorder (mouse, touch, keyboard — when the API supports it) and
- * delete with Undo.
+ * The goal's steps: check, rename, set a due date, reorder (mouse, touch, keyboard) and delete with Undo.
  * Every change is optimistic; progress and status update at once and roll back if the API fails.
  */
 export function MilestoneList({ goal }: MilestoneListProps) {
@@ -115,7 +113,7 @@ export function MilestoneList({ goal }: MilestoneListProps) {
           description={t('milestones.emptyDescription')}
           className="py-6"
         />
-      ) : canReorderMilestones() ? (
+      ) : (
         <SortableList
           items={milestones}
           aria-label={t('milestones.title')}
@@ -133,12 +131,6 @@ export function MilestoneList({ goal }: MilestoneListProps) {
           className="-mx-2"
           renderItem={(milestone, { handle }) => renderItem(milestone, handle)}
         />
-      ) : (
-        <ul aria-label={t('milestones.title')} className="-mx-2 space-y-1">
-          {milestones.map((milestone) => (
-            <li key={milestone.id}>{renderItem(milestone, null)}</li>
-          ))}
-        </ul>
       )}
 
       <MilestoneAddInput

@@ -14,6 +14,11 @@ export const env = {
   mockErrors: process.env.NEXT_PUBLIC_MOCK_ERRORS === 'true',
 } as const;
 
+/** True when at least one module talks to the real API (so mock data must not be mixed into shared views). */
+export function usesRealApi(): boolean {
+  return !env.useMocks || realApiModules.length > 0;
+}
+
 /** True when this module's service should answer from the in-browser mock instead of the API. */
 export function isMocked(module: ApiModule): boolean {
   return env.useMocks && !realApiModules.includes(module);
