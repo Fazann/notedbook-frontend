@@ -646,8 +646,29 @@
     "passwordHint": "Sekurang-kurangnya {min} aksara.",
     "registerSubmit": "Cipta akaun",
     "forgotPasswordTitle": "Tetapkan semula kata laluan",
-    "notReady": "Halaman ini belum sedia. Sila semak semula nanti.",
     "backToLogin": "Kembali ke log masuk",
+    "reset": {
+      "emailDescription": "Masukkan e-mel akaun anda dan kami akan menghantar kod 6 digit kepada anda.",
+      "email": "E-mel",
+      "emailPlaceholder": "cth. nama@example.com",
+      "emailHint": "E-mel yang disimpan dalam profil anda. Akaun tanpa e-mel tidak boleh menetapkan semula kata laluan.",
+      "sendCode": "Hantar kod",
+      "codeTitle": "Semak e-mel anda",
+      "codeDescription": "Jika akaun menggunakan {email}, kami telah menghantar kod 6 digit kepadanya. Kod sah selama 5 minit.",
+      "code": "Kod 6 digit",
+      "verify": "Teruskan",
+      "resend": "Hantar semula kod",
+      "resendIn": "Hantar semula kod dalam {seconds}s",
+      "resent": "Kami telah menghantar kod baharu kepada anda",
+      "changeEmail": "Guna e-mel lain",
+      "passwordTitle": "Pilih kata laluan baharu",
+      "passwordDescription": "Anda akan dilog keluar daripada semua peranti anda.",
+      "submit": "Tetapkan semula kata laluan",
+      "startAgain": "Mula semula",
+      "doneTitle": "Kata laluan ditetapkan semula",
+      "doneDescription": "Kata laluan anda telah ditukar. Log masuk dengan kata laluan baharu anda.",
+      "logIn": "Log masuk"
+    },
     "validation": {
       "required": "Sila isi medan ini",
       "fullnameTooLong": "Nama penuh terlalu panjang",
@@ -663,7 +684,8 @@
       "profileUsernameFormat": "Gunakan huruf dan nombor sahaja, dengan satu ruang di antara perkataan",
       "emailCannotClear": "E-mel anda tidak boleh dibuang. Masukkan e-mel baharu sebagai ganti.",
       "passwordMismatch": "Kata laluan tidak sepadan",
-      "passwordSame": "Pilih kata laluan yang berbeza daripada kata laluan semasa"
+      "passwordSame": "Pilih kata laluan yang berbeza daripada kata laluan semasa",
+      "codeInvalid": "Masukkan kod {length} digit daripada e-mel"
     },
     "errors": {
       "invalidCredentials": "Nama pengguna atau kata laluan salah. Sila cuba lagi.",
@@ -672,7 +694,8 @@
       "INCORRECT_PASSWORD": "Kata laluan semasa anda tidak betul.",
       "INVALID_USERNAME": "Nama pengguna ini tidak sah.",
       "INVALID_EMAIL": "Alamat e-mel ini tidak sah.",
-      "INVALID_FULLNAME": "Nama penuh ini tidak sah."
+      "INVALID_FULLNAME": "Nama penuh ini tidak sah.",
+      "INVALID_OTP": "Kod ini salah atau telah tamat tempoh. Semak e-mel atau minta kod baharu."
     }
   },
   "errors": {

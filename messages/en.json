@@ -646,8 +646,29 @@
     "passwordHint": "At least {min} characters.",
     "registerSubmit": "Create account",
     "forgotPasswordTitle": "Reset your password",
-    "notReady": "This page is not ready yet. Please check back soon.",
     "backToLogin": "Back to log in",
+    "reset": {
+      "emailDescription": "Enter the email on your account and we'll send you a 6-digit code.",
+      "email": "Email",
+      "emailPlaceholder": "e.g. name@example.com",
+      "emailHint": "The email saved in your profile. Accounts without an email cannot reset their password.",
+      "sendCode": "Send code",
+      "codeTitle": "Check your email",
+      "codeDescription": "If an account uses {email}, we sent it a 6-digit code. It works for 5 minutes.",
+      "code": "6-digit code",
+      "verify": "Continue",
+      "resend": "Resend code",
+      "resendIn": "Resend code in {seconds}s",
+      "resent": "We sent you a new code",
+      "changeEmail": "Use a different email",
+      "passwordTitle": "Choose a new password",
+      "passwordDescription": "You will be logged out on all your devices.",
+      "submit": "Reset password",
+      "startAgain": "Start again",
+      "doneTitle": "Password reset",
+      "doneDescription": "Your password has been changed. Log in with your new password.",
+      "logIn": "Log in"
+    },
     "validation": {
       "required": "Please fill in this field",
       "fullnameTooLong": "Full name is too long",
@@ -663,7 +684,8 @@
       "profileUsernameFormat": "Use only letters and numbers, with single spaces between words",
       "emailCannotClear": "Your email cannot be removed. Enter a new email instead.",
       "passwordMismatch": "Passwords do not match",
-      "passwordSame": "Choose a password that is different from your current one"
+      "passwordSame": "Choose a password that is different from your current one",
+      "codeInvalid": "Enter the {length}-digit code from the email"
     },
     "errors": {
       "invalidCredentials": "Wrong username or password. Please try again.",
@@ -672,7 +694,8 @@
       "INCORRECT_PASSWORD": "Your current password is incorrect.",
       "INVALID_USERNAME": "This username is not valid.",
       "INVALID_EMAIL": "This email address is not valid.",
-      "INVALID_FULLNAME": "This full name is not valid."
+      "INVALID_FULLNAME": "This full name is not valid.",
+      "INVALID_OTP": "This code is wrong or has expired. Check the email or request a new code."
     }
   },
   "errors": {

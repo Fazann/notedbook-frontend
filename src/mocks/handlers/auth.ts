@@ -76,3 +76,31 @@ export async function uploadImage(file: File): Promise<Attachment> {
   uploads.set(id, { id, url });
   return { id, path: url };
 }
+
+/** The code the mock "emails" for a password reset. */
+export const MOCK_RESET_CODE = '123456';
+const MOCK_RESET_KEY = 'mock-reset-key';
+
+/** POST /auth/mail-otp/request — answers the same whether the email is known or not, like the API. */
+export async function requestResetCode(): Promise<{ expiresIn: number }> {
+  await delay();
+  return { expiresIn: 300 };
+}
+
+/** POST /auth/mail-otp/verify — only the demo account's email with `MOCK_RESET_CODE` works. */
+export async function verifyResetCode(email: string, code: string): Promise<{ key: string; expiresIn: number }> {
+  await delay();
+  if (code !== MOCK_RESET_CODE || email.trim().toLowerCase() !== me.email.toLowerCase()) {
+    throw new ApiError(400, 'INVALID_OTP', 'The code is incorrect or has expired.');
+  }
+  return { key: MOCK_RESET_KEY, expiresIn: 600 };
+}
+
+/** POST /auth/reset-password */
+export async function resetPassword(key: string, newPassword: string): Promise<void> {
+  await delay();
+  if (key !== MOCK_RESET_KEY) {
+    throw new ApiError(400, 'INVALID_RESET_KEY', 'This password reset request is invalid or has expired.');
+  }
+  password = newPassword;
+}

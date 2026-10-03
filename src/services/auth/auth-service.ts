@@ -65,6 +65,35 @@ export async function register({ email, ...values }: RegisterValues): Promise<Us
   return getMe();
 }
 
+/**
+ * POST /auth/mail-otp/request — emails a 6-digit code if the address belongs to an account (the answer is the same
+ * either way). One request per email per minute: 429 `TOO_MANY_REQUESTS`. Returns seconds until the code expires.
+ */
+export async function requestResetCode(email: string): Promise<{ expiresIn: number }> {
+  if (isMocked('auth')) return mock.requestResetCode();
+  const res = await apiCall.post<{ expires_in: number }>(ApiEndpoint.AuthMailOtpRequest, { email });
+  return { expiresIn: res.expires_in };
+}
+
+/**
+ * POST /auth/mail-otp/verify — returns a single-use key for `resetPassword`.
+ * Wrong or expired code: 400 `INVALID_OTP`; after 5 wrong codes: 429 `OTP_TOO_MANY_ATTEMPTS` (a new code is needed).
+ */
+export async function verifyResetCode(email: string, code: string): Promise<{ key: string; expiresIn: number }> {
+  if (isMocked('auth')) return mock.verifyResetCode(email, code);
+  const res = await apiCall.post<{ key: string; expires_in: number }>(ApiEndpoint.AuthMailOtpVerify, {
+    email,
+    otp: code,
+  });
+  return { key: res.key, expiresIn: res.expires_in };
+}
+
+/** POST /auth/reset-password — signs the user out everywhere. Used or expired key: 400 `INVALID_RESET_KEY`. */
+export async function resetPassword(key: string, newPassword: string): Promise<void> {
+  if (isMocked('auth')) return mock.resetPassword(key, newPassword);
+  await apiCall.post(ApiEndpoint.AuthResetPassword, { key, new_password: newPassword });
+}
+
 /** TODO(api): the backend has no logout endpoint, so the session is only forgotten on this device. */
 export function logout() {
   clearSession();

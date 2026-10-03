@@ -55,3 +55,19 @@ export function useChangePassword() {
     onSuccess: (user) => queryClient.setQueryData(qk.me, user),
   });
 }
+
+export function useRequestResetCode() {
+  return useMutation({ mutationFn: (email: string) => api.requestResetCode(email) });
+}
+
+export function useVerifyResetCode() {
+  return useMutation({
+    mutationFn: ({ email, code }: { email: string; code: string }) => api.verifyResetCode(email, code),
+  });
+}
+
+export function useResetPassword() {
+  return useMutation({
+    mutationFn: ({ key, newPassword }: { key: string; newPassword: string }) => api.resetPassword(key, newPassword),
+  });
+}

@@ -107,3 +107,41 @@ export type ChangePasswordValues = z.infer<typeof changePasswordSchema>;
 
 /** Uploaded file, as returned by `POST /attachments` (only the fields the app uses). */
 export type Attachment = { id: number; path: string; thumbnail_url?: string };
+
+/** Password reset: the API emails a 6-digit code; wait this long before asking for another one. */
+export const RESET_CODE_LENGTH = 6;
+export const RESET_RESEND_SECONDS = 60;
+
+/** Messages are keys under `auth.validation`, translated in the form. */
+export const resetEmailSchema = z.object({
+  email: z
+    .string()
+    .trim()
+    .min(1, 'required')
+    .max(EMAIL_MAX, 'emailTooLong')
+    .refine((v) => emailFormat.safeParse(v).success, 'emailInvalid'),
+});
+export type ResetEmailValues = z.infer<typeof resetEmailSchema>;
+
+/** Khmer digits are turned into Latin ones while typing (see `ResetCodeForm`). */
+export const resetCodeSchema = z.object({
+  code: z
+    .string()
+    .trim()
+    .min(1, 'required')
+    .regex(new RegExp(`^\\d{${RESET_CODE_LENGTH}}$`), 'codeInvalid'),
+});
+export type ResetCodeValues = z.infer<typeof resetCodeSchema>;
+
+/** Limits of `POST /auth/reset-password` (same as a new password in Settings). */
+export const resetPasswordSchema = z
+  .object({
+    newPassword: z
+      .string()
+      .min(1, 'required')
+      .min(NEW_PASSWORD_MIN, 'passwordTooShort')
+      .max(NEW_PASSWORD_MAX, 'passwordTooLong'),
+    confirmPassword: z.string().min(1, 'required'),
+  })
+  .refine((v) => v.confirmPassword === v.newPassword, { path: ['confirmPassword'], message: 'passwordMismatch' });
+export type ResetPasswordValues = z.infer<typeof resetPasswordSchema>;
