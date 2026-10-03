@@ -14,7 +14,7 @@ import { FieldGroup } from '@/components/ui/field';
 import { useErrorMessage } from '@/hooks/use-error-message';
 import { Link, useRouter } from '@/i18n/navigation';
 import { cn } from '@/lib/utils';
-import { ApiError } from '@/services/api-call';
+import { ApiError } from '@/services/core/api-call';
 
 import { useRegister } from '../hooks';
 import {

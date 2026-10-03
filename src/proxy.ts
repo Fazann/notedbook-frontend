@@ -4,7 +4,7 @@ import createMiddleware from 'next-intl/middleware';
 
 import { isPublicPath, NEXT_PARAM } from '@/lib/auth-paths';
 import { isMocked } from '@/lib/env';
-import { REFRESH_TOKEN_COOKIE } from '@/services/token-store';
+import { REFRESH_TOKEN_COOKIE } from '@/services/core/token-store';
 
 import { type Locale, routing } from './i18n/routing';
 

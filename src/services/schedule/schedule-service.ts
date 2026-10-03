@@ -2,8 +2,8 @@ import type { Activity, ActivityInput, Occurrence, Scope, WeekSummary } from '@/
 import { isMocked } from '@/lib/env';
 import * as mock from '@/mocks/handlers/schedule';
 
-import { apiCall } from './api-call';
-import { ApiEndpoint, buildPath } from './api-endpoints';
+import { apiCall } from '../core/api-call';
+import { ApiEndpoint, buildPath } from '../core/api-endpoints';
 
 /** `from` / `to` are inclusive `YYYY-MM-DD` (max 42 days). */
 export function listOccurrences(from: string, to: string): Promise<Occurrence[]> {

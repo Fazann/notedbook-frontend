@@ -1,5 +1,5 @@
 import { daysBetween } from '@/lib/time';
-import { ApiError } from '@/services/api-call';
+import { ApiError } from '@/services/core/api-call';
 
 import {
   GOAL_AREAS,

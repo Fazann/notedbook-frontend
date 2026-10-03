@@ -13,8 +13,8 @@ import { isMocked } from '@/lib/env';
 import type { Paginated } from '@/lib/list';
 import * as mock from '@/mocks/handlers/planning';
 
-import { apiCall } from './api-call';
-import { ApiEndpoint, buildPath } from './api-endpoints';
+import { apiCall } from '../core/api-call';
+import { ApiEndpoint, buildPath } from '../core/api-endpoints';
 
 // Goals are `plans` and milestones are `steps` in the API.
 

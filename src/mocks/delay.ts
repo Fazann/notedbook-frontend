@@ -1,5 +1,5 @@
 import { env } from '@/lib/env';
-import { ApiError } from '@/services/api-call';
+import { ApiError } from '@/services/core/api-call';
 
 /** Waits 300–600 ms like a real network call. With NEXT_PUBLIC_MOCK_ERRORS=true, fails ~5% of the time. */
 export async function delay(): Promise<void> {

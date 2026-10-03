@@ -11,8 +11,9 @@ import type { ListParams, Paginated } from '@/lib/list';
 import * as mockCategory from '@/mocks/handlers/category';
 import * as mock from '@/mocks/handlers/expense';
 
-import { apiCall } from './api-call';
-import { ApiEndpoint, buildPath } from './api-endpoints';
+import { apiCall } from '../core/api-call';
+import { ApiEndpoint, buildPath } from '../core/api-endpoints';
+
 import {
   type ApiCategory,
   type ApiExpense,

@@ -22,7 +22,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { addDays, addMinutes, durationMinutes, isoWeekday, startOfWeek, toMinutes } from '@/lib/time';
 import { cn } from '@/lib/utils';
-import { ApiError } from '@/services/api-call';
+import { ApiError } from '@/services/core/api-call';
 
 import { useActivity, useCreateActivity, useOccurrences, useUpdateActivity } from '../hooks';
 import {

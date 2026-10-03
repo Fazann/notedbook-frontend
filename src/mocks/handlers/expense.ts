@@ -1,6 +1,6 @@
 import type { Expense, ExpenseInput, ExpenseListParams, ExpenseSummary } from '@/features/expense/types';
 import { paginate, parseSort, type Paginated } from '@/lib/list';
-import { ApiError } from '@/services/api-call';
+import { ApiError } from '@/services/core/api-call';
 
 import { db, nextId } from '../db';
 import { copy, delay } from '../delay';

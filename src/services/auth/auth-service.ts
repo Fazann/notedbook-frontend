@@ -9,10 +9,11 @@ import type {
 import { isMocked } from '@/lib/env';
 import * as mock from '@/mocks/handlers/auth';
 
-import { apiCall, clearSession, startSession } from './api-call';
-import { ApiEndpoint } from './api-endpoints';
+import { apiCall, clearSession, startSession } from '../core/api-call';
+import { ApiEndpoint } from '../core/api-endpoints';
+import type { Tokens } from '../core/token-store';
+
 import { getDeviceInfo } from './device';
-import type { Tokens } from './token-store';
 
 export function getMe(): Promise<User> {
   if (isMocked('auth')) return mock.getMe();

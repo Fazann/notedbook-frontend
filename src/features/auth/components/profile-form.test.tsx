@@ -1,15 +1,15 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { ApiError } from '@/services/api-call';
-import * as api from '@/services/auth-service';
+import * as api from '@/services/auth/auth-service';
+import { ApiError } from '@/services/core/api-call';
 import { renderWithIntl } from '@/test/render';
 
 import type { User } from '../types';
 
 import { ProfileForm } from './profile-form';
 
-vi.mock('@/services/auth-service', () => ({ updateProfile: vi.fn() }));
+vi.mock('@/services/auth/auth-service', () => ({ updateProfile: vi.fn() }));
 vi.mock('sonner', () => ({ toast: { success: vi.fn(), error: vi.fn() } }));
 
 const user: User = {

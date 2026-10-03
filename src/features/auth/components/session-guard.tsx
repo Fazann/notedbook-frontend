@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 
 import { usePathname } from '@/i18n/navigation';
 import { isPublicPath } from '@/lib/auth-paths';
-import { setUnauthorizedHandler } from '@/services/api-call';
+import { setUnauthorizedHandler } from '@/services/core/api-call';
 
 import { useSignOut } from '../use-sign-out';
 

@@ -1,14 +1,14 @@
 import { fireEvent, screen, waitFor, within } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import * as api from '@/services/schedule-service';
+import * as api from '@/services/schedule/schedule-service';
 import { renderWithIntl } from '@/test/render';
 
 import type { Activity, Occurrence } from '../types';
 
 import { ActivityFormDialog } from './activity-form-dialog';
 
-vi.mock('@/services/schedule-service', () => ({
+vi.mock('@/services/schedule/schedule-service', () => ({
   listOccurrences: vi.fn(),
   getActivity: vi.fn(),
   createActivity: vi.fn(),

@@ -9,7 +9,7 @@ import {
 } from '@/features/expense/types';
 import { type Currency, minorToInput, parseMoneyInput } from '@/lib/money';
 
-import en from '../../messages/en.json';
+import en from '../../../messages/en.json';
 
 /** `CategoryRes` of the Go API. */
 export type ApiCategory = {

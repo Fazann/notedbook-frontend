@@ -22,7 +22,7 @@ import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { useRouter } from '@/i18n/navigation';
 import { todayInTz } from '@/lib/time';
 import { cn } from '@/lib/utils';
-import { ApiError } from '@/services/api-call';
+import { ApiError } from '@/services/core/api-call';
 
 import { useCreateGoal, useGoal, useUpdateGoal } from '../hooks';
 import {

@@ -9,7 +9,7 @@ import {
 } from '@/features/schedule/types';
 import { expandOccurrences, occursOn, summarize } from '@/features/schedule/utils';
 import { addDays, daysBetween } from '@/lib/time';
-import { ApiError } from '@/services/api-call';
+import { ApiError } from '@/services/core/api-call';
 
 import { db, nextId } from '../db';
 import { copy, delay } from '../delay';

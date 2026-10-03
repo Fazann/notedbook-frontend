@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import type { GoalListParams } from '@/features/planning/types';
 import { getDueState } from '@/features/planning/utils';
 import { todayInTz } from '@/lib/time';
-import { ApiError } from '@/services/api-call';
+import { ApiError } from '@/services/core/api-call';
 
 import { db } from '../db';
 import { seedGoals } from '../seed';

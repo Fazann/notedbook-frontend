@@ -5,7 +5,7 @@ import { useCallback } from 'react';
 
 import { useRouter } from '@/i18n/navigation';
 import { NEXT_PARAM, safeRedirectPath } from '@/lib/auth-paths';
-import { logout } from '@/services/auth-service';
+import { logout } from '@/services/auth/auth-service';
 import { usePreferencesStore } from '@/stores/preferences-store';
 import { useUiStore } from '@/stores/ui-store';
 

@@ -2,8 +2,8 @@ import type { BoardListItem, DueCard } from '@/features/board/types';
 import { isMocked } from '@/lib/env';
 import * as mock from '@/mocks/handlers/board';
 
-import { apiCall } from './api-call';
-import { ApiEndpoint } from './api-endpoints';
+import { apiCall } from '../core/api-call';
+import { ApiEndpoint } from '../core/api-endpoints';
 
 export function listBoards(): Promise<BoardListItem[]> {
   if (isMocked('board')) return mock.listBoards();

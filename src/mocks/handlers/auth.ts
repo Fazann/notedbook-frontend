@@ -1,5 +1,5 @@
 import type { Attachment, LoginValues, ProfileUpdate, RegisterValues, User } from '@/features/auth/types';
-import { ApiError } from '@/services/api-call';
+import { ApiError } from '@/services/core/api-call';
 
 import { copy, delay } from '../delay';
 import { demoUser } from '../seed';
