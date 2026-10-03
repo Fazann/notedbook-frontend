@@ -5,38 +5,57 @@ import * as mock from '@/mocks/handlers/schedule';
 import { apiCall } from '../core/api-call';
 import { ApiEndpoint, buildPath } from '../core/api-endpoints';
 
+import {
+  type ApiActivity,
+  type ApiOccurrence,
+  type ApiWeekSummary,
+  toActivity,
+  toActivityBody,
+  toOccurrence,
+  toWeekSummary,
+} from './schedule-mappers';
+
 /** `from` / `to` are inclusive `YYYY-MM-DD` (max 42 days). */
-export function listOccurrences(from: string, to: string): Promise<Occurrence[]> {
+export async function listOccurrences(from: string, to: string): Promise<Occurrence[]> {
   if (isMocked('schedule')) return mock.listOccurrences(from, to);
-  return apiCall.get(ApiEndpoint.ScheduleOccurrences, { from, to });
+  return (await apiCall.get<ApiOccurrence[]>(ApiEndpoint.ScheduleOccurrences, { from, to })).map(toOccurrence);
 }
 
-export function getSummary(from: string, to: string): Promise<WeekSummary> {
+export async function getSummary(from: string, to: string): Promise<WeekSummary> {
   if (isMocked('schedule')) return mock.getSummary(from, to);
-  return apiCall.get(ApiEndpoint.ScheduleSummary, { from, to });
+  return toWeekSummary(await apiCall.get<ApiWeekSummary>(ApiEndpoint.ScheduleSummary, { from, to }));
 }
 
-export function getActivity(id: number): Promise<Activity> {
+export async function getActivity(id: number): Promise<Activity> {
   if (isMocked('schedule')) return mock.getActivity(id);
-  return apiCall.get(buildPath(ApiEndpoint.ScheduleActivityDetail, { id }));
+  return toActivity(await apiCall.get<ApiActivity>(buildPath(ApiEndpoint.ScheduleActivityDetail, { id })));
 }
 
-export function createActivity(input: ActivityInput): Promise<Activity> {
+export async function createActivity(input: ActivityInput): Promise<Activity> {
   if (isMocked('schedule')) return mock.createActivity(input);
-  return apiCall.post(ApiEndpoint.ScheduleActivities, input);
+  return toActivity(await apiCall.post<ApiActivity>(ApiEndpoint.ScheduleActivities, toActivityBody(input)));
 }
 
 const scopeParams = (scope: Scope, date?: string) => (scope === 'this' && date ? { scope, date } : { scope });
 
-/** scope `this` on a repeating activity returns `{ series, created }`; otherwise the edited activity. */
-export function updateActivity(
+/**
+ * scope `this` on a repeating activity returns `{ series, created }`; otherwise the edited activity.
+ * The real API always splits on scope `this`, so single activities must be edited with scope `all` (the UI does).
+ */
+export async function updateActivity(
   id: number,
   input: ActivityInput,
   scope: Scope,
   date?: string
 ): Promise<Activity | { series: Activity; created: Activity }> {
   if (isMocked('schedule')) return mock.updateActivity(id, input, scope, date);
-  return apiCall.put(buildPath(ApiEndpoint.ScheduleActivityDetail, { id }), input, scopeParams(scope, date));
+  const path = buildPath(ApiEndpoint.ScheduleActivityDetail, { id });
+  const res = await apiCall.put<ApiActivity | { series: ApiActivity; created: ApiActivity }>(
+    path,
+    toActivityBody(input),
+    scopeParams(scope, date)
+  );
+  return 'series' in res ? { series: toActivity(res.series), created: toActivity(res.created) } : toActivity(res);
 }
 
 export function deleteActivity(id: number, scope: Scope, date?: string): Promise<void> {
