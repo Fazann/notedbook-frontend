@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 
 import type { NavKey } from '@/components/layout/nav-items';
 import { ComingSoon } from '@/components/shared/coming-soon';
@@ -15,9 +15,7 @@ export function placeholderPage(navKey: NavKey) {
     return { title: t(navKey) };
   }
 
-  async function Page({ params }: Params) {
-    const { locale } = await params;
-    setRequestLocale(locale as Locale);
+  async function Page() {
     const t = await getTranslations('nav');
     return <ComingSoon title={t(navKey)} />;
   }

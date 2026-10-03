@@ -1,9 +1,32 @@
+import type { NextRequest } from 'next/server';
+import { NextResponse } from 'next/server';
 import createMiddleware from 'next-intl/middleware';
 
-import { routing } from './i18n/routing';
+import { isPublicPath, NEXT_PARAM } from '@/lib/auth-paths';
+import { isMocked } from '@/lib/env';
+import { REFRESH_TOKEN_COOKIE } from '@/services/token-store';
 
-// TODO(api): add the session-cookie auth check (redirect to /[locale]/login) once real auth exists.
-export default createMiddleware(routing);
+import { type Locale, routing } from './i18n/routing';
+
+const intl = createMiddleware(routing);
+
+export default function proxy(request: NextRequest) {
+  // Optimistic check only: no refresh-token cookie means no session. The API still checks every request,
+  // and an invalid cookie is cleared by apiCall, which then sends the user to /login.
+  if (!isMocked('auth') && !request.cookies.has(REFRESH_TOKEN_COOKIE)) {
+    const [, first = '', ...rest] = request.nextUrl.pathname.split('/');
+    const locale = routing.locales.includes(first as Locale) ? first : undefined;
+    const path = `/${(locale ? rest : [first, ...rest]).join('/')}`;
+    if (!isPublicPath(path)) {
+      // Without a locale, next-intl picks one on the /login request.
+      const login = new URL(locale ? `/${locale}/login` : '/login', request.url);
+      // Come back to this page after logging in (path without the locale, so the chosen language is kept).
+      if (path !== '/') login.searchParams.set(NEXT_PARAM, `${path}${request.nextUrl.search}`);
+      return NextResponse.redirect(login);
+    }
+  }
+  return intl(request);
+}
 
 export const config = {
   // Skip Next internals, API routes and files with an extension (images, favicon...).

@@ -36,6 +36,14 @@ const submit = () => fireEvent.click(screen.getByRole('button', { name: 'Log in'
 describe('LoginForm', () => {
   beforeEach(() => vi.clearAllMocks());
 
+  it('goes back to the page in `next` after logging in', async () => {
+    vi.mocked(api.login).mockResolvedValue(user);
+    renderWithIntl(<LoginForm next="/expenses?month=2026-09" />);
+    fill('demo', 'password');
+    submit();
+    await waitFor(() => expect(replace).toHaveBeenCalledWith('/expenses?month=2026-09'));
+  });
+
   it('shows translated validation messages and does not call the API', async () => {
     renderWithIntl(<LoginForm />);
     submit();

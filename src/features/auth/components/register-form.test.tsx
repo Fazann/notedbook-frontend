@@ -51,11 +51,19 @@ describe('RegisterForm', () => {
 
   it('validates username format, email and password length', async () => {
     renderWithIntl(<RegisterForm />);
-    fill({ fullname: 'Sok Sokha', username: 'sok sokha', email: 'not-an-email', password: 'short' });
+    fill({ fullname: 'Sok Sokha', username: 'sok sokha', email: 'not-an-email', password: 'abc' });
     submit();
     expect(await screen.findByText('Use only letters, numbers, dots (.) and underscores (_)')).toBeInTheDocument();
     expect(screen.getByText('Please enter a valid email address')).toBeInTheDocument();
-    expect(screen.getByText('Password must be at least 8 characters')).toBeInTheDocument();
+    expect(screen.getByText('Password must be at least 6 characters')).toBeInTheDocument();
+    expect(api.register).not.toHaveBeenCalled();
+  });
+
+  it('rejects a password longer than the API allows (20)', async () => {
+    renderWithIntl(<RegisterForm />);
+    fill({ fullname: 'Sok Sokha', username: 'sokha', password: 'a'.repeat(21) });
+    submit();
+    expect(await screen.findByText('Password is too long')).toBeInTheDocument();
     expect(api.register).not.toHaveBeenCalled();
   });
 

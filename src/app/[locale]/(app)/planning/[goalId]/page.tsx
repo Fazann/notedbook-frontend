@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 
 import { GoalDetailPage } from '@/features/planning/components/goal-detail-page';
 import type { Locale } from '@/i18n/routing';
@@ -13,8 +13,7 @@ export async function generateMetadata({ params }: PageProps<'/[locale]/planning
 }
 
 export default async function Page({ params }: PageProps<'/[locale]/planning/[goalId]'>) {
-  const { locale, goalId } = await params;
-  setRequestLocale(locale as Locale);
+  const { goalId } = await params;
   const id = Number(goalId);
   if (!Number.isInteger(id) || id <= 0) notFound();
   return <GoalDetailPage id={id} />;

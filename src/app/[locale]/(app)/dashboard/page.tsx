@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 
 import { DashboardView } from '@/features/dashboard/components/dashboard-view';
 import type { Locale } from '@/i18n/routing';
@@ -10,8 +10,6 @@ export async function generateMetadata({ params }: PageProps<'/[locale]/dashboar
   return { title: t('dashboard') };
 }
 
-export default async function DashboardPage({ params }: PageProps<'/[locale]/dashboard'>) {
-  const { locale } = await params;
-  setRequestLocale(locale as Locale);
+export default async function DashboardPage() {
   return <DashboardView />;
 }

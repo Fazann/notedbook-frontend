@@ -11,6 +11,7 @@ import { FormPasswordInput } from '@/components/shared/form-password-input';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { FieldGroup } from '@/components/ui/field';
+import { useErrorMessage } from '@/hooks/use-error-message';
 import { Link, useRouter } from '@/i18n/navigation';
 import { cn } from '@/lib/utils';
 import { ApiError } from '@/services/api-call';
@@ -20,10 +21,16 @@ import { loginSchema, type LoginValues } from '../types';
 
 const EMPTY: LoginValues = { username: '', password: '' };
 
-export function LoginForm() {
+export type LoginFormProps = {
+  /** Page to open after logging in (already checked with `safeRedirectPath`); defaults to the dashboard. */
+  next?: string;
+};
+
+export function LoginForm({ next = '/dashboard' }: LoginFormProps) {
   const t = useTranslations();
   const router = useRouter();
   const login = useLogin();
+  const errorMessage = useErrorMessage();
   /** Error for the whole form (wrong credentials, network...), shown above the fields. */
   const [formError, setFormError] = useState<string | null>(null);
 
@@ -34,7 +41,7 @@ export function LoginForm() {
     setFormError(null);
     try {
       await login.mutateAsync(values);
-      router.replace('/dashboard');
+      router.replace(next);
     } catch (error) {
       if (error instanceof ApiError && error.fields) {
         for (const [name, message] of Object.entries(error.fields)) {
@@ -45,10 +52,9 @@ export function LoginForm() {
         setFormError(t('auth.errors.invalidCredentials'));
         form.resetField('password');
         form.setFocus('password');
-      } else if (error instanceof ApiError && t.has(`errors.${error.code}`)) {
-        setFormError(t(`errors.${error.code}`));
       } else {
-        setFormError(t('errors.generic'));
+        // e.g. TOO_MANY_ATTEMPTS or ACCOUNT_DISABLED: the API message is already in the user's language.
+        setFormError(errorMessage(error));
       }
     }
   });

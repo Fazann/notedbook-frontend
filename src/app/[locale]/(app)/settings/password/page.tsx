@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 
 import { SectionCard } from '@/components/shared/section-card';
 import { ChangePasswordForm } from '@/features/auth/components/change-password-form';
@@ -11,9 +11,7 @@ export async function generateMetadata({ params }: PageProps<'/[locale]/settings
   return { title: t('title') };
 }
 
-export default async function Page({ params }: PageProps<'/[locale]/settings/password'>) {
-  const { locale } = await params;
-  setRequestLocale(locale as Locale);
+export default async function Page() {
   const t = await getTranslations('settings.password');
 
   return (

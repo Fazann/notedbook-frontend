@@ -6,30 +6,33 @@ import { useEffect, useState } from 'react';
 
 import { Toaster } from '@/components/ui/sonner';
 import { TooltipProvider } from '@/components/ui/tooltip';
-import { useRouter } from '@/i18n/navigation';
-import { setUnauthorizedHandler } from '@/services/api-call';
+import { SessionGuard } from '@/features/auth/components/session-guard';
+import { ApiError } from '@/services/api-call';
 import { usePreferencesStore } from '@/stores/preferences-store';
 
 export function Providers({ children }: { children: React.ReactNode }) {
-  const router = useRouter();
   const [queryClient] = useState(
     () =>
       new QueryClient({
-        defaultOptions: { queries: { staleTime: 30_000, retry: 1, refetchOnWindowFocus: false } },
+        defaultOptions: {
+          queries: {
+            staleTime: 30_000,
+            // A 401 means the session is over (SessionGuard goes to /login); retrying cannot help.
+            retry: (count, error) => count < 1 && !(error instanceof ApiError && error.status === 401),
+            refetchOnWindowFocus: false,
+          },
+        },
       })
   );
 
   useEffect(() => {
     // Persisted preferences load after hydration so server and client render the same first frame.
     void usePreferencesStore.persist.rehydrate();
-    setUnauthorizedHandler(() => {
-      queryClient.clear();
-      router.push('/login');
-    });
-  }, [queryClient, router]);
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
+      <SessionGuard />
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
         <TooltipProvider>
           {children}

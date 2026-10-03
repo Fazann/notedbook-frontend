@@ -11,12 +11,20 @@ import { FormPasswordInput } from '@/components/shared/form-password-input';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { FieldGroup } from '@/components/ui/field';
+import { useErrorMessage } from '@/hooks/use-error-message';
 import { Link, useRouter } from '@/i18n/navigation';
 import { cn } from '@/lib/utils';
 import { ApiError } from '@/services/api-call';
 
 import { useRegister } from '../hooks';
-import { EMAIL_MAX, FULLNAME_MAX, PASSWORD_MIN, registerSchema, USERNAME_MAX, type RegisterValues } from '../types';
+import {
+  FULLNAME_MAX,
+  PASSWORD_MIN,
+  REGISTER_EMAIL_MAX,
+  registerSchema,
+  USERNAME_MAX,
+  type RegisterValues,
+} from '../types';
 
 const EMPTY: RegisterValues = { fullname: '', username: '', email: '', password: '' };
 const FIELDS = Object.keys(EMPTY) as (keyof RegisterValues)[];
@@ -27,6 +35,7 @@ export function RegisterForm() {
   const t = useTranslations();
   const router = useRouter();
   const register = useRegister();
+  const errorMessage = useErrorMessage();
   /** Error for the whole form (network, server...), shown above the fields. */
   const [formError, setFormError] = useState<string | null>(null);
 
@@ -40,7 +49,7 @@ export function RegisterForm() {
       router.replace('/dashboard');
     } catch (error) {
       if (!(error instanceof ApiError)) {
-        setFormError(t('errors.generic'));
+        setFormError(errorMessage(error));
         return;
       }
       const field = FIELD_CODES[error.code];
@@ -56,7 +65,7 @@ export function RegisterForm() {
         }
         return;
       }
-      setFormError(t.has(`errors.${error.code}`) ? t(`errors.${error.code}`) : t('errors.generic'));
+      setFormError(errorMessage(error));
     }
   });
 
@@ -112,7 +121,7 @@ export function RegisterForm() {
           autoCapitalize="none"
           spellCheck={false}
           inputMode="email"
-          maxLength={EMAIL_MAX}
+          maxLength={REGISTER_EMAIL_MAX}
           translateError={errorText}
         />
         <FormPasswordInput

@@ -1,29 +1,16 @@
 'use client';
 
-import { useQueryClient } from '@tanstack/react-query';
-
 import { UserMenu } from '@/components/layout/user-menu';
-import { useRouter } from '@/i18n/navigation';
-import { logout as endSession } from '@/services/auth-service';
-import { usePreferencesStore } from '@/stores/preferences-store';
-import { useUiStore } from '@/stores/ui-store';
 
 import { useMe } from '../hooks';
+import { useSignOut } from '../use-sign-out';
 
 export type AccountMenuProps = { variant?: 'avatar' | 'sidebar' };
 
 export function AccountMenu({ variant }: AccountMenuProps) {
   const me = useMe();
-  const queryClient = useQueryClient();
-  const router = useRouter();
-
-  const logout = () => {
-    endSession();
-    useUiStore.getState().reset();
-    usePreferencesStore.getState().reset();
-    queryClient.clear();
-    router.push('/login');
-  };
+  const signOut = useSignOut();
+  const logout = () => signOut();
 
   const user = me.data && {
     name: me.data.fullname,

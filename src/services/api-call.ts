@@ -57,13 +57,18 @@ const isPublic = (url: string | undefined) => url !== undefined && PUBLIC_ENDPOI
 
 let onUnauthorized: (() => void) | undefined;
 
-/** Registered by the app providers: clears the query cache and goes to /login. */
+/** Registered by `SessionGuard`: resets the app state and goes to /login. */
 export function setUnauthorizedHandler(handler: () => void) {
   onUnauthorized = handler;
 }
 
+// Parallel requests can all fail at once; only the first one sends the user to /login.
+let sessionEnded = false;
+
 function endSession() {
   tokenStore.clear();
+  if (sessionEnded) return;
+  sessionEnded = true;
   onUnauthorized?.();
 }
 
@@ -105,7 +110,12 @@ http.interceptors.request.use(async (config) => {
   if (isPublic(config.url)) return config;
   // After a reload only the refresh token is left, so get a new access token before the first call.
   const token = tokenStore.getAccessToken() || (await refreshAccessToken());
-  if (token) config.headers.Authorization = `Bearer ${token}`;
+  if (!token) {
+    // No credentials at all: skip a request the API would reject and go to /login.
+    endSession();
+    throw new ApiError(401, 'UNAUTHORIZED', 'Authentication is required');
+  }
+  config.headers.Authorization = `Bearer ${token}`;
   return config;
 });
 
@@ -167,6 +177,7 @@ export const apiCall = {
 /** Saves the tokens from login / register; later calls send them automatically. */
 export function startSession(tokens: Tokens) {
   tokenStore.setTokens(tokens);
+  sessionEnded = false;
 }
 
 /** Forgets the tokens (the API has no logout endpoint yet). */

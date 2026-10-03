@@ -50,6 +50,8 @@ describe('apiCall', () => {
 
   beforeEach(() => {
     calls.length = 0;
+    // A fresh start: no credentials, and the "session ended" flag of the previous test reset.
+    startSession({ access_token: 'x', refresh_token: fakeJwt('x') });
     tokenStore.clear();
     onUnauthorized.mockReset();
     setUnauthorizedHandler(onUnauthorized);
@@ -95,6 +97,24 @@ describe('apiCall', () => {
     await expect(apiCall.get('/plans')).rejects.toMatchObject({ status: 0, code: 'network' });
     expect(onUnauthorized).not.toHaveBeenCalled();
     expect(tokenStore.getRefreshToken()).toBe(fakeJwt('refresh-1'));
+  });
+
+  it('sends nothing and goes to login once when there are no credentials', async () => {
+    handler = () => ok({ id: 1 });
+    const results = await Promise.allSettled([apiCall.get('/plans'), apiCall.get('/expenses')]);
+    expect(results.map((r) => r.status)).toEqual(['rejected', 'rejected']);
+    expect(results[0]).toMatchObject({ reason: { status: 401, code: 'UNAUTHORIZED' } });
+    expect(calls).toEqual([]);
+    expect(onUnauthorized).toHaveBeenCalledOnce();
+  });
+
+  it('goes to login again after a new session ends', async () => {
+    handler = () => ok({ id: 1 });
+    await apiCall.get('/plans').catch(() => undefined);
+    startSession({ access_token: 'access-1', refresh_token: fakeJwt('refresh-1') });
+    tokenStore.clear();
+    await apiCall.get('/plans').catch(() => undefined);
+    expect(onUnauthorized).toHaveBeenCalledTimes(2);
   });
 
   it('does not refresh on a 401 from login (wrong credentials)', async () => {

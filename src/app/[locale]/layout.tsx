@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Inter, Kantumruy_Pro } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 
 import { routing } from '@/i18n/routing';
 
@@ -27,7 +27,6 @@ export default async function LocaleLayout({ children, params }: LayoutProps<'/[
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
-  setRequestLocale(locale);
 
   return (
     <html lang={locale} suppressHydrationWarning className={`${inter.variable} ${kantumruy.variable} antialiased`}>

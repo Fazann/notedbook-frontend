@@ -1,12 +1,9 @@
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 
 import { PageHeader } from '@/components/shared/page-header';
 import { SettingsTabs } from '@/features/auth/components/settings-tabs';
-import type { Locale } from '@/i18n/routing';
 
-export default async function SettingsLayout({ children, params }: LayoutProps<'/[locale]/settings'>) {
-  const { locale } = await params;
-  setRequestLocale(locale as Locale);
+export default async function SettingsLayout({ children }: LayoutProps<'/[locale]/settings'>) {
   const t = await getTranslations('settings');
 
   return (

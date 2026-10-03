@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 
 import { AuthCard } from '@/features/auth/components/auth-card';
 import { LoginForm } from '@/features/auth/components/login-form';
 import type { Locale } from '@/i18n/routing';
+import { NEXT_PARAM, safeRedirectPath } from '@/lib/auth-paths';
 
 export async function generateMetadata({ params }: PageProps<'/[locale]/login'>): Promise<Metadata> {
   const { locale } = await params;
@@ -11,14 +12,13 @@ export async function generateMetadata({ params }: PageProps<'/[locale]/login'>)
   return { title: t('loginTitle') };
 }
 
-export default async function LoginPage({ params }: PageProps<'/[locale]/login'>) {
-  const { locale } = await params;
-  setRequestLocale(locale as Locale);
+export default async function LoginPage({ searchParams }: PageProps<'/[locale]/login'>) {
+  const next = safeRedirectPath((await searchParams)[NEXT_PARAM]);
   const t = await getTranslations('auth');
 
   return (
     <AuthCard title={t('loginTitle')} description={t('loginDescription')}>
-      <LoginForm />
+      <LoginForm next={next} />
     </AuthCard>
   );
 }

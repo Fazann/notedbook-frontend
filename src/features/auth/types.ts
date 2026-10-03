@@ -19,14 +19,15 @@ export const loginSchema = z.object({
 });
 export type LoginValues = z.infer<typeof loginSchema>;
 
-/** Limits match the API's `users` table (fullname 100, username 50, email 100). */
+/** Register limits match the API's `RegisterReq` (fullname 50, username 50, email 80, password 6–20). */
 export const USERNAME_MIN = 3;
 export const USERNAME_MAX = 50;
-export const FULLNAME_MAX = 100;
+export const FULLNAME_MAX = 50;
+export const REGISTER_EMAIL_MAX = 80;
+/** Profile email limit (the API's `UpdateProfileReq`). */
 export const EMAIL_MAX = 100;
-export const PASSWORD_MIN = 8;
-/** bcrypt ignores bytes after 72. */
-export const PASSWORD_MAX = 72;
+export const PASSWORD_MIN = 6;
+export const PASSWORD_MAX = 20;
 
 const emailFormat = z.email();
 
@@ -44,7 +45,7 @@ export const registerSchema = z.object({
   email: z
     .string()
     .trim()
-    .max(EMAIL_MAX, 'emailTooLong')
+    .max(REGISTER_EMAIL_MAX, 'emailTooLong')
     .refine((v) => v === '' || emailFormat.safeParse(v).success, 'emailInvalid'),
   password: z.string().min(1, 'required').min(PASSWORD_MIN, 'passwordTooShort').max(PASSWORD_MAX, 'passwordTooLong'),
 });

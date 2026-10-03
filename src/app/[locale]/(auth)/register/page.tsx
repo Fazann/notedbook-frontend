@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 
 import { AuthCard } from '@/features/auth/components/auth-card';
 import { RegisterForm } from '@/features/auth/components/register-form';
@@ -11,9 +11,7 @@ export async function generateMetadata({ params }: PageProps<'/[locale]/register
   return { title: t('registerTitle') };
 }
 
-export default async function RegisterPage({ params }: PageProps<'/[locale]/register'>) {
-  const { locale } = await params;
-  setRequestLocale(locale as Locale);
+export default async function RegisterPage() {
   const t = await getTranslations('auth');
 
   return (
