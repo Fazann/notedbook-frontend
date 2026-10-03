@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { useCallback } from 'react';
 
-import { ApiError } from '@/lib/api-client';
+import { ApiError } from '@/services/api-call';
 
 /** Maps an error to a translated message: `errors.<code>` if it exists, else the API message, else generic. */
 export function useErrorMessage() {

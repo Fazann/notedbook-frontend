@@ -3,15 +3,15 @@ import { toast } from 'sonner';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { qk } from '@/lib/query-keys';
+import * as api from '@/services/planning-service';
 import { createTestQueryClient, renderWithIntl } from '@/test/render';
 
-import * as api from '../api';
 import { useGoal } from '../hooks';
 import type { GoalDetail, Milestone } from '../types';
 
 import { MilestoneList } from './milestone-list';
 
-vi.mock('../api', () => ({
+vi.mock('@/services/planning-service', () => ({
   getGoal: vi.fn(),
   addMilestone: vi.fn(),
   toggleMilestone: vi.fn(),

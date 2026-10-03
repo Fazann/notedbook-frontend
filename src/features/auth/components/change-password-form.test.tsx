@@ -2,14 +2,13 @@ import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { toast } from 'sonner';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { ApiError } from '@/lib/api-client';
+import { ApiError } from '@/services/api-call';
+import * as api from '@/services/auth-service';
 import { renderWithIntl } from '@/test/render';
-
-import * as api from '../api';
 
 import { ChangePasswordForm } from './change-password-form';
 
-vi.mock('../api', () => ({ changePassword: vi.fn() }));
+vi.mock('@/services/auth-service', () => ({ changePassword: vi.fn() }));
 vi.mock('sonner', () => ({ toast: { success: vi.fn(), error: vi.fn() } }));
 
 const user = {

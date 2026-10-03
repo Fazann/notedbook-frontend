@@ -5,8 +5,8 @@ import { keepPreviousData, useMutation, useQuery, useQueryClient } from '@tansta
 import type { Paginated } from '@/lib/list';
 import { calcPosition } from '@/lib/position';
 import { qk } from '@/lib/query-keys';
+import * as api from '@/services/planning-service';
 
-import * as api from './api';
 import type {
   GoalDetail,
   GoalFormValues,

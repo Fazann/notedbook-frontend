@@ -15,9 +15,9 @@ import { Button } from '@/components/ui/button';
 import { FieldGroup } from '@/components/ui/field';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useErrorMessage } from '@/hooks/use-error-message';
-import { ApiError } from '@/lib/api-client';
 import { todayIso } from '@/lib/dates';
 import { minorToInput, parseMoneyInput, type Currency } from '@/lib/money';
+import { ApiError } from '@/services/api-call';
 import { usePreferencesStore } from '@/stores/preferences-store';
 
 import { useCategoryOptions, useCreateExpense, useUpdateExpense } from '../hooks';

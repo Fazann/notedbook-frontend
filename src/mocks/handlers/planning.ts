@@ -22,10 +22,10 @@ import {
   toGoalSummary,
   type MilestoneChange,
 } from '@/features/planning/utils';
-import { ApiError } from '@/lib/api-client';
 import { paginate, parseSort, type Paginated } from '@/lib/list';
 import { calcPosition } from '@/lib/position';
 import { APP_TIME_ZONE, todayInTz } from '@/lib/time';
+import { ApiError } from '@/services/api-call';
 
 import { db, nextId } from '../db';
 import { copy, delay } from '../delay';

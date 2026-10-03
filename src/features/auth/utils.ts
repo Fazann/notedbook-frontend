@@ -1,6 +1,6 @@
 import type { FieldValues, Path, UseFormReturn } from 'react-hook-form';
 
-import { ApiError } from '@/lib/api-client';
+import { ApiError } from '@/services/api-call';
 
 export type ApiFieldMap<T extends FieldValues> = {
   /** API error codes that belong to one field (e.g. `USERNAME_TAKEN` → `username`); the code is the message. */

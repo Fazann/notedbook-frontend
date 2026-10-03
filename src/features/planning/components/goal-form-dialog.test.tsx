@@ -1,16 +1,16 @@
 import { fireEvent, screen, waitFor, within } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
+import * as api from '@/services/planning-service';
 import { renderWithIntl } from '@/test/render';
 
-import * as api from '../api';
 import type { GoalDetail } from '../types';
 
 import { GoalFormDialog } from './goal-form-dialog';
 
 const push = vi.fn();
 vi.mock('@/i18n/navigation', () => ({ useRouter: () => ({ push }) }));
-vi.mock('../api', () => ({ createGoal: vi.fn(), updateGoal: vi.fn(), getGoal: vi.fn() }));
+vi.mock('@/services/planning-service', () => ({ createGoal: vi.fn(), updateGoal: vi.fn(), getGoal: vi.fn() }));
 vi.mock('sonner', () => ({ toast: { success: vi.fn(), error: vi.fn() } }));
 
 const laptop: GoalDetail = {
@@ -103,7 +103,7 @@ describe('GoalFormDialog', () => {
   });
 
   it('shows API field errors under the inputs', async () => {
-    const { ApiError } = await import('@/lib/api-client');
+    const { ApiError } = await import('@/services/api-call');
     vi.mocked(api.createGoal).mockRejectedValue(new ApiError(422, 'VALIDATION_ERROR', 'Invalid', { title: 'tooLong' }));
     renderWithIntl(<GoalFormDialog open onOpenChange={() => {}} />);
     fireEvent.change(titleInput(), { target: { value: 'Something' } });

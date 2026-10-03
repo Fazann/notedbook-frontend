@@ -1,6 +1,6 @@
 import type { Category, CategoryFormValues } from '@/features/expense/types';
-import { ApiError } from '@/lib/api-client';
 import { paginate, parseSort, type ListParams, type Paginated } from '@/lib/list';
+import { ApiError } from '@/services/api-call';
 
 import en from '../../../messages/en.json';
 import km from '../../../messages/km.json';

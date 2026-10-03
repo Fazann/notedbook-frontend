@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { Toaster } from '@/components/ui/sonner';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { useRouter } from '@/i18n/navigation';
-import { setUnauthorizedHandler } from '@/lib/api-client';
+import { setUnauthorizedHandler } from '@/services/api-call';
 import { usePreferencesStore } from '@/stores/preferences-store';
 
 export function Providers({ children }: { children: React.ReactNode }) {

@@ -12,8 +12,8 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { FieldGroup } from '@/components/ui/field';
 import { Link, useRouter } from '@/i18n/navigation';
-import { ApiError } from '@/lib/api-client';
 import { cn } from '@/lib/utils';
+import { ApiError } from '@/services/api-call';
 
 import { useLogin } from '../hooks';
 import { loginSchema, type LoginValues } from '../types';

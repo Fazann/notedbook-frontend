@@ -1,10 +1,9 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { ApiError } from '@/lib/api-client';
+import { ApiError } from '@/services/api-call';
+import * as api from '@/services/auth-service';
 import { renderWithIntl } from '@/test/render';
-
-import * as api from '../api';
 
 import { RegisterForm } from './register-form';
 
@@ -17,7 +16,7 @@ vi.mock('@/i18n/navigation', () => ({
     </a>
   ),
 }));
-vi.mock('../api', () => ({ register: vi.fn() }));
+vi.mock('@/services/auth-service', () => ({ register: vi.fn() }));
 
 const user = {
   id: 2,

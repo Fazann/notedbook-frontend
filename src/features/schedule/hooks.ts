@@ -12,8 +12,8 @@ import { useCallback, useEffect } from 'react';
 
 import { qk } from '@/lib/query-keys';
 import { addDays, daysBetween } from '@/lib/time';
+import * as api from '@/services/schedule-service';
 
-import * as api from './api';
 import type { Activity, ActivityInput, Occurrence, Scope } from './types';
 import { compareOccurrences, expandOccurrences, occurrenceKey } from './utils';
 

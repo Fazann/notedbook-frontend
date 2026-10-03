@@ -3,8 +3,7 @@
 import { useQuery } from '@tanstack/react-query';
 
 import { qk } from '@/lib/query-keys';
-
-import * as api from './api';
+import * as api from '@/services/board-service';
 
 export function useBoards() {
   return useQuery({ queryKey: qk.boards.list(), queryFn: api.listBoards });

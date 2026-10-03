@@ -1,15 +1,15 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { ApiError } from '@/lib/api-client';
+import { ApiError } from '@/services/api-call';
+import * as api from '@/services/expense-service';
 import { renderWithIntl } from '@/test/render';
 
-import * as api from '../api';
 import type { Category } from '../types';
 
 import { CategoryFormDialog } from './category-form-dialog';
 
-vi.mock('../api', () => ({
+vi.mock('@/services/expense-service', () => ({
   createCategory: vi.fn(),
   updateCategory: vi.fn(),
 }));

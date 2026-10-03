@@ -20,9 +20,9 @@ import { Button } from '@/components/ui/button';
 import { FieldGroup } from '@/components/ui/field';
 import { Skeleton } from '@/components/ui/skeleton';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
-import { ApiError } from '@/lib/api-client';
 import { addDays, addMinutes, durationMinutes, isoWeekday, startOfWeek, toMinutes } from '@/lib/time';
 import { cn } from '@/lib/utils';
+import { ApiError } from '@/services/api-call';
 
 import { useActivity, useCreateActivity, useOccurrences, useUpdateActivity } from '../hooks';
 import {

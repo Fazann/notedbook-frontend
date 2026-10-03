@@ -5,8 +5,8 @@ import { useLocale } from 'next-intl';
 
 import { removeFromPage, type ListParams, type Paginated } from '@/lib/list';
 import { qk } from '@/lib/query-keys';
+import * as api from '@/services/expense-service';
 
-import * as api from './api';
 import type { Category, CategoryFormValues, Expense, ExpenseInput, ExpenseListParams } from './types';
 
 /** One page of categories (search / sort / paging). Keeps the previous page on screen while the next loads. */

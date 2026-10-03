@@ -12,8 +12,8 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { FieldGroup } from '@/components/ui/field';
 import { Link, useRouter } from '@/i18n/navigation';
-import { ApiError } from '@/lib/api-client';
 import { cn } from '@/lib/utils';
+import { ApiError } from '@/services/api-call';
 
 import { useRegister } from '../hooks';
 import { EMAIL_MAX, FULLNAME_MAX, PASSWORD_MIN, registerSchema, USERNAME_MAX, type RegisterValues } from '../types';

@@ -20,9 +20,9 @@ import { FieldGroup } from '@/components/ui/field';
 import { Skeleton } from '@/components/ui/skeleton';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { useRouter } from '@/i18n/navigation';
-import { ApiError } from '@/lib/api-client';
 import { todayInTz } from '@/lib/time';
 import { cn } from '@/lib/utils';
+import { ApiError } from '@/services/api-call';
 
 import { useCreateGoal, useGoal, useUpdateGoal } from '../hooks';
 import {

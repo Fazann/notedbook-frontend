@@ -8,8 +8,8 @@ import {
   type WeekSummary,
 } from '@/features/schedule/types';
 import { expandOccurrences, occursOn, summarize } from '@/features/schedule/utils';
-import { ApiError } from '@/lib/api-client';
 import { addDays, daysBetween } from '@/lib/time';
+import { ApiError } from '@/services/api-call';
 
 import { db, nextId } from '../db';
 import { copy, delay } from '../delay';

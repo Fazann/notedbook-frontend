@@ -13,7 +13,7 @@ import { FormInput } from '@/components/shared/form-input';
 import { ResponsiveDialog } from '@/components/shared/responsive-dialog';
 import { Button } from '@/components/ui/button';
 import { FieldGroup } from '@/components/ui/field';
-import { ApiError } from '@/lib/api-client';
+import { ApiError } from '@/services/api-call';
 
 import { useCreateCategory, useUpdateCategory } from '../hooks';
 import { CATEGORY_NAME_MAX, categoryFormSchema, type Category, type CategoryFormValues } from '../types';

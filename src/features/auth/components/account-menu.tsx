@@ -4,6 +4,7 @@ import { useQueryClient } from '@tanstack/react-query';
 
 import { UserMenu } from '@/components/layout/user-menu';
 import { useRouter } from '@/i18n/navigation';
+import { logout as endSession } from '@/services/auth-service';
 import { usePreferencesStore } from '@/stores/preferences-store';
 import { useUiStore } from '@/stores/ui-store';
 
@@ -17,7 +18,7 @@ export function AccountMenu({ variant }: AccountMenuProps) {
   const router = useRouter();
 
   const logout = () => {
-    // TODO(api): call POST /auth/logout once real auth exists.
+    endSession();
     useUiStore.getState().reset();
     usePreferencesStore.getState().reset();
     queryClient.clear();

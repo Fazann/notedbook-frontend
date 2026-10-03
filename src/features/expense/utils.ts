@@ -1,5 +1,5 @@
-import { ApiError } from '@/lib/api-client';
 import { CURRENCIES, type Currency } from '@/lib/money';
+import { ApiError } from '@/services/api-call';
 
 import type { Category, CategoryColor, ExpenseFilterKey } from './types';
 
