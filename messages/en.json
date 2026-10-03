@@ -101,6 +101,7 @@
     "searchPlaceholder": "Search categories…",
     "defaultBadge": "Default",
     "defaultCannotDelete": "Default categories can't be deleted",
+    "defaultCannotEdit": "Default categories can't be changed",
     "defaultNameHint": "Default names follow the app language",
     "columns": {
       "name": "Category",

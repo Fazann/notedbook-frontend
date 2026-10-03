@@ -101,6 +101,7 @@
     "searchPlaceholder": "Cari kategori…",
     "defaultBadge": "Lalai",
     "defaultCannotDelete": "Kategori lalai tidak boleh dipadam",
+    "defaultCannotEdit": "Kategori lalai tidak boleh diubah",
     "defaultNameHint": "Nama lalai mengikut bahasa aplikasi",
     "columns": {
       "name": "Kategori",

@@ -65,9 +65,13 @@ describe('mock category handler', () => {
     expect(updated.nameKm).toBe('');
   });
 
-  it('never renames a default category', async () => {
-    const updated = await updateCategory(1, { name: 'Snacks', nameKm: '', icon: 'coffee', color: 'red' });
-    expect(updated).toMatchObject({ name: 'Food', nameKm: '', icon: 'coffee', color: 'red' });
+  it('refuses to change a default category, like the API', async () => {
+    await expect(updateCategory(1, { name: 'Snacks', nameKm: '', icon: 'coffee', color: 'red' })).rejects.toMatchObject(
+      {
+        code: 'CATEGORY_IS_DEFAULT',
+        status: 403,
+      }
+    );
   });
 
   it('refuses to delete defaults, and in-use categories without reassignTo', async () => {

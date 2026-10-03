@@ -27,6 +27,8 @@ export function categoryErrorMessage(error: unknown, t: Translate): string {
   if (error instanceof ApiError) {
     if (error.code === 'CATEGORY_NAME_TAKEN') return t('category.validation.nameTaken');
     if (error.code === 'CATEGORY_IS_DEFAULT') return t('category.defaultCannotDelete');
+    // e.g. CATEGORY_IN_USE: the API message is already in the user's language.
+    if (error.status >= 400 && error.status < 500 && error.message) return error.message;
   }
   return t('category.toast.error');
 }

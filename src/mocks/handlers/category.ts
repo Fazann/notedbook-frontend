@@ -90,14 +90,15 @@ export async function createCategory(input: CategoryFormValues): Promise<Categor
   return copy(withCount(category));
 }
 
-/** PUT /categories/:id — the name of a default category cannot change (it follows the app language). */
+/** PUT /categories/:id — default categories are shared by every user, so they are read-only. */
 export async function updateCategory(id: number, input: CategoryFormValues): Promise<Category> {
   await delay();
   const category = find(id);
-  if (!category.isDefault) assertNameFree(input.name, id);
+  if (category.isDefault) throw new ApiError(403, 'CATEGORY_IS_DEFAULT', 'Default categories cannot be changed');
+  assertNameFree(input.name, id);
   Object.assign(category, {
-    name: category.isDefault ? category.name : input.name.trim(),
-    nameKm: category.isDefault ? category.nameKm : input.nameKm.trim(),
+    name: input.name.trim(),
+    nameKm: input.nameKm.trim(),
     icon: input.icon,
     color: input.color,
     updatedAt: new Date().toISOString(),
@@ -105,11 +106,11 @@ export async function updateCategory(id: number, input: CategoryFormValues): Pro
   return copy(withCount(category));
 }
 
-/** DELETE /categories/:id?reassignTo=:otherId */
+/** DELETE /categories/:id?reassign_to=:otherId */
 export async function deleteCategory(id: number, reassignTo?: number): Promise<void> {
   await delay();
   const category = find(id);
-  if (category.isDefault) throw new ApiError(400, 'CATEGORY_IS_DEFAULT', 'Default categories cannot be deleted');
+  if (category.isDefault) throw new ApiError(403, 'CATEGORY_IS_DEFAULT', 'Default categories cannot be deleted');
 
   const inUse = db.expenses.some((e) => e.category_id === id);
   if (inUse) {

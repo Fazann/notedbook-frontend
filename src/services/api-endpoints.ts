@@ -18,12 +18,10 @@ export enum ApiEndpoint {
 
   Categories = '/categories',
   CategoryDetail = '/categories/:id',
-  // TODO(api): not in the backend yet.
   CategoriesAll = '/categories/all',
 
   Expenses = '/expenses',
   ExpenseDetail = '/expenses/:id',
-  // TODO(api): not in the backend yet.
   ExpenseSummary = '/expenses/summary',
 
   PlanAreas = '/plan-areas',

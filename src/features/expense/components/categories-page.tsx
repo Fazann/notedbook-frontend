@@ -55,7 +55,10 @@ export function CategoriesPage() {
   }, [meta, params.page, setPage]);
 
   const name = useCategoryName();
-  const openEdit = (category: Category) => setForm({ open: true, category });
+  // Default categories are shared by every user and read-only (the API refuses changes).
+  const openEdit = (category: Category) => {
+    if (!category.isDefault) setForm({ open: true, category });
+  };
   const viewExpenses = (category: Category) =>
     router.push({ pathname: '/expenses', query: { category: String(category.id) } });
 
@@ -73,7 +76,14 @@ export function CategoriesPage() {
   };
 
   const rowActions = (category: Category): RowAction[] => [
-    { id: 'edit', label: t('category.edit'), icon: <Pencil />, onSelect: () => openEdit(category) },
+    {
+      id: 'edit',
+      label: t('category.edit'),
+      icon: <Pencil />,
+      disabled: category.isDefault,
+      description: category.isDefault ? t('category.defaultCannotEdit') : undefined,
+      onSelect: () => openEdit(category),
+    },
     { id: 'view', label: t('category.viewExpenses'), icon: <Eye />, onSelect: () => viewExpenses(category) },
     {
       id: 'delete',

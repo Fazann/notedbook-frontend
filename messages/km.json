@@ -101,6 +101,7 @@
     "searchPlaceholder": "ស្វែងរកប្រភេទ…",
     "defaultBadge": "លំនាំដើម",
     "defaultCannotDelete": "មិនអាចលុបប្រភេទលំនាំដើមបានទេ",
+    "defaultCannotEdit": "មិនអាចកែប្រែប្រភេទលំនាំដើមបានទេ",
     "defaultNameHint": "ឈ្មោះលំនាំដើមប្តូរតាមភាសារបស់កម្មវិធី",
     "columns": {
       "name": "ប្រភេទ",
