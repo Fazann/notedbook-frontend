@@ -20,8 +20,8 @@ vi.mock('@/services/auth-service', () => ({ register: vi.fn() }));
 
 const user = {
   id: 2,
-  username: 'sokha',
-  fullname: 'Sok Sokha',
+  username: 'John doe',
+  fullname: 'Sok John doe',
   email: '',
   avatar: null,
   created_at: '2026-01-01T00:00:00Z',
@@ -51,7 +51,7 @@ describe('RegisterForm', () => {
 
   it('validates username format, email and password length', async () => {
     renderWithIntl(<RegisterForm />);
-    fill({ fullname: 'Sok Sokha', username: 'sok sokha', email: 'not-an-email', password: 'abc' });
+    fill({ fullname: 'Sok John doe', username: 'sok John doe', email: 'not-an-email', password: 'abc' });
     submit();
     expect(await screen.findByText('Use only letters, numbers, dots (.) and underscores (_)')).toBeInTheDocument();
     expect(screen.getByText('Please enter a valid email address')).toBeInTheDocument();
@@ -61,7 +61,7 @@ describe('RegisterForm', () => {
 
   it('rejects a password longer than the API allows (20)', async () => {
     renderWithIntl(<RegisterForm />);
-    fill({ fullname: 'Sok Sokha', username: 'sokha', password: 'a'.repeat(21) });
+    fill({ fullname: 'Sok John doe', username: 'John doe', password: 'a'.repeat(21) });
     submit();
     expect(await screen.findByText('Password is too long')).toBeInTheDocument();
     expect(api.register).not.toHaveBeenCalled();
@@ -70,12 +70,12 @@ describe('RegisterForm', () => {
   it('registers without an email and goes to the dashboard', async () => {
     vi.mocked(api.register).mockResolvedValue(user);
     renderWithIntl(<RegisterForm />);
-    fill({ fullname: ' Sok Sokha ', username: ' sokha ', password: 'password123' });
+    fill({ fullname: ' Sok John doe ', username: ' John doe ', password: 'password123' });
     submit();
     await waitFor(() => expect(replace).toHaveBeenCalledWith('/dashboard'));
     expect(vi.mocked(api.register).mock.calls[0]?.[0]).toEqual({
-      fullname: 'Sok Sokha',
-      username: 'sokha',
+      fullname: 'Sok John doe',
+      username: 'John doe',
       email: '',
       password: 'password123',
     });
@@ -84,7 +84,7 @@ describe('RegisterForm', () => {
   it('shows a taken username under the username field', async () => {
     vi.mocked(api.register).mockRejectedValue(new ApiError(409, 'USERNAME_TAKEN', 'taken'));
     renderWithIntl(<RegisterForm />);
-    fill({ fullname: 'Sok Sokha', username: 'demo', password: 'password123' });
+    fill({ fullname: 'Sok John doe', username: 'demo', password: 'password123' });
     submit();
     expect(await screen.findByText('This username is already taken. Please choose another one.')).toBeInTheDocument();
     expect(screen.getByRole('textbox', { name: 'Username' })).toHaveAttribute('aria-invalid', 'true');
@@ -94,7 +94,7 @@ describe('RegisterForm', () => {
   it('shows a form error when the network fails', async () => {
     vi.mocked(api.register).mockRejectedValue(new ApiError(0, 'network', 'Network error'));
     renderWithIntl(<RegisterForm />);
-    fill({ fullname: 'Sok Sokha', username: 'sokha', password: 'password123' });
+    fill({ fullname: 'Sok John doe', username: 'John doe', password: 'password123' });
     submit();
     expect(await screen.findByRole('alert')).toHaveTextContent('Network error. Please try again.');
   });

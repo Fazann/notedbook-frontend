@@ -67,7 +67,7 @@ src/mocks/
   integer minor units (USD cents, KHR riel).
 - Mutations change the in-memory db, so add/edit/delete/move work during the session.
 - Add a 5% random failure option (`NEXT_PUBLIC_MOCK_ERRORS=true`) to test error states and optimistic rollback.
-- Use a fixed demo user: `{ id: 1, name: "Sokha", email: "demo@example.com", locale: "en" }`.
+- Use a fixed demo user: `{ id: 1, name: "John doe", email: "demo@example.com", locale: "en" }`.
 - Never import `src/mocks` from components or pages — only from `features/*/api.ts`.
 
 ### Seed content (realistic, Cambodia context)
@@ -121,7 +121,7 @@ Desktop (lg+)
 │            │                                                 │
 │ ────────── │                                                 │
 │ ⚙ Settings │                                                 │
-│ (S) Sokha ▾│                                                 │
+│ (S) John doe ▾│                                                 │
 └────────────┴─────────────────────────────────────────────────┘
 
 Phone (base)
@@ -154,7 +154,7 @@ Route: `/[locale]/dashboard`. Shows the **current month**, with a `MonthPicker` 
 ```
 Desktop (lg+) — 12-column grid
 ┌──────────────────────────────────────────────────────────────────────┐
-│ Good evening, Sokha 👋                             [◀ Sep 2026 ▶] [+ Add]│
+│ Good evening, John doe 👋                             [◀ Sep 2026 ▶] [+ Add]│
 ├───────────────┬───────────────┬───────────────┬──────────────────────┤
 │ Spent (USD)   │ Spent (KHR)   │ vs last month │ Tasks due this week  │  ← StatCard x4
 │ $412.75       │ ៛186,000      │ ▲ 12%         │ 5                    │

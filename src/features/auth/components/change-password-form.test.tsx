@@ -13,8 +13,8 @@ vi.mock('sonner', () => ({ toast: { success: vi.fn(), error: vi.fn() } }));
 
 const user = {
   id: 1,
-  username: 'sokha',
-  fullname: 'Sok Sokha',
+  username: 'John doe',
+  fullname: 'Sok John doe',
   email: '',
   avatar: null,
   created_at: '2026-01-01T00:00:00Z',

@@ -8,7 +8,7 @@ import { useMounted } from '@/hooks/use-mounted';
 
 import { dayPeriod } from '../utils';
 
-/** "Good evening, Sokha". Rendered after mount because the time of day comes from the browser clock. */
+/** "Good evening, John doe". Rendered after mount because the time of day comes from the browser clock. */
 export function Greeting() {
   const t = useTranslations('dashboard.greeting');
   const mounted = useMounted();

@@ -14,7 +14,7 @@ const iso = (d: Date) => format(d, 'yyyy-MM-dd');
 export const demoUser: User = {
   id: 1,
   username: 'demo',
-  fullname: 'Sokha',
+  fullname: 'John doe',
   email: 'demo@example.com',
   avatar: null,
   created_at: '2026-01-01T00:00:00Z',

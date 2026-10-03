@@ -21,7 +21,7 @@ vi.mock('@/services/auth-service', () => ({ login: vi.fn() }));
 const user = {
   id: 1,
   username: 'demo',
-  fullname: 'Sokha',
+  fullname: 'John doe',
   email: 'demo@example.com',
   avatar: null,
   created_at: '2026-01-01T00:00:00Z',

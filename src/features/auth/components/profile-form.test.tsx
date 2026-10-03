@@ -14,9 +14,9 @@ vi.mock('sonner', () => ({ toast: { success: vi.fn(), error: vi.fn() } }));
 
 const user: User = {
   id: 1,
-  username: 'sokha',
-  fullname: 'Sok Sokha',
-  email: 'sokha@example.com',
+  username: 'John doe',
+  fullname: 'Sok John doe',
+  email: 'John doe@example.com',
   avatar: null,
   created_at: '2026-01-01T00:00:00Z',
 };
@@ -30,25 +30,25 @@ describe('ProfileForm', () => {
 
   it('shows the current profile and disables save until something changes', () => {
     renderWithIntl(<ProfileForm user={user} />);
-    expect(field('Full name')).toHaveValue('Sok Sokha');
-    expect(field('Username')).toHaveValue('sokha');
-    expect(field('Email')).toHaveValue('sokha@example.com');
+    expect(field('Full name')).toHaveValue('Sok John doe');
+    expect(field('Username')).toHaveValue('John doe');
+    expect(field('Email')).toHaveValue('John doe@example.com');
     expect(screen.getByRole('button', { name: 'Save changes' })).toBeDisabled();
   });
 
   it('sends only the changed fields', async () => {
-    vi.mocked(api.updateProfile).mockResolvedValue({ ...user, fullname: 'Sokha Chan' });
+    vi.mocked(api.updateProfile).mockResolvedValue({ ...user, fullname: 'John doe Chan' });
     renderWithIntl(<ProfileForm user={user} />);
-    change('Full name', ' Sokha Chan ');
+    change('Full name', ' John doe Chan ');
     save();
     await waitFor(() => expect(api.updateProfile).toHaveBeenCalled());
-    expect(vi.mocked(api.updateProfile).mock.calls[0]?.[0]).toEqual({ fullname: 'Sokha Chan' });
+    expect(vi.mocked(api.updateProfile).mock.calls[0]?.[0]).toEqual({ fullname: 'John doe Chan' });
   });
 
   it('validates with the API rules', async () => {
     renderWithIntl(<ProfileForm user={user} />);
     change('Full name', 'S');
-    change('Username', 'sok.sokha');
+    change('Username', 'sok.John doe');
     change('Email', 'not-an-email');
     save();
     expect(await screen.findByText('Full name must be at least 2 characters')).toBeInTheDocument();
@@ -77,7 +77,7 @@ describe('ProfileForm', () => {
   it('shows a form error when the network fails', async () => {
     vi.mocked(api.updateProfile).mockRejectedValue(new ApiError(0, 'network', 'Network error'));
     renderWithIntl(<ProfileForm user={user} />);
-    change('Full name', 'Sokha Chan');
+    change('Full name', 'John doe Chan');
     save();
     expect(await screen.findByRole('alert')).toHaveTextContent('Network error. Please try again.');
   });
