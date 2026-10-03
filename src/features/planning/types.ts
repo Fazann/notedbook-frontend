@@ -65,13 +65,14 @@ export const goalStatsSchema = z.object({
 });
 export type GoalStats = z.infer<typeof goalStatsSchema>;
 
+export const GOAL_TITLE_MIN = 2;
 export const GOAL_TITLE_MAX = 100;
 export const GOAL_DESCRIPTION_MAX = 2000;
 export const MILESTONE_TITLE_MAX = 150;
 
 /** Form schema. Messages are keys under `planning.validation`, translated in the form. */
 export const goalFormSchema = z.object({
-  title: z.string().trim().min(1, 'required').max(GOAL_TITLE_MAX, 'tooLong'),
+  title: z.string().trim().min(1, 'required').min(GOAL_TITLE_MIN, 'tooShort').max(GOAL_TITLE_MAX, 'tooLong'),
   description: z.string().trim().max(GOAL_DESCRIPTION_MAX, 'tooLong'),
   area: z.enum(GOAL_AREAS),
   priority: z.enum(GOAL_PRIORITIES),

@@ -18,3 +18,7 @@ Machine-drafted — please review `settings.*`, the new `auth.validation.*` keys
 `usernameMinLength`, `profileUsernameFormat`, `emailCannotClear`, `passwordMismatch`, `passwordSame`), the new
 `auth.errors.*` codes (`INCORRECT_PASSWORD`, `INVALID_*`) and `errors.VALIDATION_FAILED` / `FILE_TOO_LARGE` /
 `INVALID_ATTACHMENT_TYPE` / `ATTACHMENT_IN_USE`.
+
+## Planning (real API)
+
+Machine-drafted — please review `planning.validation.tooShort`.

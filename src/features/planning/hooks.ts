@@ -149,7 +149,12 @@ function useOptimisticGoal(goalId: number) {
     replace: (tempId: number, milestone: Milestone) => {
       queryClient.setQueryData<GoalDetail>(
         key,
-        (goal) => goal && { ...goal, milestones: goal.milestones.map((m) => (m.id === tempId ? milestone : m)) }
+        (goal) =>
+          goal && {
+            ...goal,
+            // Keep the optimistic position: the real API does not return one.
+            milestones: goal.milestones.map((m) => (m.id === tempId ? { ...milestone, position: m.position } : m)),
+          }
       );
     },
     current: () => queryClient.getQueryData<GoalDetail>(key),
@@ -208,6 +213,9 @@ export function useToggleMilestone(goalId: number) {
     onSettled: goal.settle,
   });
 }
+
+/** False while the API cannot save a new step order; the list then shows no drag handles. */
+export const canReorderMilestones = () => api.canMoveMilestones();
 
 export function useMoveMilestone(goalId: number) {
   const goal = useOptimisticGoal(goalId);

@@ -1,4 +1,5 @@
-import { daysBetween } from '@/lib/time';
+import { parseSort } from '@/lib/list';
+import { APP_TIME_ZONE, daysBetween, todayInTz } from '@/lib/time';
 import { ApiError } from '@/services/core/api-call';
 
 import {
@@ -8,6 +9,8 @@ import {
   goalSummarySchema,
   type GoalArea,
   type GoalDetail,
+  type GoalListParams,
+  type GoalStats,
   type GoalStatus,
   type GoalStatusFilter,
   type GoalSummary,
@@ -42,9 +45,10 @@ export function getDueState(goal: Pick<GoalSummary, 'status' | 'targetDate' | 'c
   return { kind: 'onTrack', date: goal.targetDate };
 }
 
-/** `round(done / total × 100)`; without milestones: 100 when done, else 0. */
+/** `round(done / total × 100)`, 0 without milestones; always 100 once the goal is done (as the API does). */
 export function computeProgress(done: number, total: number, status: GoalStatus): number {
-  if (total === 0) return status === 'done' ? 100 : 0;
+  if (status === 'done') return 100;
+  if (total === 0) return 0;
   return Math.round((done / total) * 100);
 }
 
@@ -140,3 +144,49 @@ export function parseGoalFilters(raw: { status: string; area: string }): GoalFil
 
 /** True when the API says the goal does not exist. */
 export const isNotFound = (error: unknown) => error instanceof ApiError && error.status === 404;
+
+/** True when the goal matches the list's status, area and search filters. */
+export function matchesGoalFilters(goal: GoalSummary, params: Pick<GoalListParams, 'status' | 'areas' | 'search'>) {
+  const query = params.search.trim().toLocaleLowerCase();
+  return (
+    (params.status === 'all' || (params.status === 'done') === (goal.status === 'done')) &&
+    (params.areas.length === 0 || params.areas.includes(goal.area)) &&
+    (!query || goal.title.toLocaleLowerCase().includes(query))
+  );
+}
+
+const byTitle = (a: GoalSummary, b: GoalSummary) => a.title.localeCompare(b.title);
+const COMPARE: Record<string, (a: GoalSummary, b: GoalSummary) => number> = {
+  createdAt: (a, b) => a.createdAt.localeCompare(b.createdAt) || a.id - b.id,
+  progress: (a, b) => a.progress - b.progress || byTitle(a, b),
+  title: byTitle,
+};
+
+/** Sorts by a list sort key ("-progress" = descending). Goals without a target date always come last. */
+export function sortGoals<T extends GoalSummary>(goals: T[], sort: string | undefined): T[] {
+  const { key, dir } = parseSort(sort) ?? { key: 'targetDate', dir: 'asc' };
+  const sign = dir === 'desc' ? -1 : 1;
+  return [...goals].sort((a, b) => {
+    if (key === 'targetDate') {
+      if (a.targetDate === b.targetDate) return byTitle(a, b);
+      if (a.targetDate === null) return 1;
+      if (b.targetDate === null) return -1;
+      return sign * a.targetDate.localeCompare(b.targetDate);
+    }
+    return sign * (COMPARE[key] ?? byTitle)(a, b);
+  });
+}
+
+/** The stats strip of the goals page, from every goal of the user. `today` is `YYYY-MM-DD` (see `todayInTz`). */
+export function computeGoalStats(goals: GoalSummary[], today: string): GoalStats {
+  const active = goals.filter((g) => isActiveStatus(g.status));
+  const year = today.slice(0, 4);
+  return {
+    active: active.length,
+    doneThisYear: goals.filter(
+      (g) => g.completedAt && todayInTz(APP_TIME_ZONE, new Date(g.completedAt)).startsWith(year)
+    ).length,
+    overdue: active.filter((g) => getDueState(g, today).kind === 'overdue').length,
+    averageProgress: active.length ? Math.round(active.reduce((sum, g) => sum + g.progress, 0) / active.length) : 0,
+  };
+}

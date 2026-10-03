@@ -30,8 +30,6 @@ export enum ApiEndpoint {
   PlanDetail = '/plans/:id',
   PlanStatus = '/plans/:id/status',
   PlanSteps = '/plans/:id/steps',
-  // TODO(api): not in the backend yet.
-  PlanStats = '/plans/stats',
 
   StepDetail = '/steps/:id',
   StepToggle = '/steps/:id/toggle',

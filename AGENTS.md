@@ -61,7 +61,7 @@ Before saying a task is done, run: `pnpm lint && pnpm format:check && pnpm typec
 NEXT_PUBLIC_API_URL=http://localhost:8080/api
 ```
 
-Copy `.env.example` to `.env.local`. Never commit `.env.local` or any secret.
+Copy `.env.example` to `.env`. Never commit `.env` or any secret (`.gitignore` ignores every `.env*` file except `.env.example`).
 Only `NEXT_PUBLIC_*` variables are exposed to the browser — never put secrets in them.
 
 ## Folder structure
@@ -505,7 +505,7 @@ using a stable `key` from the API (e.g. `category.food`), falling back to `name`
 - Do not edit generated files in `components/ui/` beyond small styling tweaks.
 - Do not change the API contract from the frontend; if an endpoint is missing, leave a `// TODO(api):` note
   and tell the user.
-- Do not commit `.env.local`, build output, or `node_modules`.
+- Do not commit `.env`, build output, or `node_modules`.
 
 ## Definition of done
 

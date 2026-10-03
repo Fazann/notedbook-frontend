@@ -30,6 +30,7 @@ import {
   GOAL_DESCRIPTION_MAX,
   GOAL_PRIORITIES,
   GOAL_TITLE_MAX,
+  GOAL_TITLE_MIN,
   goalFormSchema,
   type GoalDetail,
   type GoalFormValues,
@@ -141,7 +142,7 @@ function GoalForm({ goal, onClose }: { goal?: GoalDetail; onClose: () => void })
 
   /** Zod / server messages are keys under `planning.validation`; unknown messages are shown as sent. */
   const errorText = (max: number) => (key: string) =>
-    t.has(`validation.${key}`) ? t(`validation.${key}`, { max }) : key;
+    t.has(`validation.${key}`) ? t(`validation.${key}`, { max, min: GOAL_TITLE_MIN }) : key;
   const common = { control: form.control, translateError: errorText(GOAL_TITLE_MAX) };
   const isPast = targetDate !== null && targetDate < todayInTz();
 

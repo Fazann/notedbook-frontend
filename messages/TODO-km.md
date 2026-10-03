@@ -92,3 +92,7 @@ Machine-drafted — please review:
   `passwordMismatch` / `passwordSame`.
 - `auth.errors.INCORRECT_PASSWORD` / `INVALID_USERNAME` / `INVALID_EMAIL` / `INVALID_FULLNAME`.
 - `errors.VALIDATION_FAILED` / `FILE_TOO_LARGE` / `INVALID_ATTACHMENT_TYPE` / `ATTACHMENT_IN_USE`.
+
+## Planning (real API)
+
+Machine-drafted — please review `planning.validation.tooShort`.

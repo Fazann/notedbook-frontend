@@ -416,6 +416,7 @@
     },
     "validation": {
       "required": "សូមបំពេញចន្លោះនេះ",
+      "tooShort": "ខ្លីពេក (យ៉ាងតិច {min} តួអក្សរ)",
       "tooLong": "វែងពេក (អតិបរមា {max} តួអក្សរ)"
     },
     "milestones": {

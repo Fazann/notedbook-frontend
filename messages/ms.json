@@ -416,6 +416,7 @@
     },
     "validation": {
       "required": "Sila isi medan ini",
+      "tooShort": "Terlalu pendek (sekurang-kurangnya {min} aksara)",
       "tooLong": "Terlalu panjang (maksimum {max} aksara)"
     },
     "milestones": {

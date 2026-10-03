@@ -416,6 +416,7 @@
     },
     "validation": {
       "required": "Please fill in this field",
+      "tooShort": "Too short (min {min} characters)",
       "tooLong": "Too long (max {max} characters)"
     },
     "milestones": {

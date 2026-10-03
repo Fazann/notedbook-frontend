@@ -16,15 +16,16 @@ import {
 import {
   applyMilestoneChange,
   applyStatusChange,
+  computeGoalStats,
   computeProgress,
-  getDueState,
-  isActiveStatus,
+  matchesGoalFilters,
+  sortGoals,
   toGoalSummary,
   type MilestoneChange,
 } from '@/features/planning/utils';
-import { paginate, parseSort, type Paginated } from '@/lib/list';
+import { paginate, type Paginated } from '@/lib/list';
 import { calcPosition } from '@/lib/position';
-import { APP_TIME_ZONE, todayInTz } from '@/lib/time';
+import { todayInTz } from '@/lib/time';
 import { ApiError } from '@/services/core/api-call';
 
 import { db, nextId } from '../db';
@@ -59,56 +60,17 @@ function validate<S extends z.ZodType>(schema: S, input: unknown): z.infer<S> {
   throw new ApiError(422, 'VALIDATION_ERROR', 'Invalid input', fields);
 }
 
-const byTitle = (a: GoalSummary, b: GoalSummary) => a.title.localeCompare(b.title);
-const COMPARE: Record<string, (a: GoalSummary, b: GoalSummary) => number> = {
-  createdAt: (a, b) => a.createdAt.localeCompare(b.createdAt) || a.id - b.id,
-  progress: (a, b) => a.progress - b.progress || byTitle(a, b),
-  title: byTitle,
-};
-
 /** GET /goals?page=&pageSize=&q=&status=active|done|all&area=a,b&sort= */
 export async function listGoals(params: GoalListParams): Promise<Paginated<GoalSummary>> {
   await delay();
-  const query = params.search.trim().toLocaleLowerCase();
-  const items = db.goals
-    .filter(
-      (g) =>
-        (params.status === 'all' || (params.status === 'done') === (g.status === 'done')) &&
-        (params.areas.length === 0 || params.areas.includes(g.area)) &&
-        (!query || g.title.toLocaleLowerCase().includes(query))
-    )
-    .map(toGoalSummary);
-
-  const sort = parseSort(params.sort) ?? { key: 'targetDate', dir: 'asc' };
-  const sign = sort.dir === 'desc' ? -1 : 1;
-  items.sort((a, b) => {
-    if (sort.key === 'targetDate') {
-      // Goals without a target date always come last.
-      if (a.targetDate === b.targetDate) return byTitle(a, b);
-      if (a.targetDate === null) return 1;
-      if (b.targetDate === null) return -1;
-      return sign * a.targetDate.localeCompare(b.targetDate);
-    }
-    return sign * (COMPARE[sort.key] ?? byTitle)(a, b);
-  });
-
-  return copy(paginate(items, params.page, params.pageSize));
+  const items = db.goals.map(toGoalSummary).filter((g) => matchesGoalFilters(g, params));
+  return copy(paginate(sortGoals(items, params.sort), params.page, params.pageSize));
 }
 
 /** GET /goals/stats */
 export async function getGoalStats(): Promise<GoalStats> {
   await delay();
-  const today = todayInTz();
-  const active = db.goals.filter((g) => isActiveStatus(g.status));
-  const year = today.slice(0, 4);
-  return {
-    active: active.length,
-    doneThisYear: db.goals.filter(
-      (g) => g.completedAt && todayInTz(APP_TIME_ZONE, new Date(g.completedAt)).startsWith(year)
-    ).length,
-    overdue: active.filter((g) => getDueState(g, today).kind === 'overdue').length,
-    averageProgress: active.length ? Math.round(active.reduce((sum, g) => sum + g.progress, 0) / active.length) : 0,
-  };
+  return computeGoalStats(db.goals.map(toGoalSummary), todayInTz());
 }
 
 /** GET /goals/:id */

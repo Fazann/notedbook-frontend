@@ -123,7 +123,8 @@ describe('applyMilestoneChange', () => {
 describe('applyStatusChange', () => {
   it('sets completedAt when done and clears it when reopened', () => {
     const done = applyStatusChange(goal([step(1, false)]), 'done', NOW);
-    expect(done).toMatchObject({ status: 'done', completedAt: NOW, milestonesDone: 0, progress: 0 });
+    // Like the API: a done goal is 100% even with open steps.
+    expect(done).toMatchObject({ status: 'done', completedAt: NOW, milestonesDone: 0, progress: 100 });
     expect(applyStatusChange(done, 'in_progress', NOW).completedAt).toBeNull();
   });
 });
