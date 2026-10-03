@@ -32,10 +32,11 @@ function initials(name: string) {
 export function UserMenu({ user, onLogout, variant = 'avatar' }: UserMenuProps) {
   const t = useTranslations('user');
 
+  // Round in the header (inside a round button), rounded square in the sidebar row.
   const avatar = (
-    <Avatar className="size-8 rounded-lg">
-      {user?.avatarUrl && <AvatarImage src={user.avatarUrl} alt="" className="rounded-lg object-cover" />}
-      <AvatarFallback className="bg-primary/10 text-primary rounded-lg font-medium">
+    <Avatar shape={variant === 'sidebar' ? 'square' : 'circle'}>
+      {user?.avatarUrl && <AvatarImage src={user.avatarUrl} alt="" />}
+      <AvatarFallback className="bg-primary/10 text-primary font-medium">
         {user ? initials(user.name) : ''}
       </AvatarFallback>
     </Avatar>
