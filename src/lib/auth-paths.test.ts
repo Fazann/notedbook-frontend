@@ -9,6 +9,12 @@ describe('isPublicPath', () => {
     expect(isPublicPath('/forgot-password/verify')).toBe(true);
   });
 
+  it('matches the help center and its topics', () => {
+    expect(isPublicPath('/help')).toBe(true);
+    expect(isPublicPath('/help/install')).toBe(true);
+    expect(isPublicPath('/helpdesk')).toBe(false);
+  });
+
   it('does not match app pages or look-alike names', () => {
     expect(isPublicPath('/dashboard')).toBe(false);
     expect(isPublicPath('/login-help')).toBe(false);

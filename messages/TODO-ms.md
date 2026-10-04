@@ -35,3 +35,10 @@ Machine-drafted — please review `auth.reset.*`, `auth.validation.codeInvalid` 
 
 The offline page is a static file (it is shown without network, so it cannot load `messages/*.json`).
 Its three strings (title, message, "Try again") are written inline in its `<script>` — please review them there.
+
+## Help center
+
+Machine-drafted — please review `help.*` (the public help pages: about, how to use, install, one page per module)
+and `user.help`. Check that the iPhone / Android menu names in `help.topics.install.sections.*` (Tambah ke Skrin
+Utama, Pasang aplikasi…) match what Malay phones show.
+- `help.figures.*` — descriptions of the install pictures and the iPhone / Chrome menu labels drawn inside them.

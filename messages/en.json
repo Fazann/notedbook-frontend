@@ -54,7 +54,8 @@
     "menu": "Account menu",
     "profile": "Profile",
     "settings": "Settings",
-    "logout": "Log out"
+    "logout": "Log out",
+    "help": "Help & guide"
   },
   "monthPicker": {
     "previous": "Previous month",
@@ -739,6 +740,276 @@
       "confirm": "Confirm new password",
       "submit": "Change password",
       "changed": "Password changed"
+    }
+  },
+  "help": {
+    "title": "Help center",
+    "description": "Learn what LifeApp does, how to use each module and how to install it on your phone.",
+    "link": "Help",
+    "openApp": "Open the app",
+    "logIn": "Log in",
+    "home": "LifeApp help home",
+    "navLabel": "Help topics",
+    "allTopics": "All help topics",
+    "startHere": "Start here",
+    "modules": "Modules",
+    "previous": "Previous",
+    "next": "Next",
+    "openModule": "Open {module}",
+    "install": {
+      "button": "Install app",
+      "hint": "Your browser can install LifeApp right now.",
+      "installed": "LifeApp is installed on this device. Open it from its icon on your home screen."
+    },
+    "topics": {
+      "about": {
+        "title": "About LifeApp",
+        "summary": "What the app is for and how your data is kept.",
+        "sections": {
+          "what": {
+            "title": "What is LifeApp?",
+            "body": "LifeApp is a personal notebook for everyday life. It keeps your spending, your goals and your weekly plan in one place, so you can see how your time, your money and your plans fit together."
+          },
+          "modules": {
+            "title": "What's inside",
+            "items": {
+              "dashboard": "<b>Dashboard</b> — a one-page overview of your month.",
+              "expenses": "<b>Expenses</b> — record what you spend in USD, KHR or MYR.",
+              "planning": "<b>Planning</b> — set goals and break them into small steps.",
+              "schedule": "<b>Schedule</b> — plan your week, one activity at a time."
+            }
+          },
+          "languages": {
+            "title": "Your language",
+            "body": "LifeApp works in English, Khmer and Malay. Change the language at any time from the language menu — your data stays the same. Things you type yourself, like category names, goals and notes, are shown exactly as you wrote them."
+          },
+          "data": {
+            "title": "Your data",
+            "body": "Your data is saved in your account, so you see the same information on every phone or computer you log in to. Add an email to your profile so you can reset your password if you forget it."
+          }
+        }
+      },
+      "gettingStarted": {
+        "title": "How to use the app",
+        "summary": "Create an account, find your way around and make the app yours.",
+        "sections": {
+          "account": {
+            "title": "Create an account",
+            "steps": {
+              "s1": "Open LifeApp and choose <b>Sign up</b>.",
+              "s2": "Enter your full name, a username and a password. Email is optional, but you need it to reset a forgotten password.",
+              "s3": "Choose <b>Create account</b>. You're ready to go."
+            }
+          },
+          "navigate": {
+            "title": "Find your way around",
+            "items": {
+              "phone": "<b>On a phone</b>, use the bar at the bottom of the screen to switch modules. The menu button at the top opens settings, language and theme.",
+              "desktop": "<b>On a tablet or computer</b>, use the sidebar on the left. You can fold it to show icons only.",
+              "search": "<b>Search</b>: press Ctrl + K (⌘ + K on a Mac) to jump to any page."
+            }
+          },
+          "quickAdd": {
+            "title": "Add an expense in seconds",
+            "body": "On a phone, tap the round <b>+</b> button at the bottom right of most pages to add an expense. On a computer, use <b>Add expense</b> on the dashboard or the expenses page."
+          },
+          "settings": {
+            "title": "Make it yours",
+            "items": {
+              "language": "<b>Language</b> — English, Khmer or Malay, from the language menu.",
+              "theme": "<b>Theme</b> — light, dark or the same as your device.",
+              "profile": "<b>Profile</b> — change your name, username, email and photo in Settings.",
+              "password": "<b>Password</b> — change it in Settings, or choose <b>Forgot password?</b> on the login page to reset it with a code sent to your email."
+            }
+          }
+        }
+      },
+      "install": {
+        "title": "Add to your home screen",
+        "summary": "Install LifeApp on your phone so it opens like a normal app.",
+        "sections": {
+          "why": {
+            "title": "Why install it?",
+            "body": "Once installed, LifeApp opens from its own icon, full screen, without the browser bar. It is the same app with the same data — there is nothing to download from an app store."
+          },
+          "iphone": {
+            "title": "iPhone and iPad (Safari)",
+            "steps": {
+              "s1": "Open LifeApp in <b>Safari</b>.",
+              "s2": "Tap the <b>Share</b> button (a square with an arrow pointing up).",
+              "s3": "Scroll down and tap <b>Add to Home Screen</b>.",
+              "s4": "Tap <b>Add</b>. The LifeApp icon appears on your home screen."
+            }
+          },
+          "android": {
+            "title": "Android (Chrome)",
+            "steps": {
+              "s1": "Open LifeApp in <b>Chrome</b>.",
+              "s2": "Tap the <b>⋮</b> menu at the top right.",
+              "s3": "Tap <b>Install app</b> or <b>Add to Home screen</b>.",
+              "s4": "Tap <b>Install</b> to confirm. The LifeApp icon appears with your other apps."
+            }
+          },
+          "desktop": {
+            "title": "Computer (Chrome or Edge)",
+            "steps": {
+              "s1": "Open LifeApp in Chrome or Microsoft Edge.",
+              "s2": "Click the install icon at the right end of the address bar, or open the browser menu and choose <b>Install LifeApp</b>.",
+              "s3": "LifeApp opens in its own window. You can pin it to the taskbar or Dock."
+            }
+          },
+          "offline": {
+            "title": "Without internet",
+            "body": "LifeApp needs an internet connection to load and save your data. If you open it while offline, you'll see a short message — try again when you're back online."
+          }
+        }
+      },
+      "dashboard": {
+        "title": "Dashboard",
+        "summary": "Your month at a glance.",
+        "sections": {
+          "overview": {
+            "title": "What it is",
+            "body": "The dashboard is the first page you see after you log in. It brings the most important numbers from every module together for the month."
+          },
+          "cards": {
+            "title": "What you'll see",
+            "items": {
+              "spent": "<b>Spending totals</b> for each currency, compared with last month.",
+              "daily": "<b>Daily spending</b> — a chart of how much you spent each day.",
+              "category": "<b>By category</b> — where your money went. Tap a category to see its expenses.",
+              "recent": "<b>Recent expenses</b> — your latest entries.",
+              "today": "<b>Today's schedule</b> — what is happening now and what's next.",
+              "goals": "<b>Goals</b> — the progress of your active goals."
+            }
+          },
+          "month": {
+            "title": "Look back at another month",
+            "body": "Use the month picker at the top to go to an earlier month. The spending numbers and charts update together."
+          }
+        }
+      },
+      "expenses": {
+        "title": "Expenses",
+        "summary": "Record what you spend and see where your money goes.",
+        "sections": {
+          "add": {
+            "title": "Add an expense",
+            "steps": {
+              "s1": "Tap <b>+</b> on a phone, or choose <b>Add expense</b>.",
+              "s2": "Type the amount and choose the currency: USD, KHR or MYR.",
+              "s3": "Pick a category and the date. Add a note if you like.",
+              "s4": "Choose <b>Save</b>."
+            }
+          },
+          "list": {
+            "title": "See your month",
+            "items": {
+              "month": "Use the month picker to move between months.",
+              "filter": "Filter by category or currency, search your notes, and sort by date or amount.",
+              "totals": "The totals at the top add up the whole month, one total per currency."
+            }
+          },
+          "edit": {
+            "title": "Edit or delete",
+            "body": "Open the <b>⋯</b> menu on an expense to edit or delete it. Deleted one by mistake? Choose <b>Undo</b> in the message that appears."
+          },
+          "currencies": {
+            "title": "About currencies",
+            "body": "Each expense is saved in the currency you chose. Totals for USD, KHR and MYR are always kept apart — the app never mixes or converts currencies."
+          },
+          "categories": {
+            "title": "Categories",
+            "body": "Categories group your expenses so you can see where your money goes. The app starts with common ones such as Food, Transport and Rent. Open the <b>Categories</b> tab to add your own with an icon and a color. Default categories can't be changed or deleted."
+          }
+        }
+      },
+      "planning": {
+        "title": "Planning",
+        "summary": "Set goals and reach them step by step.",
+        "sections": {
+          "create": {
+            "title": "Create a goal",
+            "steps": {
+              "s1": "Choose <b>New goal</b>.",
+              "s2": "Give it a title. You can also add a description, an area (such as Health or Career), a priority and a target date.",
+              "s3": "Save it, then open the goal to add steps."
+            }
+          },
+          "steps": {
+            "title": "Break it into steps",
+            "body": "Inside a goal, add small steps one by one. Tick a step when it's done and the goal's progress updates by itself. Steps can have a due date, and you can drag them to change their order. When every step is done, the app asks if you want to mark the goal as done."
+          },
+          "track": {
+            "title": "Track your progress",
+            "items": {
+              "tabs": "Switch between <b>Active</b>, <b>Done</b> and <b>All</b> goals.",
+              "filters": "Filter by area, search, and sort by due date, progress or title.",
+              "stats": "The cards at the top show your active goals, goals done this year, overdue goals and average progress."
+            }
+          }
+        }
+      },
+      "schedule": {
+        "title": "Schedule",
+        "summary": "Plan your week, one activity at a time.",
+        "sections": {
+          "views": {
+            "title": "Three ways to view it",
+            "items": {
+              "week": "<b>Week</b> — a time grid for the whole week (tablet and computer).",
+              "day": "<b>Day</b> — one day in detail.",
+              "agenda": "<b>Agenda</b> — a simple list of what's coming up."
+            }
+          },
+          "add": {
+            "title": "Add an activity",
+            "steps": {
+              "s1": "Click an empty time slot, or choose <b>New activity</b> (the <b>+</b> button on a phone).",
+              "s2": "Enter a title, a type (Meeting, Work, Exercise…), the date and the start and end time. A location and a note are optional.",
+              "s3": "To repeat it, choose every day, every weekday or certain days of the week, with an optional end date."
+            }
+          },
+          "move": {
+            "title": "Move and change activities",
+            "body": "Drag an activity to another time or day. If it repeats, the app asks whether to change only this one or the whole series. With a keyboard, focus an activity, press Space, use the arrow keys, then press Space again."
+          },
+          "shortcuts": {
+            "title": "Keyboard shortcuts (computer)",
+            "items": {
+              "arrows": "<b>← / →</b> — previous or next week or day",
+              "today": "<b>T</b> — go to today",
+              "create": "<b>N</b> — new activity",
+              "views": "<b>W</b>, <b>D</b>, <b>A</b> — week, day or agenda view"
+            }
+          }
+        }
+      }
+    },
+    "figures": {
+      "captions": {
+        "homeScreen": "A phone home screen with the LifeApp icon among the other apps.",
+        "iosShare": "Safari on iPhone. The Share button in the bottom toolbar is highlighted.",
+        "iosAddToHome": "The Safari share menu. Add to Home Screen is highlighted.",
+        "iosConfirm": "The Add to Home Screen page with the LifeApp name. The Add button at the top right is highlighted.",
+        "androidMenu": "Chrome on Android. The ⋮ menu button at the top right is highlighted.",
+        "androidInstall": "The Chrome menu. Install app is highlighted.",
+        "androidConfirm": "The Install app dialog with the LifeApp icon. The Install button is highlighted.",
+        "desktopInstall": "A browser window. The install icon at the right end of the address bar is highlighted."
+      },
+      "ui": {
+        "copy": "Copy",
+        "addToReadingList": "Add to Reading List",
+        "addBookmark": "Add Bookmark",
+        "addToHomeScreen": "Add to Home Screen",
+        "cancel": "Cancel",
+        "add": "Add",
+        "newTab": "New tab",
+        "history": "History",
+        "downloads": "Downloads",
+        "installApp": "Install app",
+        "install": "Install"
+      }
     }
   }
 }

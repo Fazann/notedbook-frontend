@@ -1,6 +1,6 @@
 'use client';
 
-import { ChevronsUpDown, LogOut, Settings, User as UserIcon } from 'lucide-react';
+import { ChevronsUpDown, LifeBuoy, LogOut, Settings, User as UserIcon } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -93,6 +93,12 @@ export function UserMenu({ user, onLogout, variant = 'avatar' }: UserMenuProps) 
           <Link href="/settings">
             <Settings aria-hidden />
             {t('settings')}
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild className="min-h-10">
+          <Link href="/help">
+            <LifeBuoy aria-hidden />
+            {t('help')}
           </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />

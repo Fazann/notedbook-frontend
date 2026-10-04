@@ -109,3 +109,12 @@ Machine-drafted — please review `auth.reset.*`, `auth.validation.codeInvalid` 
 
 The offline page is a static file (it is shown without network, so it cannot load `messages/*.json`).
 Its three strings (title, message, "Try again") are written inline in its `<script>` — please review them there.
+
+## Help center
+
+Machine-drafted — please review `help.*` (the public help pages: about, how to use, install, one page per module)
+and `user.help`. In `help.topics.install.sections.*`, the iPhone / Android menu names (Add to Home Screen, Install
+app…) are kept in English next to the Khmer, because phones often show them in English — adjust if your phone shows
+Khmer labels.
+- `help.figures.captions.*` — screen-reader descriptions of the install pictures. `help.figures.ui.*` (the labels drawn
+  inside the pictures) are kept in English on purpose, to match the iPhone / Android menus and the step text.

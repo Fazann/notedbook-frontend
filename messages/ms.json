@@ -54,7 +54,8 @@
     "menu": "Menu akaun",
     "profile": "Profil",
     "settings": "Tetapan",
-    "logout": "Log keluar"
+    "logout": "Log keluar",
+    "help": "Bantuan & panduan"
   },
   "monthPicker": {
     "previous": "Bulan sebelumnya",
@@ -739,6 +740,276 @@
       "confirm": "Sahkan kata laluan baharu",
       "submit": "Tukar kata laluan",
       "changed": "Kata laluan ditukar"
+    }
+  },
+  "help": {
+    "title": "Pusat bantuan",
+    "description": "Ketahui apa yang LifeApp boleh lakukan, cara menggunakan setiap modul dan cara memasangnya pada telefon anda.",
+    "link": "Bantuan",
+    "openApp": "Buka aplikasi",
+    "logIn": "Log masuk",
+    "home": "Laman utama bantuan LifeApp",
+    "navLabel": "Topik bantuan",
+    "allTopics": "Semua topik bantuan",
+    "startHere": "Mula di sini",
+    "modules": "Modul",
+    "previous": "Sebelumnya",
+    "next": "Seterusnya",
+    "openModule": "Buka {module}",
+    "install": {
+      "button": "Pasang aplikasi",
+      "hint": "Pelayar anda boleh memasang LifeApp sekarang.",
+      "installed": "LifeApp sudah dipasang pada peranti ini. Bukanya dari ikon di skrin utama anda."
+    },
+    "topics": {
+      "about": {
+        "title": "Tentang LifeApp",
+        "summary": "Kegunaan aplikasi ini dan cara data anda disimpan.",
+        "sections": {
+          "what": {
+            "title": "Apakah LifeApp?",
+            "body": "LifeApp ialah buku nota peribadi untuk kehidupan seharian. Ia menyimpan perbelanjaan, matlamat dan rancangan mingguan anda di satu tempat, supaya anda dapat melihat bagaimana masa, wang dan rancangan anda saling berkait."
+          },
+          "modules": {
+            "title": "Apa yang ada di dalamnya",
+            "items": {
+              "dashboard": "<b>Papan Pemuka</b> — gambaran keseluruhan bulan anda dalam satu halaman.",
+              "expenses": "<b>Perbelanjaan</b> — rekod perbelanjaan anda dalam USD, KHR atau MYR.",
+              "planning": "<b>Perancangan</b> — tetapkan matlamat dan pecahkannya kepada langkah kecil.",
+              "schedule": "<b>Jadual</b> — rancang minggu anda, satu aktiviti pada satu masa."
+            }
+          },
+          "languages": {
+            "title": "Bahasa anda",
+            "body": "LifeApp boleh digunakan dalam bahasa Inggeris, Khmer dan Melayu. Tukar bahasa pada bila-bila masa dari menu bahasa — data anda kekal sama. Perkara yang anda taip sendiri, seperti nama kategori, matlamat dan nota, dipaparkan sama seperti yang anda tulis."
+          },
+          "data": {
+            "title": "Data anda",
+            "body": "Data anda disimpan dalam akaun anda, jadi anda melihat maklumat yang sama pada setiap telefon atau komputer yang anda gunakan untuk log masuk. Tambah e-mel pada profil anda supaya anda boleh menetapkan semula kata laluan jika terlupa."
+          }
+        }
+      },
+      "gettingStarted": {
+        "title": "Cara menggunakan aplikasi",
+        "summary": "Cipta akaun, kenali aplikasi dan sesuaikannya mengikut citarasa anda.",
+        "sections": {
+          "account": {
+            "title": "Cipta akaun",
+            "steps": {
+              "s1": "Buka LifeApp dan pilih <b>Daftar</b>.",
+              "s2": "Masukkan nama penuh, nama pengguna dan kata laluan. E-mel adalah pilihan, tetapi anda memerlukannya untuk menetapkan semula kata laluan yang terlupa.",
+              "s3": "Pilih <b>Cipta akaun</b>. Anda sudah sedia."
+            }
+          },
+          "navigate": {
+            "title": "Kenali aplikasi",
+            "items": {
+              "phone": "<b>Pada telefon</b>, gunakan bar di bahagian bawah skrin untuk menukar modul. Butang menu di bahagian atas membuka tetapan, bahasa dan tema.",
+              "desktop": "<b>Pada tablet atau komputer</b>, gunakan bar sisi di sebelah kiri. Anda boleh melipatnya untuk menunjukkan ikon sahaja.",
+              "search": "<b>Carian</b>: tekan Ctrl + K (⌘ + K pada Mac) untuk pergi ke mana-mana halaman."
+            }
+          },
+          "quickAdd": {
+            "title": "Tambah perbelanjaan dalam beberapa saat",
+            "body": "Pada telefon, ketik butang bulat <b>+</b> di sudut kanan bawah kebanyakan halaman untuk menambah perbelanjaan. Pada komputer, gunakan <b>Tambah perbelanjaan</b> pada papan pemuka atau halaman perbelanjaan."
+          },
+          "settings": {
+            "title": "Sesuaikan mengikut citarasa anda",
+            "items": {
+              "language": "<b>Bahasa</b> — Inggeris, Khmer atau Melayu, dari menu bahasa.",
+              "theme": "<b>Tema</b> — cerah, gelap atau sama seperti peranti anda.",
+              "profile": "<b>Profil</b> — tukar nama, nama pengguna, e-mel dan foto anda dalam Tetapan.",
+              "password": "<b>Kata laluan</b> — tukarnya dalam Tetapan, atau pilih <b>Lupa kata laluan?</b> pada halaman log masuk untuk menetapkannya semula dengan kod yang dihantar ke e-mel anda."
+            }
+          }
+        }
+      },
+      "install": {
+        "title": "Tambah ke skrin utama",
+        "summary": "Pasang LifeApp pada telefon anda supaya ia dibuka seperti aplikasi biasa.",
+        "sections": {
+          "why": {
+            "title": "Kenapa perlu memasangnya?",
+            "body": "Selepas dipasang, LifeApp dibuka dari ikonnya sendiri, skrin penuh, tanpa bar pelayar. Ia aplikasi yang sama dengan data yang sama — tiada apa-apa untuk dimuat turun dari kedai aplikasi."
+          },
+          "iphone": {
+            "title": "iPhone dan iPad (Safari)",
+            "steps": {
+              "s1": "Buka LifeApp dalam <b>Safari</b>.",
+              "s2": "Ketik butang <b>Kongsi</b> (petak dengan anak panah menghala ke atas).",
+              "s3": "Tatal ke bawah dan ketik <b>Tambah ke Skrin Utama</b>.",
+              "s4": "Ketik <b>Tambah</b>. Ikon LifeApp akan muncul pada skrin utama anda."
+            }
+          },
+          "android": {
+            "title": "Android (Chrome)",
+            "steps": {
+              "s1": "Buka LifeApp dalam <b>Chrome</b>.",
+              "s2": "Ketik menu <b>⋮</b> di sudut kanan atas.",
+              "s3": "Ketik <b>Pasang aplikasi</b> atau <b>Tambah ke skrin Utama</b>.",
+              "s4": "Ketik <b>Pasang</b> untuk mengesahkan. Ikon LifeApp akan muncul bersama aplikasi lain anda."
+            }
+          },
+          "desktop": {
+            "title": "Komputer (Chrome atau Edge)",
+            "steps": {
+              "s1": "Buka LifeApp dalam Chrome atau Microsoft Edge.",
+              "s2": "Klik ikon pasang di hujung kanan bar alamat, atau buka menu pelayar dan pilih <b>Pasang LifeApp</b>.",
+              "s3": "LifeApp dibuka dalam tetingkapnya sendiri. Anda boleh menyematkannya pada bar tugas atau Dock."
+            }
+          },
+          "offline": {
+            "title": "Tanpa internet",
+            "body": "LifeApp memerlukan sambungan internet untuk memuatkan dan menyimpan data anda. Jika anda membukanya semasa luar talian, anda akan melihat mesej ringkas — cuba lagi apabila anda kembali dalam talian."
+          }
+        }
+      },
+      "dashboard": {
+        "title": "Papan Pemuka",
+        "summary": "Bulan anda dalam sekilas pandang.",
+        "sections": {
+          "overview": {
+            "title": "Apakah ini",
+            "body": "Papan pemuka ialah halaman pertama yang anda lihat selepas log masuk. Ia menghimpunkan angka paling penting dari setiap modul untuk bulan tersebut."
+          },
+          "cards": {
+            "title": "Apa yang anda akan lihat",
+            "items": {
+              "spent": "<b>Jumlah perbelanjaan</b> bagi setiap mata wang, berbanding bulan lepas.",
+              "daily": "<b>Perbelanjaan harian</b> — carta jumlah yang anda belanjakan setiap hari.",
+              "category": "<b>Mengikut kategori</b> — ke mana wang anda pergi. Ketik kategori untuk melihat perbelanjaannya.",
+              "recent": "<b>Perbelanjaan terkini</b> — catatan terbaru anda.",
+              "today": "<b>Jadual hari ini</b> — apa yang sedang berlaku dan apa yang seterusnya.",
+              "goals": "<b>Matlamat</b> — kemajuan matlamat aktif anda."
+            }
+          },
+          "month": {
+            "title": "Lihat bulan lain",
+            "body": "Gunakan pemilih bulan di bahagian atas untuk pergi ke bulan sebelumnya. Angka perbelanjaan dan carta dikemas kini bersama."
+          }
+        }
+      },
+      "expenses": {
+        "title": "Perbelanjaan",
+        "summary": "Rekod perbelanjaan anda dan lihat ke mana wang anda pergi.",
+        "sections": {
+          "add": {
+            "title": "Tambah perbelanjaan",
+            "steps": {
+              "s1": "Ketik <b>+</b> pada telefon, atau pilih <b>Tambah perbelanjaan</b>.",
+              "s2": "Taip jumlah dan pilih mata wang: USD, KHR atau MYR.",
+              "s3": "Pilih kategori dan tarikh. Tambah nota jika mahu.",
+              "s4": "Pilih <b>Simpan</b>."
+            }
+          },
+          "list": {
+            "title": "Lihat bulan anda",
+            "items": {
+              "month": "Gunakan pemilih bulan untuk bertukar antara bulan.",
+              "filter": "Tapis mengikut kategori atau mata wang, cari dalam nota anda, dan isih mengikut tarikh atau jumlah.",
+              "totals": "Jumlah di bahagian atas mencampurkan seluruh bulan, satu jumlah bagi setiap mata wang."
+            }
+          },
+          "edit": {
+            "title": "Sunting atau padam",
+            "body": "Buka menu <b>⋯</b> pada perbelanjaan untuk menyunting atau memadamnya. Terpadam secara tidak sengaja? Pilih <b>Buat asal</b> dalam mesej yang muncul."
+          },
+          "currencies": {
+            "title": "Tentang mata wang",
+            "body": "Setiap perbelanjaan disimpan dalam mata wang yang anda pilih. Jumlah bagi USD, KHR dan MYR sentiasa diasingkan — aplikasi tidak pernah mencampurkan atau menukar mata wang."
+          },
+          "categories": {
+            "title": "Kategori",
+            "body": "Kategori mengumpulkan perbelanjaan anda supaya anda dapat melihat ke mana wang anda pergi. Aplikasi bermula dengan kategori biasa seperti Makanan, Pengangkutan dan Sewa. Buka tab <b>Kategori</b> untuk menambah kategori anda sendiri dengan ikon dan warna. Kategori lalai tidak boleh diubah atau dipadam."
+          }
+        }
+      },
+      "planning": {
+        "title": "Perancangan",
+        "summary": "Tetapkan matlamat dan capainya langkah demi langkah.",
+        "sections": {
+          "create": {
+            "title": "Cipta matlamat",
+            "steps": {
+              "s1": "Pilih <b>Matlamat baharu</b>.",
+              "s2": "Beri tajuk. Anda juga boleh menambah penerangan, bidang (seperti Kesihatan atau Kerjaya), keutamaan dan tarikh sasaran.",
+              "s3": "Simpan, kemudian buka matlamat itu untuk menambah langkah."
+            }
+          },
+          "steps": {
+            "title": "Pecahkan kepada langkah",
+            "body": "Dalam matlamat, tambah langkah kecil satu demi satu. Tandakan langkah apabila selesai dan kemajuan matlamat dikemas kini dengan sendirinya. Langkah boleh mempunyai tarikh akhir, dan anda boleh menyeretnya untuk menukar susunan. Apabila semua langkah selesai, aplikasi akan bertanya sama ada anda mahu menandakan matlamat sebagai selesai."
+          },
+          "track": {
+            "title": "Jejak kemajuan anda",
+            "items": {
+              "tabs": "Tukar antara matlamat <b>Aktif</b>, <b>Selesai</b> dan <b>Semua</b>.",
+              "filters": "Tapis mengikut bidang, cari, dan isih mengikut tarikh akhir, kemajuan atau tajuk.",
+              "stats": "Kad di bahagian atas menunjukkan matlamat aktif, matlamat yang selesai tahun ini, matlamat lewat dan purata kemajuan."
+            }
+          }
+        }
+      },
+      "schedule": {
+        "title": "Jadual",
+        "summary": "Rancang minggu anda, satu aktiviti pada satu masa.",
+        "sections": {
+          "views": {
+            "title": "Tiga cara untuk melihat",
+            "items": {
+              "week": "<b>Minggu</b> — grid masa untuk seluruh minggu (tablet dan komputer).",
+              "day": "<b>Hari</b> — satu hari secara terperinci.",
+              "agenda": "<b>Agenda</b> — senarai ringkas perkara yang akan datang."
+            }
+          },
+          "add": {
+            "title": "Tambah aktiviti",
+            "steps": {
+              "s1": "Klik slot masa yang kosong, atau pilih <b>Aktiviti baharu</b> (butang <b>+</b> pada telefon).",
+              "s2": "Masukkan tajuk, jenis (Mesyuarat, Kerja, Senaman…), tarikh serta masa mula dan tamat. Lokasi dan nota adalah pilihan.",
+              "s3": "Untuk mengulanginya, pilih setiap hari, setiap hari bekerja atau hari tertentu dalam minggu, dengan tarikh tamat pilihan."
+            }
+          },
+          "move": {
+            "title": "Alih dan ubah aktiviti",
+            "body": "Seret aktiviti ke masa atau hari lain. Jika ia berulang, aplikasi akan bertanya sama ada untuk mengubah yang ini sahaja atau keseluruhan siri. Dengan papan kekunci, fokus pada aktiviti, tekan Space, gunakan kekunci anak panah, kemudian tekan Space sekali lagi."
+          },
+          "shortcuts": {
+            "title": "Pintasan papan kekunci (komputer)",
+            "items": {
+              "arrows": "<b>← / →</b> — minggu atau hari sebelumnya atau seterusnya",
+              "today": "<b>T</b> — pergi ke hari ini",
+              "create": "<b>N</b> — aktiviti baharu",
+              "views": "<b>W</b>, <b>D</b>, <b>A</b> — paparan minggu, hari atau agenda"
+            }
+          }
+        }
+      }
+    },
+    "figures": {
+      "captions": {
+        "homeScreen": "Skrin utama telefon dengan ikon LifeApp di antara aplikasi lain.",
+        "iosShare": "Safari pada iPhone. Butang Kongsi pada bar alat bawah diserlahkan.",
+        "iosAddToHome": "Menu kongsi Safari. Tambah ke Skrin Utama diserlahkan.",
+        "iosConfirm": "Halaman Tambah ke Skrin Utama dengan nama LifeApp. Butang Tambah di sudut kanan atas diserlahkan.",
+        "androidMenu": "Chrome pada Android. Butang menu ⋮ di sudut kanan atas diserlahkan.",
+        "androidInstall": "Menu Chrome. Pasang aplikasi diserlahkan.",
+        "androidConfirm": "Dialog Pasang aplikasi dengan ikon LifeApp. Butang Pasang diserlahkan.",
+        "desktopInstall": "Tetingkap pelayar. Ikon pasang di hujung kanan bar alamat diserlahkan."
+      },
+      "ui": {
+        "copy": "Salin",
+        "addToReadingList": "Tambah ke Senarai Bacaan",
+        "addBookmark": "Tambah Penanda Buku",
+        "addToHomeScreen": "Tambah ke Skrin Utama",
+        "cancel": "Batal",
+        "add": "Tambah",
+        "newTab": "Tab baharu",
+        "history": "Sejarah",
+        "downloads": "Muat turun",
+        "installApp": "Pasang aplikasi",
+        "install": "Pasang"
+      }
     }
   }
 }
