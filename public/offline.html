@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <title>LifeApp</title>
+    <link rel="icon" href="/icons/icon.svg" type="image/svg+xml" />
+    <style>
+      /* Static page served by sw.js when there is no network, so it cannot use Tailwind or next-intl.
+         Colors mirror the tokens in src/app/globals.css. */
+      :root {
+        --background: #ffffff;
+        --foreground: #0a0a0a;
+        --muted-foreground: #737373;
+        --primary: #4f39f6;
+        --primary-foreground: #fafafa;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --background: #0a0a0a;
+          --foreground: #fafafa;
+          --muted-foreground: #a1a1a1;
+          --primary: #7c86ff;
+        }
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100dvh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        background: var(--background);
+        color: var(--foreground);
+        font-family:
+          system-ui,
+          -apple-system,
+          'Segoe UI',
+          'Noto Sans Khmer',
+          'Khmer OS',
+          sans-serif;
+        line-height: 1.6;
+        text-align: center;
+      }
+      main {
+        max-width: 24rem;
+        overflow-wrap: break-word;
+      }
+      img {
+        width: 4rem;
+        height: 4rem;
+      }
+      h1 {
+        margin: 1rem 0 0.5rem;
+        font-size: 1.25rem;
+      }
+      p {
+        margin: 0 0 1.5rem;
+        color: var(--muted-foreground);
+      }
+      button {
+        min-height: 2.75rem;
+        padding: 0.5rem 1.25rem;
+        border: 0;
+        border-radius: 0.625rem;
+        background: var(--primary);
+        color: var(--primary-foreground);
+        font: inherit;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      button:focus-visible {
+        outline: 3px solid var(--primary);
+        outline-offset: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <img src="/icons/icon.svg" alt="" />
+      <h1 id="title">You are offline</h1>
+      <p id="message">Check your internet connection, then try again.</p>
+      <button id="retry" type="button">Try again</button>
+    </main>
+    <script>
+      // The URL is still the page the user opened (/km/..., /ms/...), so its first segment is the locale.
+      var strings = {
+        en: {
+          title: 'You are offline',
+          message: 'Check your internet connection, then try again.',
+          retry: 'Try again',
+        },
+        km: {
+          title: 'អ្នកមិនមានអ៊ីនធឺណិតទេ',
+          message: 'សូមពិនិត្យការតភ្ជាប់អ៊ីនធឺណិតរបស់អ្នក រួចព្យាយាមម្ដងទៀត។',
+          retry: 'ព្យាយាមម្ដងទៀត',
+        },
+        ms: {
+          title: 'Anda di luar talian',
+          message: 'Semak sambungan internet anda, kemudian cuba lagi.',
+          retry: 'Cuba lagi',
+        },
+      };
+      var locale = location.pathname.split('/')[1];
+      var s = strings[locale];
+      if (s) {
+        document.documentElement.lang = locale;
+        document.getElementById('title').textContent = s.title;
+        document.getElementById('message').textContent = s.message;
+        document.getElementById('retry').textContent = s.retry;
+      }
+      document.getElementById('retry').addEventListener('click', function () {
+        location.reload();
+      });
+      window.addEventListener('online', function () {
+        location.reload();
+      });
+    </script>
+  </body>
+</html>

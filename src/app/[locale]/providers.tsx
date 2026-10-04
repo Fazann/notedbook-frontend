@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { Toaster } from '@/components/ui/sonner';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { SessionGuard } from '@/features/auth/components/session-guard';
+import { registerServiceWorker } from '@/lib/service-worker';
 import { ApiError } from '@/services/core/api-call';
 import { usePreferencesStore } from '@/stores/preferences-store';
 
@@ -28,6 +29,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     // Persisted preferences load after hydration so server and client render the same first frame.
     void usePreferencesStore.persist.rehydrate();
+    registerServiceWorker();
   }, []);
 
   return (

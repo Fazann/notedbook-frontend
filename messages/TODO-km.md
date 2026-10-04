@@ -104,3 +104,8 @@ Machine-drafted — please review `dashboard.tasks.comingSoon`.
 ## Password reset
 
 Machine-drafted — please review `auth.reset.*`, `auth.validation.codeInvalid` and `auth.errors.INVALID_OTP`.
+
+## Offline page (public/offline.html)
+
+The offline page is a static file (it is shown without network, so it cannot load `messages/*.json`).
+Its three strings (title, message, "Try again") are written inline in its `<script>` — please review them there.
