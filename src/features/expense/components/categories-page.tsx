@@ -8,6 +8,7 @@ import { toast } from 'sonner';
 import { DataList, type DataListColumn } from '@/components/shared/data-list';
 import type { RowAction } from '@/components/shared/data-list-row-actions';
 import { EmptyState } from '@/components/shared/empty-state';
+import { FloatingActionButton } from '@/components/shared/floating-action-button';
 import { ListPage } from '@/components/shared/list-page';
 import { ListToolbar } from '@/components/shared/list-toolbar';
 import { OptionSelect } from '@/components/shared/option-select';
@@ -231,6 +232,10 @@ export function CategoriesPage() {
           )}
         />
       </div>
+
+      <FloatingActionButton onClick={() => setForm({ open: true })} aria-label={t('category.add')}>
+        <Plus aria-hidden />
+      </FloatingActionButton>
 
       <CategoryFormDialog
         open={form.open}

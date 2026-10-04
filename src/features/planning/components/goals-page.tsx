@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import { DataList } from '@/components/shared/data-list';
 import { EmptyState } from '@/components/shared/empty-state';
+import { FloatingActionButton } from '@/components/shared/floating-action-button';
 import { ListPage } from '@/components/shared/list-page';
 import { ListToolbar } from '@/components/shared/list-toolbar';
 import { MultiSelect } from '@/components/shared/multi-select';
@@ -200,6 +201,10 @@ export function GoalsPage() {
           }
         />
       </div>
+
+      <FloatingActionButton onClick={openCreate} aria-label={t('newGoal')}>
+        <Plus aria-hidden />
+      </FloatingActionButton>
 
       <GoalFormDialog
         open={form.open}
