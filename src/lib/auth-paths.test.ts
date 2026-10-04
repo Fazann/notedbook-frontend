@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { isPublicPath, safeRedirectPath } from './auth-paths';
+import { isGuestOnlyPath, isPublicPath, safeRedirectPath } from './auth-paths';
 
 describe('isPublicPath', () => {
   it('matches auth pages, with or without a query', () => {
@@ -19,6 +19,17 @@ describe('isPublicPath', () => {
     expect(isPublicPath('/dashboard')).toBe(false);
     expect(isPublicPath('/login-help')).toBe(false);
     expect(isPublicPath('/')).toBe(false);
+  });
+});
+
+describe('isGuestOnlyPath', () => {
+  it('matches login and register only', () => {
+    expect(isGuestOnlyPath('/login')).toBe(true);
+    expect(isGuestOnlyPath('/login?next=/expenses')).toBe(true);
+    expect(isGuestOnlyPath('/register')).toBe(true);
+    expect(isGuestOnlyPath('/forgot-password')).toBe(false);
+    expect(isGuestOnlyPath('/help')).toBe(false);
+    expect(isGuestOnlyPath('/login-help')).toBe(false);
   });
 });
 

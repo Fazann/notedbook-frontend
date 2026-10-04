@@ -1,12 +1,20 @@
 /** Pages a signed-out user may open (paths without the locale prefix): auth pages and the help center. */
 export const PUBLIC_PATHS = ['/login', '/register', '/forgot-password', '/help'] as const;
 
+/** Pages only for signed-out users: a signed-in user who opens one goes to the app instead. */
+export const GUEST_ONLY_PATHS = ['/login', '/register'] as const;
+
 /** Query param on /login holding the page to return to after logging in. */
 export const NEXT_PARAM = 'next';
 
 export function isPublicPath(path: string): boolean {
   const pathname = path.split(/[?#]/)[0];
   return PUBLIC_PATHS.some((p) => pathname === p || pathname.startsWith(`${p}/`));
+}
+
+export function isGuestOnlyPath(path: string): boolean {
+  const pathname = path.split(/[?#]/)[0];
+  return GUEST_ONLY_PATHS.some((p) => pathname === p);
 }
 
 /**
