@@ -42,3 +42,8 @@ Machine-drafted — please review `help.*` (the public help pages: about, how to
 and `user.help`. Check that the iPhone / Android menu names in `help.topics.install.sections.*` (Tambah ke Skrin
 Utama, Pasang aplikasi…) match what Malay phones show.
 - `help.figures.*` — descriptions of the install pictures and the iPhone / Chrome menu labels drawn inside them.
+
+## Calendar
+
+Machine-drafted — please review `nav.calendar` and `calendar.*`. `calendar.lunarMonths.*` and the "Kert" / "Roach"
+moon phases are romanized Khmer on purpose; `calendar.holidayNames.*` for Cambodian holidays are translated loosely.

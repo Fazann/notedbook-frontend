@@ -15,6 +15,7 @@
   --color-warning: var(--warning);
   --color-warning-foreground: var(--warning-foreground);
   --color-success: var(--success);
+  --color-holiday: var(--holiday);
   --color-label-red: var(--label-red);
   --color-label-yellow: var(--label-yellow);
   --color-label-green: var(--label-green);
@@ -129,6 +130,7 @@
   --warning: oklch(0.769 0.188 70.08);
   --warning-foreground: oklch(0.414 0.112 45.904);
   --success: oklch(0.596 0.145 163.225);
+  --holiday: oklch(0.577 0.245 27.325);
   --label-red: oklch(0.637 0.237 25.331);
   --label-yellow: oklch(0.795 0.184 86.047);
   --label-green: oklch(0.723 0.219 149.579);
@@ -214,6 +216,7 @@
   --warning: oklch(0.828 0.189 84.429);
   --warning-foreground: oklch(0.924 0.12 95.746);
   --success: oklch(0.765 0.177 163.223);
+  --holiday: oklch(0.704 0.191 22.216);
   --label-red: oklch(0.704 0.191 22.216);
   --label-yellow: oklch(0.852 0.199 91.936);
   --label-green: oklch(0.792 0.209 151.711);

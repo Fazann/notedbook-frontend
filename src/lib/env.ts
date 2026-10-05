@@ -1,5 +1,5 @@
 /** Modules that can be switched between the mock API and the real one. */
-export type ApiModule = 'auth' | 'expense' | 'planning' | 'schedule' | 'board';
+export type ApiModule = 'auth' | 'expense' | 'planning' | 'schedule' | 'board' | 'calendar';
 
 /** Modules listed in `NEXT_PUBLIC_REAL_API_MODULES` (comma separated) call the real API even in mock mode. */
 const realApiModules = (process.env.NEXT_PUBLIC_REAL_API_MODULES ?? '')

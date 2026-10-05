@@ -41,6 +41,9 @@ export enum ApiEndpoint {
   ScheduleActivities = '/schedule/activities',
   ScheduleActivityDetail = '/schedule/activities/:id',
 
+  // TODO(api): the backend has no holiday route yet.
+  Holidays = '/holidays',
+
   // TODO(api): the backend has no board / card routes yet.
   Boards = '/boards',
   CardsDue = '/cards/due',

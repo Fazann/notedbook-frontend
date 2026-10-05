@@ -118,3 +118,14 @@ app…) are kept in English next to the Khmer, because phones often show them in
 Khmer labels.
 - `help.figures.captions.*` — screen-reader descriptions of the install pictures. `help.figures.ui.*` (the labels drawn
   inside the pictures) are kept in English on purpose, to match the iPhone / Android menus and the step text.
+
+## Calendar
+
+Machine-drafted — please review `nav.calendar` and `calendar.*`, especially:
+
+- `calendar.holidayNames.*` — official Khmer names of the public holidays (shortened where the full royal title is long,
+  e.g. `kingFatherCommemoration`, `waterFestival`, `queenMotherBirthday`).
+- `calendar.holidayNames.israMiraj` / `nuzulQuran` — still English; Islamic holiday names in Khmer need review too.
+- `calendar.hijriMonths.*` — kept in English (transliterated Arabic); add Khmer spellings if the Cham community uses them.
+- `calendar.systems.hijri` — "អ៊ីស្លាម" (Islamic) instead of a transliteration of "Hijri".
+- `calendar.hijriDate` / `hijriMonthNote` — the era is written "AH".

@@ -20,7 +20,7 @@ export function MobileNav() {
         'bg-background/95 backdrop-blur'
       )}
     >
-      <ul className="grid grid-cols-4">
+      <ul className="grid grid-cols-5">
         {MAIN_NAV.map(({ key, href, icon: Icon }) => {
           const active = isActive(pathname, href);
           return (
