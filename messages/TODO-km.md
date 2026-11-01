@@ -97,10 +97,6 @@ Machine-drafted — please review:
 
 Machine-drafted — please review `planning.validation.tooShort`.
 
-## Dashboard (real API)
-
-Machine-drafted — please review `dashboard.tasks.comingSoon`.
-
 ## Password reset
 
 Machine-drafted — please review `auth.reset.*`, `auth.validation.codeInvalid` and `auth.errors.INVALID_OTP`.

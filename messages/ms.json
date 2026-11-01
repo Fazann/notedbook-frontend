@@ -252,7 +252,6 @@
     "tasks": {
       "title": "Tugasan hampir tamat tempoh",
       "description": "Daripada semua papan, 7 hari akan datang",
-      "comingSoon": "Tugasan daripada papan anda akan dipaparkan di sini apabila papan sudah sedia.",
       "empty": "Tiada tugasan dalam 7 hari akan datang.",
       "overdue": "Lewat",
       "dueToday": "Perlu siap hari ini",
@@ -837,7 +836,6 @@
   "errors": {
     "generic": "Berlaku ralat. Sila cuba lagi.",
     "network": "Ralat rangkaian. Sila cuba lagi.",
-    "mock_error": "Ralat simulasi (mod olok-olok). Sila cuba lagi.",
     "VALIDATION_FAILED": "Sesetengah medan tidak sah. Sila semak dan cuba lagi.",
     "FILE_TOO_LARGE": "Fail terlalu besar.",
     "INVALID_ATTACHMENT_TYPE": "Jenis fail ini tidak dibenarkan.",

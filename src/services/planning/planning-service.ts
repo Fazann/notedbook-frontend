@@ -9,10 +9,8 @@ import type {
   MilestoneFormValues,
   MilestoneInput,
 } from '@/features/planning/types';
-import { isMocked } from '@/lib/env';
 import type { Paginated } from '@/lib/list';
 import { todayInTz } from '@/lib/time';
-import * as mock from '@/mocks/handlers/planning';
 
 import { apiCall } from '../core/api-call';
 import { ApiEndpoint, buildPath } from '../core/api-endpoints';
@@ -54,7 +52,6 @@ function getAreas(): Promise<AreaMap> {
 
 /** One page of goals; `areas` are sent as their API ids. */
 export async function listGoals(params: GoalListParams): Promise<Paginated<GoalSummary>> {
-  if (isMocked('planning')) return mock.listGoals(params);
   const areas = await getAreas();
   const page = await apiCall.getPage<ApiPlan>(ApiEndpoint.Plans, {
     page: params.page,
@@ -69,12 +66,10 @@ export async function listGoals(params: GoalListParams): Promise<Paginated<GoalS
 
 /** `today` is sent so "overdue" and "this year" follow the app's time zone. */
 export async function getGoalStats(): Promise<GoalStats> {
-  if (isMocked('planning')) return mock.getGoalStats();
   return toGoalStats(await apiCall.get<ApiPlanStats>(ApiEndpoint.PlanStats, { today: todayInTz() }));
 }
 
 export async function getGoal(id: number): Promise<GoalDetail> {
-  if (isMocked('planning')) return mock.getGoal(id);
   const [areas, plan] = await Promise.all([
     getAreas(),
     apiCall.get<ApiPlanDetail>(buildPath(ApiEndpoint.PlanDetail, { id })),
@@ -91,14 +86,12 @@ async function syncStatus(goal: GoalDetail, status: GoalStatus, areas: AreaMap):
 
 /** A new plan starts as not started; another status is set with a second request. */
 export async function createGoal(input: GoalFormValues): Promise<GoalDetail> {
-  if (isMocked('planning')) return mock.createGoal(input);
   const areas = await getAreas();
   const plan = await apiCall.post<ApiPlan>(ApiEndpoint.Plans, toPlanBody(input, areas, 'create'));
   return syncStatus(toGoalDetail({ ...plan, steps: [] }, areas), input.status, areas);
 }
 
 export async function updateGoal(id: number, input: GoalFormValues): Promise<GoalDetail> {
-  if (isMocked('planning')) return mock.updateGoal(id, input);
   const areas = await getAreas();
   const plan = await apiCall.put<ApiPlanDetail>(
     buildPath(ApiEndpoint.PlanDetail, { id }),
@@ -108,7 +101,6 @@ export async function updateGoal(id: number, input: GoalFormValues): Promise<Goa
 }
 
 export async function updateGoalStatus(id: number, status: GoalStatus): Promise<GoalSummary> {
-  if (isMocked('planning')) return mock.updateGoalStatus(id, status);
   const [areas, plan] = await Promise.all([
     getAreas(),
     apiCall.patch<ApiPlanDetail>(buildPath(ApiEndpoint.PlanStatus, { id }), { status: toApiStatus(status) }),
@@ -117,13 +109,11 @@ export async function updateGoalStatus(id: number, status: GoalStatus): Promise<
 }
 
 export function deleteGoal(id: number): Promise<void> {
-  if (isMocked('planning')) return mock.deleteGoal(id);
   return apiCall.delete(buildPath(ApiEndpoint.PlanDetail, { id }));
 }
 
 /** Added at the end of the goal, or at `input.position` (restoring a deleted step). */
 export async function addMilestone(goalId: number, input: MilestoneInput): Promise<Milestone> {
-  if (isMocked('planning')) return mock.addMilestone(goalId, input);
   const step = await apiCall.post<ApiPlanStep>(
     buildPath(ApiEndpoint.PlanSteps, { id: goalId }),
     toStepBody(input, 'create')
@@ -132,7 +122,6 @@ export async function addMilestone(goalId: number, input: MilestoneInput): Promi
 }
 
 export async function updateMilestone(id: number, input: MilestoneFormValues): Promise<Milestone> {
-  if (isMocked('planning')) return mock.updateMilestone(id, input);
   const path = buildPath(ApiEndpoint.StepDetail, { id });
   return toMilestone(await apiCall.put<ApiPlanStep>(path, toStepBody(input, 'update')));
 }
@@ -141,7 +130,6 @@ export async function toggleMilestone(
   id: number,
   isDone: boolean
 ): Promise<{ milestone: Milestone; goal: GoalSummary }> {
-  if (isMocked('planning')) return mock.toggleMilestone(id, isDone);
   const [areas, res] = await Promise.all([
     getAreas(),
     apiCall.patch<{ step: ApiPlanStep; plan: ApiPlan }>(buildPath(ApiEndpoint.StepToggle, { id }), { done: isDone }),
@@ -151,12 +139,10 @@ export async function toggleMilestone(
 
 /** `position` is computed by the client from the new neighbours (see `calcPosition`). */
 export async function moveMilestone(id: number, position: number): Promise<Milestone> {
-  if (isMocked('planning')) return mock.moveMilestone(id, position);
   return toMilestone(await apiCall.patch<ApiPlanStep>(buildPath(ApiEndpoint.StepMove, { id }), { position }));
 }
 
 export async function deleteMilestone(id: number): Promise<{ goal: GoalSummary }> {
-  if (isMocked('planning')) return mock.deleteMilestone(id);
   const [areas, res] = await Promise.all([
     getAreas(),
     apiCall.delete<{ plan: ApiPlan }>(buildPath(ApiEndpoint.StepDetail, { id })),

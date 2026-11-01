@@ -9,12 +9,15 @@ import * as api from '@/services/expense/expense-service';
 
 import type { Category, CategoryFormValues, Expense, ExpenseInput, ExpenseListParams } from './types';
 
-/** One page of categories (search / sort / paging). Keeps the previous page on screen while the next loads. */
+/**
+ * One page of categories (search / sort / paging). Keeps the previous page on screen while the next loads.
+ * The locale is part of the key because the API translates names by the request's language.
+ */
 export function useCategories(params: ListParams) {
   const locale = useLocale();
   return useQuery({
     queryKey: qk.categories.list(params, locale),
-    queryFn: () => api.listCategories(params, locale),
+    queryFn: () => api.listCategories(params),
     placeholderData: keepPreviousData,
   });
 }

@@ -252,7 +252,6 @@
     "tasks": {
       "title": "Tasks due soon",
       "description": "From all boards, next 7 days",
-      "comingSoon": "Tasks from your boards will show here once boards are ready.",
       "empty": "Nothing due in the next 7 days.",
       "overdue": "Overdue",
       "dueToday": "Due today",
@@ -837,7 +836,6 @@
   "errors": {
     "generic": "Something went wrong. Please try again.",
     "network": "Network error. Please try again.",
-    "mock_error": "Simulated error (mock mode). Please try again.",
     "VALIDATION_FAILED": "Some fields are not valid. Please check them and try again.",
     "FILE_TOO_LARGE": "The file is too large.",
     "INVALID_ATTACHMENT_TYPE": "This file type is not allowed.",
