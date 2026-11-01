@@ -1,6 +1,6 @@
 'use client';
 
-import { PiggyBank, Pencil, Plus, Trash2 } from 'lucide-react';
+import { CircleDollarSign, Pencil, Plus, Trash2 } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { toast } from 'sonner';
@@ -77,7 +77,7 @@ export function BudgetsPage() {
       return (
         <Card>
           <EmptyState
-            icon={<PiggyBank />}
+            icon={<CircleDollarSign />}
             title={t('empty.title')}
             description={t('empty.description')}
             action={

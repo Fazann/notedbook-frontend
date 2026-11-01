@@ -1,8 +1,8 @@
 import {
   CalendarDays,
   CalendarRange,
+  CircleDollarSign,
   LayoutDashboard,
-  PiggyBank,
   Settings,
   Target,
   Wallet,
@@ -18,7 +18,7 @@ export type NavItem = { key: NavKey; href: `/${string}`; icon: LucideIcon };
 export const MAIN_NAV: NavItem[] = [
   { key: 'dashboard', href: '/dashboard', icon: LayoutDashboard },
   { key: 'expenses', href: '/expenses', icon: Wallet },
-  { key: 'budgets', href: '/budgets', icon: PiggyBank },
+  { key: 'budgets', href: '/budgets', icon: CircleDollarSign },
   { key: 'planning', href: '/planning', icon: Target },
   { key: 'schedule', href: '/schedule', icon: CalendarDays },
   { key: 'calendar', href: '/calendar', icon: CalendarRange },
