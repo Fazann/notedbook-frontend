@@ -21,6 +21,7 @@
   "nav": {
     "dashboard": "Papan Pemuka",
     "expenses": "Perbelanjaan",
+    "budgets": "Bajet",
     "planning": "Perancangan",
     "schedule": "Jadual",
     "calendar": "Kalendar",
@@ -332,6 +333,54 @@
       "title": "Tiada perbelanjaan bulan ini",
       "description": "Tambah perbelanjaan dan ia akan dipaparkan di sini.",
       "action": "Tambah perbelanjaan pertama anda"
+    }
+  },
+  "budget": {
+    "title": "Bajet",
+    "description": "Tetapkan had bulanan untuk jumlah perbelanjaan anda dan terima amaran sebelum mencapainya.",
+    "add": "Tambah bajet",
+    "edit": "Sunting bajet",
+    "formDescription": "Had ini berulang setiap bulan dan merangkumi semua perbelanjaan anda dalam mata wang ini.",
+    "cardTitle": "Bajet bulanan {currency}",
+    "actions": "Tindakan untuk {budget}",
+    "limit": "Had {amount}",
+    "left": "Baki {amount}",
+    "overBy": "{amount} melebihi bajet",
+    "used": "{percent}% digunakan",
+    "alertAt": "Amaran pada {percent}%",
+    "loadError": "Tidak dapat memuatkan bajet anda",
+    "saved": "Bajet ditambah",
+    "updated": "Bajet dikemas kini",
+    "deleted": "Bajet dipadam",
+    "status": {
+      "ok": "Terkawal",
+      "near": "Hampir had",
+      "over": "Melebihi bajet"
+    },
+    "empty": {
+      "title": "Belum ada bajet",
+      "description": "Tambah had bulanan untuk melihat berapa banyak lagi yang boleh dibelanjakan."
+    },
+    "alert": {
+      "nearTitle": "Anda hampir mencapai bajet",
+      "overTitle": "Anda melebihi bajet",
+      "near": "Anda telah menggunakan {percent}% daripada bajet {budget}. Baki {amount} untuk bulan ini.",
+      "over": "Anda telah berbelanja {amount} lebih daripada bajet {budget} bulan ini.",
+      "view": "Lihat bajet"
+    },
+    "form": {
+      "amount": "Had bulanan",
+      "currency": "Mata wang",
+      "alertPercent": "Beri amaran pada",
+      "alertHint": "Anda menerima amaran apabila jumlah perbelanjaan bulan ini mencapai bahagian had ini.",
+      "alertOption": "{percent}% daripada had",
+      "amountRequired": "Sila masukkan had",
+      "amountInvalid": "Sila masukkan jumlah yang sah"
+    },
+    "deleteDialog": {
+      "title": "Padam bajet ini?",
+      "description": "Had {currency} sebanyak {amount} akan dibuang. Perbelanjaan anda tidak berubah.",
+      "confirm": "Padam bajet"
     }
   },
   "planning": {
@@ -792,7 +841,8 @@
     "VALIDATION_FAILED": "Sesetengah medan tidak sah. Sila semak dan cuba lagi.",
     "FILE_TOO_LARGE": "Fail terlalu besar.",
     "INVALID_ATTACHMENT_TYPE": "Jenis fail ini tidak dibenarkan.",
-    "ATTACHMENT_IN_USE": "Fail ini sudah digunakan. Sila muat naik semula."
+    "ATTACHMENT_IN_USE": "Fail ini sudah digunakan. Sila muat naik semula.",
+    "BUDGET_EXISTS": "Anda sudah mempunyai bajet dalam mata wang ini."
   },
   "settings": {
     "title": "Tetapan",

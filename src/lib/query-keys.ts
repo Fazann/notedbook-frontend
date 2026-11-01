@@ -16,6 +16,10 @@ export const qk = {
     page: <P extends ListParams>(params: P) => ['expenses', 'page', params] as const,
     summary: (month: string) => ['expenses', 'summary', month] as const,
   },
+  budgets: {
+    all: ['budgets'] as const,
+    list: (month: string) => ['budgets', 'list', month] as const,
+  },
   goals: {
     all: ['goals'] as const,
     lists: ['goals', 'list'] as const,

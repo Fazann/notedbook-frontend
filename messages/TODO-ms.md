@@ -47,3 +47,7 @@ Utama, Pasang aplikasi…) match what Malay phones show.
 
 Machine-drafted — please review `nav.calendar` and `calendar.*`. `calendar.lunarMonths.*` and the "Kert" / "Roach"
 moon phases are romanized Khmer on purpose; `calendar.holidayNames.*` for Cambodian holidays are translated loosely.
+
+## Budget
+
+Machine-drafted — please review `nav.budgets`, `budget.*` and `errors.BUDGET_EXISTS`.

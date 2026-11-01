@@ -21,6 +21,7 @@
   "nav": {
     "dashboard": "Dashboard",
     "expenses": "Expenses",
+    "budgets": "Budget",
     "planning": "Planning",
     "schedule": "Schedule",
     "calendar": "Calendar",
@@ -332,6 +333,54 @@
       "title": "No expenses this month",
       "description": "Add an expense and it will show up here.",
       "action": "Add your first expense"
+    }
+  },
+  "budget": {
+    "title": "Budget",
+    "description": "Set a monthly limit on your total spending and get a warning before you reach it.",
+    "add": "Add budget",
+    "edit": "Edit budget",
+    "formDescription": "The limit repeats every month and covers all your expenses in this currency.",
+    "cardTitle": "{currency} monthly budget",
+    "actions": "Actions for {budget}",
+    "limit": "Limit {amount}",
+    "left": "{amount} left",
+    "overBy": "{amount} over budget",
+    "used": "{percent}% used",
+    "alertAt": "Warning at {percent}%",
+    "loadError": "Could not load your budget",
+    "saved": "Budget added",
+    "updated": "Budget updated",
+    "deleted": "Budget deleted",
+    "status": {
+      "ok": "On track",
+      "near": "Near limit",
+      "over": "Over budget"
+    },
+    "empty": {
+      "title": "No budget yet",
+      "description": "Add a monthly limit to see how much you can still spend."
+    },
+    "alert": {
+      "nearTitle": "You're close to your budget",
+      "overTitle": "You're over budget",
+      "near": "You've used {percent}% of your {budget} budget. {amount} left this month.",
+      "over": "You've spent {amount} more than your {budget} budget this month.",
+      "view": "View budget"
+    },
+    "form": {
+      "amount": "Monthly limit",
+      "currency": "Currency",
+      "alertPercent": "Warn me at",
+      "alertHint": "You get a warning when your total spending this month reaches this part of the limit.",
+      "alertOption": "{percent}% of the limit",
+      "amountRequired": "Please enter a limit",
+      "amountInvalid": "Please enter a valid amount"
+    },
+    "deleteDialog": {
+      "title": "Delete this budget?",
+      "description": "The {currency} limit of {amount} will be removed. Your expenses are not changed.",
+      "confirm": "Delete budget"
     }
   },
   "planning": {
@@ -792,7 +841,8 @@
     "VALIDATION_FAILED": "Some fields are not valid. Please check them and try again.",
     "FILE_TOO_LARGE": "The file is too large.",
     "INVALID_ATTACHMENT_TYPE": "This file type is not allowed.",
-    "ATTACHMENT_IN_USE": "This file is already used. Please upload it again."
+    "ATTACHMENT_IN_USE": "This file is already used. Please upload it again.",
+    "BUDGET_EXISTS": "You already have a budget in this currency."
   },
   "settings": {
     "title": "Settings",

@@ -6,6 +6,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import { MonthPicker } from '@/components/shared/month-picker';
 import { PageHeader } from '@/components/shared/page-header';
 import { Button } from '@/components/ui/button';
+import { BudgetAlerts } from '@/features/budget/components/budget-alerts';
 import { TodaySchedule } from '@/features/schedule/components/today-schedule';
 import { formatMonth } from '@/lib/calendar-locale';
 import { currentMonth } from '@/lib/dates';
@@ -48,6 +49,8 @@ export function DashboardView() {
           </>
         }
       />
+
+      {month === currentMonth() && <BudgetAlerts />}
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-12">
         <div className="order-1 col-span-full lg:order-none">

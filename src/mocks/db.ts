@@ -1,4 +1,6 @@
-import { seedActivities, seedBoards, seedCategories, seedExpenses, seedGoals } from './seed';
+import { isMocked } from '@/lib/env';
+
+import { seedActivities, seedBoards, seedBudgets, seedCategories, seedExpenses, seedGoals } from './seed';
 
 const today = new Date();
 
@@ -6,6 +8,8 @@ const today = new Date();
 export const db = {
   categories: seedCategories(today),
   expenses: seedExpenses(today),
+  // Compared with the mock expenses, so demo budgets only make sense while expenses are mocked too.
+  budgets: isMocked('expense') ? seedBudgets() : [],
   goals: seedGoals(today),
   boards: seedBoards(today),
   activities: seedActivities(today),

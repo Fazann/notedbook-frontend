@@ -41,13 +41,14 @@ export function useExpenseSummary(month: string) {
   return useQuery({ queryKey: qk.expenses.summary(month), queryFn: () => api.getExpenseSummary(month) });
 }
 
-/** Saving an expense can change any month's list and summary, and category expense counts. */
+/** Saving an expense can change any month's list, summary and budgets, and category expense counts. */
 function useInvalidateExpenses() {
   const queryClient = useQueryClient();
   return () =>
     Promise.all([
       queryClient.invalidateQueries({ queryKey: qk.expenses.all }),
       queryClient.invalidateQueries({ queryKey: qk.categories.all }),
+      queryClient.invalidateQueries({ queryKey: qk.budgets.all }),
     ]);
 }
 

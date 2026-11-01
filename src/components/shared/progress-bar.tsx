@@ -9,8 +9,13 @@ import { cn } from '@/lib/utils';
 const progressBarVariants = cva('bg-muted', {
   variants: {
     size: { sm: 'h-1.5', md: 'h-2.5' },
+    tone: {
+      default: '',
+      warning: '[&>[data-slot=progress-indicator]]:bg-warning',
+      destructive: '[&>[data-slot=progress-indicator]]:bg-destructive',
+    },
   },
-  defaultVariants: { size: 'sm' },
+  defaultVariants: { size: 'sm', tone: 'default' },
 });
 
 export type ProgressBarProps = VariantProps<typeof progressBarVariants> & {
@@ -24,7 +29,7 @@ export type ProgressBarProps = VariantProps<typeof progressBarVariants> & {
 };
 
 /** A labelled progress bar (wraps shadcn Progress) with an optional locale-formatted percentage. */
-export function ProgressBar({ value, label, showValue, size, className }: ProgressBarProps) {
+export function ProgressBar({ value, label, showValue, size, tone, className }: ProgressBarProps) {
   const format = useFormatter();
   const clamped = Math.min(100, Math.max(0, value));
   const percent = format.number(clamped / 100, { style: 'percent' });
@@ -35,7 +40,7 @@ export function ProgressBar({ value, label, showValue, size, className }: Progre
         value={clamped}
         aria-label={label}
         aria-valuetext={percent}
-        className={cn(progressBarVariants({ size }), 'flex-1')}
+        className={cn(progressBarVariants({ size, tone }), 'flex-1')}
       />
       {showValue && <span className="shrink-0 text-sm font-semibold tabular-nums">{percent}</span>}
     </div>

@@ -129,3 +129,7 @@ Machine-drafted — please review `nav.calendar` and `calendar.*`, especially:
 - `calendar.hijriMonths.*` — kept in English (transliterated Arabic); add Khmer spellings if the Cham community uses them.
 - `calendar.systems.hijri` — "អ៊ីស្លាម" (Islamic) instead of a transliteration of "Hijri".
 - `calendar.hijriDate` / `hijriMonthNote` — the era is written "AH".
+
+## Budget
+
+Machine-drafted — please review `nav.budgets`, `budget.*` and `errors.BUDGET_EXISTS`.

@@ -1,6 +1,16 @@
-import { CalendarDays, CalendarRange, LayoutDashboard, Settings, Target, Wallet, type LucideIcon } from 'lucide-react';
+import {
+  CalendarDays,
+  CalendarRange,
+  LayoutDashboard,
+  PiggyBank,
+  Settings,
+  Target,
+  Wallet,
+  type LucideIcon,
+} from 'lucide-react';
 
-export type NavKey = 'dashboard' | 'expenses' | 'planning' | 'schedule' | 'calendar' | 'boards' | 'settings';
+export type NavKey =
+  'dashboard' | 'expenses' | 'budgets' | 'planning' | 'schedule' | 'calendar' | 'boards' | 'settings';
 
 export type NavItem = { key: NavKey; href: `/${string}`; icon: LucideIcon };
 
@@ -8,6 +18,7 @@ export type NavItem = { key: NavKey; href: `/${string}`; icon: LucideIcon };
 export const MAIN_NAV: NavItem[] = [
   { key: 'dashboard', href: '/dashboard', icon: LayoutDashboard },
   { key: 'expenses', href: '/expenses', icon: Wallet },
+  { key: 'budgets', href: '/budgets', icon: PiggyBank },
   { key: 'planning', href: '/planning', icon: Target },
   { key: 'schedule', href: '/schedule', icon: CalendarDays },
   { key: 'calendar', href: '/calendar', icon: CalendarRange },

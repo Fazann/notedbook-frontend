@@ -20,7 +20,7 @@ export function MobileNav() {
         'bg-background/95 backdrop-blur'
       )}
     >
-      <ul className="grid grid-cols-5">
+      <ul className="grid grid-cols-6">
         {MAIN_NAV.map(({ key, href, icon: Icon }) => {
           const active = isActive(pathname, href);
           return (
@@ -29,7 +29,8 @@ export function MobileNav() {
                 href={href}
                 aria-current={active ? 'page' : undefined}
                 className={cn(
-                  'flex min-h-14 flex-col items-center justify-center gap-0.5 px-1 py-1.5 text-[11px]',
+                  'flex min-h-14 flex-col items-center justify-center gap-0.5 px-0.5 py-1.5',
+                  'text-[10px] min-[400px]:text-[11px]',
                   'focus-visible:ring-ring/50 outline-none focus-visible:ring-3',
                   active ? 'text-primary font-medium' : 'text-muted-foreground'
                 )}

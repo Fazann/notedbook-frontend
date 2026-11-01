@@ -17,6 +17,7 @@ import { MonthPicker } from '@/components/shared/month-picker';
 import { OptionSelect } from '@/components/shared/option-select';
 import { Pagination } from '@/components/shared/pagination';
 import { Button } from '@/components/ui/button';
+import { BudgetAlerts } from '@/features/budget/components/budget-alerts';
 import { useErrorMessage } from '@/hooks/use-error-message';
 import { useListParams } from '@/hooks/use-list-params';
 import { currentMonth, parseDate, utcDate } from '@/lib/dates';
@@ -186,7 +187,12 @@ export function ExpensesPage() {
       description={t('description')}
       primaryAction={addButton}
       navigation={<ExpenseTabs />}
-      summary={<ExpenseSummary month={filters.month} />}
+      summary={
+        <div className="space-y-4">
+          {filters.month === thisMonth && <BudgetAlerts />}
+          <ExpenseSummary month={filters.month} />
+        </div>
+      }
       toolbar={
         <ListToolbar
           search={list.searchInput}

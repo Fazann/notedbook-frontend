@@ -2,6 +2,7 @@ import { addDays, format, startOfMonth, subMonths } from 'date-fns';
 
 import type { User } from '@/features/auth/types';
 import type { Board, LabelColor } from '@/features/board/types';
+import type { Budget } from '@/features/budget/types';
 import type { Category, CategoryColor, CategoryIcon, Expense } from '@/features/expense/types';
 import type { GoalArea, GoalDetail, GoalPriority, GoalStatus, Milestone } from '@/features/planning/types';
 import { computeProgress } from '@/features/planning/utils';
@@ -132,6 +133,17 @@ export function seedExpenses(today: Date): Expense[] {
     }
   }
   return expenses;
+}
+
+/** Stored shape: `spent`, `percent` and `status` are computed from the expenses when read. */
+export type StoredBudget = Omit<Budget, 'spent' | 'percent' | 'status'>;
+
+export function seedBudgets(): StoredBudget[] {
+  const stamp = '2026-01-01T09:00:00+07:00';
+  return [
+    { id: 1, amount: 40000, currency: 'USD', alert_percent: 80, created_at: stamp, updated_at: stamp },
+    { id: 2, amount: 800000, currency: 'KHR', alert_percent: 80, created_at: stamp, updated_at: stamp },
+  ];
 }
 
 type GoalSeed = {

@@ -24,6 +24,9 @@ export enum ApiEndpoint {
   ExpenseDetail = '/expenses/:id',
   ExpenseSummary = '/expenses/summary',
 
+  Budgets = '/budgets',
+  BudgetDetail = '/budgets/:id',
+
   PlanAreas = '/plan-areas',
 
   Plans = '/plans',
