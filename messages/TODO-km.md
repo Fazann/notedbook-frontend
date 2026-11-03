@@ -134,3 +134,9 @@ Machine-drafted — please review `nav.budgets`, `budget.*` and `errors.BUDGET_E
 
 Machine-drafted — please review `calendar.scheduleCount`, `calendar.scheduleMore` and `calendar.schedule.*`
 (the user's activities shown in the calendar; `repeats` = the activity is part of a repeating series).
+
+## Currencies setting
+
+Machine-drafted — please review `settings.tabCurrencies`, `settings.description`, `settings.currencies.*` and
+`budget.spending.*` (the "Spent this month" card on the budgets page), and `errors.NO_CURRENCY_ENABLED` /
+`errors.DEFAULT_CURRENCY_NOT_ENABLED` (same text as the API's `pkg/i18n/locales/km.yml`).

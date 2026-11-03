@@ -13,10 +13,10 @@ import { ChartContainer, ChartTooltip, ChartTooltipContent, type ChartConfig } f
 import { Skeleton } from '@/components/ui/skeleton';
 import { useCategoryOptions, useExpenseSummary } from '@/features/expense/hooks';
 import { useCategoryName } from '@/features/expense/use-category-name';
+import { useDefaultCurrency, useEnabledCurrencies } from '@/hooks/use-currencies';
 import { Link, useRouter } from '@/i18n/navigation';
 import { formatMoney, type Currency } from '@/lib/money';
 import { cn } from '@/lib/utils';
-import { usePreferencesStore } from '@/stores/preferences-store';
 
 import { categoryShares } from '../utils';
 
@@ -33,8 +33,11 @@ export function CategoryBreakdownChart({ month, className }: CategoryBreakdownCh
   const locale = useLocale();
   const router = useRouter();
   const categoryName = useCategoryName();
-  const defaultCurrency = usePreferencesStore((s) => s.defaultCurrency);
-  const [currency, setCurrency] = useState<Currency>(defaultCurrency);
+  const defaultCurrency = useDefaultCurrency();
+  const currencies = useEnabledCurrencies();
+  const [picked, setCurrency] = useState<Currency>(defaultCurrency);
+  // The picked currency may have been disabled in Settings since.
+  const currency = currencies.includes(picked) ? picked : (currencies[0] ?? picked);
   const summary = useExpenseSummary(month);
   const categories = useCategoryOptions();
 
@@ -154,7 +157,7 @@ export function CategoryBreakdownChart({ month, className }: CategoryBreakdownCh
       className={className}
       title={t('title')}
       description={t('description')}
-      action={<CurrencyTabs value={currency} onChange={setCurrency} />}
+      action={<CurrencyTabs value={currency} currencies={currencies} onChange={setCurrency} />}
     >
       {renderBody()}
     </SectionCard>

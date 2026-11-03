@@ -1,6 +1,7 @@
 'use client';
 
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
+import { useCurrencySettings } from '@/hooks/use-currencies';
 import { useMediaQuery } from '@/hooks/use-media-query';
 import { usePreferencesStore } from '@/stores/preferences-store';
 
@@ -25,6 +26,8 @@ export function AppShell({ children, headerUser, sidebarUser, overlays }: AppShe
   const isDesktop = useMediaQuery('(min-width: 1024px)');
   const isCollapsed = usePreferencesStore((s) => s.isSidebarCollapsed);
   const setCollapsed = usePreferencesStore((s) => s.setSidebarCollapsed);
+  // Load the currency settings once for the whole app, so quick add opens in the right default currency.
+  useCurrencySettings();
 
   // Desktop: always expanded. Tablet: collapsible to icons, remembered in preferences.
   // Phone: the shadcn Sidebar renders as a Sheet and manages its own open state.

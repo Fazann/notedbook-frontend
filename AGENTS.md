@@ -507,6 +507,30 @@ using a stable `key` from the API (e.g. `category.food`), falling back to `name`
   and tell the user.
 - Do not commit `.env`, build output, or `node_modules`.
 
+## Regression check (after every feature or change)
+
+Every change — a new feature, a bug fix, a refactor, even a "small" tweak — must be checked for regressions
+before you say it is done. A change is not finished just because the new behavior works.
+
+1. **Record a baseline first.** Before editing, run `pnpm lint`, `pnpm typecheck` and `pnpm test` (or note
+   the result from a clean `main`) so you know which failures already existed.
+2. **Find what you touched.** For every changed export (component, hook, prop, store field, util, type,
+   translation key, query key), search its call sites (`grep -rn "<name>" src`) and check each one still
+   works. Changing a shared piece (`components/shared`, `lib/`, `hooks/`, `stores/`, `services/`) means
+   checking **every** feature that uses it.
+3. **Re-run the checks** (`pnpm lint && pnpm format:check && pnpm typecheck && pnpm test`) and compare with
+   the baseline: no new errors, no new failing tests, no tests deleted or skipped to make the run pass.
+4. **Check related flows in the browser** (`pnpm dev`): the screen you changed plus every screen that shares
+   its data or components. For example, a currency change touches expenses, budgets and the dashboard. Check
+   it in `en` and `km`, at 360px and 1280px.
+5. **Check data flows:** mutations still invalidate the same queries, optimistic updates still roll back,
+   persisted Zustand stores still load old saved data (new fields need defaults; bump the version or add a
+   `migrate` if the shape changes).
+6. **Add a test for what could break:** a behavior you changed or a bug you fixed gets a test that fails
+   without your change.
+7. **Report honestly.** In your final message, list what you checked, any failures that existed before your
+   change (and that they are not yours), and anything you could not check.
+
 ## Definition of done
 
 - [ ] `pnpm lint`, `pnpm format:check`, `pnpm typecheck`, `pnpm test` all pass; `pnpm build` passes for larger changes
@@ -520,6 +544,8 @@ using a stable `key` from the API (e.g. `category.food`), falling back to `name`
 - [ ] Works on mobile width (375px) and keyboard only
 - [ ] Related queries invalidated / optimistic updates rolled back on error
 - [ ] Tests added or updated
+- [ ] Regression check done (see above): call sites reviewed, no new lint / type / test failures compared
+      with the baseline, related screens still work
 
 <!-- BEGIN:nextjs-agent-rules -->
 

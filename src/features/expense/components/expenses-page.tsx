@@ -18,10 +18,11 @@ import { OptionSelect } from '@/components/shared/option-select';
 import { Pagination } from '@/components/shared/pagination';
 import { Button } from '@/components/ui/button';
 import { BudgetAlerts } from '@/features/budget/components/budget-alerts';
+import { useEnabledCurrencies } from '@/hooks/use-currencies';
 import { useErrorMessage } from '@/hooks/use-error-message';
 import { useListParams } from '@/hooks/use-list-params';
 import { currentMonth, parseDate, utcDate } from '@/lib/dates';
-import { CURRENCIES, formatMoney } from '@/lib/money';
+import { formatMoney } from '@/lib/money';
 
 import { useCategoryOptions, useCreateExpense, useDeleteExpense, useExpenseList } from '../hooks';
 import { EXPENSE_DEFAULT_SORT, EXPENSE_FILTER_KEYS, EXPENSE_SORT_KEYS, type Expense } from '../types';
@@ -60,6 +61,8 @@ export function ExpensesPage() {
   const { params, setPage, setFilter } = list;
   const thisMonth = currentMonth();
   const filters = parseExpenseFilters(list.filters, thisMonth);
+  // The filter offers the enabled currencies, plus the one in the URL if it was disabled since.
+  const currencies = useEnabledCurrencies(filters.currency ? [filters.currency] : []);
   const query = useExpenseList({ ...params, ...filters });
   const categories = useCategoryOptions();
   const remove = useDeleteExpense();
@@ -174,7 +177,7 @@ export function ExpensesPage() {
   ];
   const currencyOptions = [
     { value: ALL, label: t('filters.allCurrencies') },
-    ...CURRENCIES.map((c) => ({ value: c, label: tCurrency(c) })),
+    ...currencies.map((c) => ({ value: c, label: tCurrency(c) })),
   ];
 
   const deletingCategory = deleting ? categoryOf(deleting) : undefined;

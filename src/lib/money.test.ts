@@ -1,6 +1,13 @@
 import { describe, expect, it } from 'vitest';
 
-import { formatMoney, minorToInput, parseMoneyInput } from './money';
+import {
+  formatMoney,
+  minorToInput,
+  parseMoneyInput,
+  pickCurrencies,
+  toggleCurrency,
+  withDefaultCurrency,
+} from './money';
 
 describe('formatMoney', () => {
   it('formats USD cents', () => {
@@ -63,5 +70,45 @@ describe('minorToInput', () => {
     for (const amount of [0, 1, 99, 100, 123456]) {
       expect(parseMoneyInput(minorToInput(amount, 'USD'), 'USD')).toBe(amount);
     }
+  });
+});
+
+describe('pickCurrencies', () => {
+  it('keeps the fixed order and only the enabled currencies', () => {
+    expect(pickCurrencies(['MYR', 'USD'])).toEqual(['USD', 'MYR']);
+  });
+
+  it('also shows disabled currencies that still have data, without duplicates', () => {
+    expect(pickCurrencies(['USD'], ['KHR', 'USD'])).toEqual(['USD', 'KHR']);
+  });
+});
+
+describe('toggleCurrency', () => {
+  const all = { enabled: ['USD', 'KHR', 'MYR'] as const, defaultCurrency: 'USD' as const };
+  const settings = { ...all, enabled: [...all.enabled] };
+
+  it('turns a currency off and moves the default off it', () => {
+    expect(toggleCurrency(settings, 'USD', false)).toEqual({ enabled: ['KHR', 'MYR'], defaultCurrency: 'KHR' });
+  });
+
+  it('never turns off the last currency', () => {
+    const one = { enabled: ['MYR' as const], defaultCurrency: 'MYR' as const };
+    expect(toggleCurrency(one, 'MYR', false)).toBe(one);
+  });
+
+  it('turns a currency back on in the fixed order', () => {
+    expect(toggleCurrency({ enabled: ['MYR'], defaultCurrency: 'MYR' }, 'USD', true)).toEqual({
+      enabled: ['USD', 'MYR'],
+      defaultCurrency: 'MYR',
+    });
+  });
+});
+
+describe('withDefaultCurrency', () => {
+  it('sets the default and turns it on', () => {
+    expect(withDefaultCurrency({ enabled: ['USD'], defaultCurrency: 'USD' }, 'KHR')).toEqual({
+      enabled: ['USD', 'KHR'],
+      defaultCurrency: 'KHR',
+    });
   });
 });

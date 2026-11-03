@@ -1,6 +1,45 @@
 export const CURRENCIES = ['USD', 'KHR', 'MYR'] as const;
 export type Currency = (typeof CURRENCIES)[number];
 
+/** The user's currency settings (saved by the API): what they record expenses in, and the default for new ones. */
+export type CurrencySettings = {
+  /** In the fixed `CURRENCIES` order; never empty. */
+  enabled: Currency[];
+  /** One of `enabled`. */
+  defaultCurrency: Currency;
+};
+
+/** What a user who never saved settings has (and what the app uses until they load). */
+export const DEFAULT_CURRENCY_SETTINGS: CurrencySettings = { enabled: [...CURRENCIES], defaultCurrency: 'USD' };
+
+/**
+ * Turns one currency on or off. Turning off the last one changes nothing; turning off the default moves the default
+ * to the first one still on.
+ */
+export function toggleCurrency(settings: CurrencySettings, currency: Currency, on: boolean): CurrencySettings {
+  const enabled = CURRENCIES.filter((c) => (c === currency ? on : settings.enabled.includes(c)));
+  if (enabled.length === 0) return settings;
+  const defaultCurrency = enabled.includes(settings.defaultCurrency) ? settings.defaultCurrency : enabled[0];
+  return { enabled, defaultCurrency };
+}
+
+/** Makes `currency` the default, turning it on if needed. */
+export function withDefaultCurrency(settings: CurrencySettings, currency: Currency): CurrencySettings {
+  return {
+    enabled: CURRENCIES.filter((c) => c === currency || settings.enabled.includes(c)),
+    defaultCurrency: currency,
+  };
+}
+
+/**
+ * The currencies to show, in the fixed `CURRENCIES` order: the ones the user enabled, plus any in `alsoShow`
+ * (e.g. a disabled currency that still has expenses this month, or the currency of the expense being edited) so
+ * existing money is never hidden.
+ */
+export function pickCurrencies(enabled: readonly Currency[], alsoShow: readonly Currency[] = []): Currency[] {
+  return CURRENCIES.filter((c) => enabled.includes(c) || alsoShow.includes(c));
+}
+
 /** Number of minor units per major unit: USD is stored in cents, KHR in whole riel, MYR in sen. */
 const MINOR_DIGITS: Record<Currency, number> = { USD: 2, KHR: 0, MYR: 2 };
 

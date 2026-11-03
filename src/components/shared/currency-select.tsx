@@ -8,13 +8,15 @@ import { cn } from '@/lib/utils';
 
 export type CurrencySelectProps = {
   value: Currency;
+  /** The options to offer (default: every currency), e.g. only the ones the user enabled. */
+  currencies?: readonly Currency[];
   onChange: (currency: Currency) => void;
   className?: string;
   id?: string;
 };
 
 /** A segmented control with one option per currency (USD / KHR / MYR) — one tap instead of opening a list. */
-export function CurrencySelect({ value, onChange, className, id }: CurrencySelectProps) {
+export function CurrencySelect({ value, currencies = CURRENCIES, onChange, className, id }: CurrencySelectProps) {
   const t = useTranslations('currency');
   return (
     <div
@@ -23,7 +25,7 @@ export function CurrencySelect({ value, onChange, className, id }: CurrencySelec
       aria-label={t('label')}
       className={cn('bg-muted inline-flex rounded-lg p-1', className)}
     >
-      {CURRENCIES.map((c) => (
+      {currencies.map((c) => (
         <Button
           key={c}
           type="button"

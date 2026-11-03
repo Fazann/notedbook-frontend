@@ -8,6 +8,18 @@ import { occurrencesByDate } from '../utils';
 
 import { ScheduleList } from './schedule-list';
 
+type Href = string | { pathname: string; query?: Record<string, string> };
+vi.mock('@/i18n/navigation', () => ({
+  Link: ({ href, children, className }: { href: Href; children: React.ReactNode; className?: string }) => (
+    <a
+      className={className}
+      href={typeof href === 'string' ? href : `${href.pathname}?${new URLSearchParams(href.query).toString()}`}
+    >
+      {children}
+    </a>
+  ),
+}));
+
 const props = { from: '2026-10-26', to: '2026-12-06', today: '2026-11-03', isError: false, onRetry: vi.fn() };
 
 const gym: Occurrence = {
@@ -29,7 +41,7 @@ describe('ScheduleList', () => {
     expect(screen.getByText('Gym')).toBeInTheDocument();
     expect(screen.getByText('Olympic Stadium')).toBeInTheDocument();
     expect(screen.getByText('Repeats')).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Wednesday, 4 November' })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: 'Wednesday, November 4' })).toHaveAttribute(
       'href',
       expect.stringContaining('/schedule?view=day&date=2026-11-04')
     );

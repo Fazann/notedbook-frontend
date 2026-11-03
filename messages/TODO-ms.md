@@ -50,3 +50,8 @@ Machine-drafted — please review `nav.budgets`, `budget.*` and `errors.BUDGET_E
 ## Calendar — schedule
 
 Machine-drafted — please review `calendar.scheduleCount`, `calendar.scheduleMore` and `calendar.schedule.*`.
+
+## Currencies setting
+
+Machine-drafted — please review `settings.tabCurrencies`, `settings.description`, `settings.currencies.*`,
+`budget.spending.*` and `errors.NO_CURRENCY_ENABLED` / `errors.DEFAULT_CURRENCY_NOT_ENABLED`.

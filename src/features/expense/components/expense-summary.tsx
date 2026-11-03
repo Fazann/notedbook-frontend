@@ -7,7 +7,8 @@ import { ErrorState } from '@/components/shared/error-state';
 import { MoneyText } from '@/components/shared/money-text';
 import { StatCard } from '@/components/shared/stat-card';
 import { Card } from '@/components/ui/card';
-import { CURRENCIES, type Currency } from '@/lib/money';
+import { useEnabledCurrencies } from '@/hooks/use-currencies';
+import { type Currency } from '@/lib/money';
 
 import { useExpenseSummary } from '../hooks';
 
@@ -19,11 +20,16 @@ const CURRENCY_CARDS = {
   MYR: { label: 'summary.spentMyr', icon: <Banknote /> },
 } as const satisfies Record<Currency, { label: string; icon: React.ReactNode }>;
 
-/** Month totals: each currency is always shown separately (never summed), plus the number of expenses. */
+/**
+ * Month totals: each enabled currency separately (never summed) — plus a disabled one that still has expenses this
+ * month — and the number of expenses in all currencies.
+ */
 export function ExpenseSummary({ month }: ExpenseSummaryProps) {
   const t = useTranslations('expense');
   const format = useFormatter();
   const summary = useExpenseSummary(month);
+  const used = summary.data?.totals.filter((x) => x.count > 0).map((x) => x.currency) ?? [];
+  const currencies = useEnabledCurrencies(used);
 
   if (summary.isError) {
     return (
@@ -35,11 +41,11 @@ export function ExpenseSummary({ month }: ExpenseSummaryProps) {
 
   const total = (currency: Currency) =>
     summary.data?.totals.find((x) => x.currency === currency) ?? { amount: 0, count: 0 };
-  const count = CURRENCIES.reduce((sum, c) => sum + total(c).count, 0);
+  const count = summary.data?.totals.reduce((sum, x) => sum + x.count, 0) ?? 0;
 
   return (
     <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
-      {CURRENCIES.map((c) => (
+      {currencies.map((c) => (
         <StatCard
           key={c}
           label={t(CURRENCY_CARDS[c].label)}

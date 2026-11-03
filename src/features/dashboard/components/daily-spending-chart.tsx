@@ -9,8 +9,8 @@ import { SectionCard } from '@/components/shared/section-card';
 import { ChartContainer, ChartTooltip, ChartTooltipContent, type ChartConfig } from '@/components/ui/chart';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useExpenses } from '@/features/expense/hooks';
+import { useDefaultCurrency, useEnabledCurrencies } from '@/hooks/use-currencies';
 import { formatMoney, type Currency } from '@/lib/money';
-import { usePreferencesStore } from '@/stores/preferences-store';
 
 import { dailyTotals } from '../utils';
 
@@ -22,8 +22,11 @@ export function DailySpendingChart({ month, className }: DailySpendingChartProps
   const t = useTranslations('dashboard.daily');
   const td = useTranslations('dashboard');
   const locale = useLocale();
-  const defaultCurrency = usePreferencesStore((s) => s.defaultCurrency);
-  const [currency, setCurrency] = useState<Currency>(defaultCurrency);
+  const defaultCurrency = useDefaultCurrency();
+  const currencies = useEnabledCurrencies();
+  const [picked, setCurrency] = useState<Currency>(defaultCurrency);
+  // The picked currency may have been disabled in Settings since.
+  const currency = currencies.includes(picked) ? picked : (currencies[0] ?? picked);
   const expenses = useExpenses(month);
 
   const config = { amount: { label: t('title'), color: 'var(--chart-1)' } } satisfies ChartConfig;
@@ -33,7 +36,7 @@ export function DailySpendingChart({ month, className }: DailySpendingChartProps
       className={className}
       title={t('title')}
       description={t('description')}
-      action={<CurrencyTabs value={currency} onChange={setCurrency} />}
+      action={<CurrencyTabs value={currency} currencies={currencies} onChange={setCurrency} />}
     >
       {expenses.isPending ? (
         <Skeleton className="h-56 w-full md:h-64" />

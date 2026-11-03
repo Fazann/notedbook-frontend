@@ -9,8 +9,9 @@ import { StatCard } from '@/components/shared/stat-card';
 import { Card } from '@/components/ui/card';
 import { useDueCards } from '@/features/board/hooks';
 import { useExpenseSummary } from '@/features/expense/hooks';
+import { useEnabledCurrencies } from '@/hooks/use-currencies';
 import { shiftMonth, todayIso } from '@/lib/dates';
-import { CURRENCIES, type Currency } from '@/lib/money';
+import { type Currency } from '@/lib/money';
 import { cn } from '@/lib/utils';
 
 import { percentChange, totalFor } from '../utils';
@@ -28,6 +29,8 @@ export function SpendingStats({ month }: SpendingStatsProps) {
   const summary = useExpenseSummary(month);
   const previous = useExpenseSummary(shiftMonth(month, -1));
   const dueCards = useDueCards(7);
+  // Enabled currencies, plus a disabled one that still has expenses this month.
+  const currencies = useEnabledCurrencies(summary.data?.totals.filter((x) => x.count > 0).map((x) => x.currency) ?? []);
 
   if (summary.isError || previous.isError) {
     return (
@@ -49,7 +52,7 @@ export function SpendingStats({ month }: SpendingStatsProps) {
 
   return (
     <div className={cn('col-span-full grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4', 'xl:grid-cols-5')}>
-      {CURRENCIES.map((c) => {
+      {currencies.map((c) => {
         const total = totalFor(summary.data, c);
         return (
           <StatCard
@@ -68,7 +71,7 @@ export function SpendingStats({ month }: SpendingStatsProps) {
         isLoading={isLoading}
         value={
           <span className="flex flex-col gap-1 text-sm font-medium">
-            {CURRENCIES.map((c) => (
+            {currencies.map((c) => (
               <Trend
                 key={c}
                 currency={c}

@@ -34,7 +34,8 @@ const NO_SCHEDULE = new Map<string, Occurrence[]>();
 
 /**
  * A read-only month: Gregorian day numbers, the Khmer lunar / Hijri date under each, holidays in red with a dot
- * (phones) or their name (tablet+), and the user's activities as colored dots (phones) or time + title (tablet+). Every cell has a full text label for screen readers.
+ * (phones) or their name (tablet+), and the user's activities as colored dots (phones) or time + title (tablet+).
+ * Every cell has a full text label for screen readers.
  */
 export function MonthGrid({
   month,

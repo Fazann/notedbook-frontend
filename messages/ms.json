@@ -380,6 +380,13 @@
       "title": "Padam bajet ini?",
       "description": "Had {currency} sebanyak {amount} akan dibuang. Perbelanjaan anda tidak berubah.",
       "confirm": "Padam bajet"
+    },
+    "spending": {
+      "title": "Dibelanjakan bulan ini",
+      "description": "Semua mata wang, setiap satu dikira berasingan",
+      "loadError": "Tidak dapat memuatkan perbelanjaan bulan ini",
+      "count": "{count, plural, =0 {Tiada perbelanjaan} other {{formatted} perbelanjaan}}",
+      "currencyLine": "{currency} · {count, plural, other {# perbelanjaan}}"
     }
   },
   "planning": {
@@ -852,14 +859,17 @@
     "FILE_TOO_LARGE": "Fail terlalu besar.",
     "INVALID_ATTACHMENT_TYPE": "Jenis fail ini tidak dibenarkan.",
     "ATTACHMENT_IN_USE": "Fail ini sudah digunakan. Sila muat naik semula.",
-    "BUDGET_EXISTS": "Anda sudah mempunyai bajet dalam mata wang ini."
+    "BUDGET_EXISTS": "Anda sudah mempunyai bajet dalam mata wang ini.",
+    "NO_CURRENCY_ENABLED": "Hidupkan sekurang-kurangnya satu mata wang.",
+    "DEFAULT_CURRENCY_NOT_ENABLED": "Mata wang lalai mesti salah satu mata wang yang anda hidupkan."
   },
   "settings": {
     "title": "Tetapan",
-    "description": "Urus profil dan kata laluan anda.",
+    "description": "Urus profil, kata laluan dan mata wang anda.",
     "navLabel": "Bahagian tetapan",
     "tabProfile": "Profil",
     "tabPassword": "Kata laluan",
+    "tabCurrencies": "Mata wang",
     "profile": {
       "title": "Profil",
       "description": "Nama, nama pengguna dan e-mel anda.",
@@ -886,6 +896,18 @@
       "confirm": "Sahkan kata laluan baharu",
       "submit": "Tukar kata laluan",
       "changed": "Kata laluan ditukar"
+    },
+    "currencies": {
+      "title": "Mata wang",
+      "description": "Pilih mata wang yang anda belanjakan. Yang lain disembunyikan dalam borang, penapis dan jumlah; perbelanjaan sedia ada anda disimpan.",
+      "enabled": "Mata wang yang saya guna",
+      "enabledHint": "Matikan mata wang yang anda tidak guna.",
+      "currencyName": "{currency}",
+      "lastOne": "Sekurang-kurangnya satu mata wang mesti kekal hidup.",
+      "default": "Mata wang lalai",
+      "defaultHint": "Perbelanjaan dan bajet baharu bermula dalam mata wang ini.",
+      "saved": "Mata wang disimpan",
+      "loadError": "Tidak dapat memuatkan mata wang anda"
     }
   },
   "help": {

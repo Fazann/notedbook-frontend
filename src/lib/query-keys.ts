@@ -16,6 +16,8 @@ export const qk = {
     page: <P extends ListParams>(params: P) => ['expenses', 'page', params] as const,
     summary: (month: string) => ['expenses', 'summary', month] as const,
   },
+  /** The user's enabled currencies and default one (one per user). */
+  currencySettings: ['currency-settings'] as const,
   budgets: {
     all: ['budgets'] as const,
     list: (month: string) => ['budgets', 'list', month] as const,

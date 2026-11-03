@@ -12,6 +12,7 @@ import { MoneyInput } from '@/components/shared/money-input';
 import { ResponsiveDialog } from '@/components/shared/responsive-dialog';
 import { Button } from '@/components/ui/button';
 import { FieldGroup } from '@/components/ui/field';
+import { useEnabledCurrencies } from '@/hooks/use-currencies';
 import { useErrorMessage } from '@/hooks/use-error-message';
 import { minorToInput, parseMoneyInput, type Currency } from '@/lib/money';
 import { ApiError } from '@/services/core/api-call';
@@ -58,6 +59,8 @@ function BudgetForm({ budget, defaultCurrency, onDone }: BudgetFormProps) {
   const t = useTranslations('budget');
   const tc = useTranslations('common');
   const errorMessage = useErrorMessage();
+  // A budget in a currency that is now disabled can still be edited in it.
+  const currencies = useEnabledCurrencies(budget ? [budget.currency] : []);
   const create = useCreateBudget();
   const update = useUpdateBudget();
   const isSaving = create.isPending || update.isPending;
@@ -127,7 +130,12 @@ function BudgetForm({ budget, defaultCurrency, onDone }: BudgetFormProps) {
           </FormField>
           <FormField {...common} name="currency" label={t('form.currency')}>
             {({ field, id }) => (
-              <CurrencySelect id={id} value={field.value} onChange={(c: Currency) => field.onChange(c)} />
+              <CurrencySelect
+                id={id}
+                value={field.value}
+                currencies={currencies}
+                onChange={(c: Currency) => field.onChange(c)}
+              />
             )}
           </FormField>
         </div>

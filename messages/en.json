@@ -380,6 +380,13 @@
       "title": "Delete this budget?",
       "description": "The {currency} limit of {amount} will be removed. Your expenses are not changed.",
       "confirm": "Delete budget"
+    },
+    "spending": {
+      "title": "Spent this month",
+      "description": "All currencies, each counted separately",
+      "loadError": "Could not load this month's expenses",
+      "count": "{count, plural, =0 {No expenses} one {{formatted} expense} other {{formatted} expenses}}",
+      "currencyLine": "{currency} · {count, plural, one {# expense} other {# expenses}}"
     }
   },
   "planning": {
@@ -852,14 +859,17 @@
     "FILE_TOO_LARGE": "The file is too large.",
     "INVALID_ATTACHMENT_TYPE": "This file type is not allowed.",
     "ATTACHMENT_IN_USE": "This file is already used. Please upload it again.",
-    "BUDGET_EXISTS": "You already have a budget in this currency."
+    "BUDGET_EXISTS": "You already have a budget in this currency.",
+    "NO_CURRENCY_ENABLED": "Turn on at least one currency.",
+    "DEFAULT_CURRENCY_NOT_ENABLED": "The default currency must be one of the currencies you turned on."
   },
   "settings": {
     "title": "Settings",
-    "description": "Manage your profile and password.",
+    "description": "Manage your profile, password and currencies.",
     "navLabel": "Settings sections",
     "tabProfile": "Profile",
     "tabPassword": "Password",
+    "tabCurrencies": "Currencies",
     "profile": {
       "title": "Profile",
       "description": "Your name, username and email.",
@@ -886,6 +896,18 @@
       "confirm": "Confirm new password",
       "submit": "Change password",
       "changed": "Password changed"
+    },
+    "currencies": {
+      "title": "Currencies",
+      "description": "Choose the currencies you spend in. The others are hidden in forms, filters and totals; your existing expenses are kept.",
+      "enabled": "Currencies I use",
+      "enabledHint": "Turn off the currencies you don't use.",
+      "currencyName": "{currency}",
+      "lastOne": "At least one currency must stay on.",
+      "default": "Default currency",
+      "defaultHint": "New expenses and budgets start in this currency.",
+      "saved": "Currencies saved",
+      "loadError": "Could not load your currencies"
     }
   },
   "help": {

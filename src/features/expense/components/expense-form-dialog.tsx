@@ -14,11 +14,11 @@ import { ResponsiveDialog } from '@/components/shared/responsive-dialog';
 import { Button } from '@/components/ui/button';
 import { FieldGroup } from '@/components/ui/field';
 import { Skeleton } from '@/components/ui/skeleton';
+import { useDefaultCurrency, useEnabledCurrencies } from '@/hooks/use-currencies';
 import { useErrorMessage } from '@/hooks/use-error-message';
 import { todayIso } from '@/lib/dates';
 import { minorToInput, parseMoneyInput, type Currency } from '@/lib/money';
 import { ApiError } from '@/services/core/api-call';
-import { usePreferencesStore } from '@/stores/preferences-store';
 
 import { useCategoryOptions, useCreateExpense, useUpdateExpense } from '../hooks';
 import { expenseFormSchema, type Expense, type ExpenseFormValues } from '../types';
@@ -53,7 +53,9 @@ function ExpenseForm({ expense, onDone }: { expense?: Expense; onDone: () => voi
   const t = useTranslations('expense');
   const tc = useTranslations('common');
   const errorMessage = useErrorMessage();
-  const defaultCurrency = usePreferencesStore((s) => s.defaultCurrency);
+  const defaultCurrency = useDefaultCurrency();
+  // An expense saved in a currency that is now disabled can still be edited in it.
+  const currencies = useEnabledCurrencies(expense ? [expense.currency] : []);
   const categories = useCategoryOptions();
   const create = useCreateExpense();
   const update = useUpdateExpense();
@@ -125,7 +127,12 @@ function ExpenseForm({ expense, onDone }: { expense?: Expense; onDone: () => voi
           </FormField>
           <FormField {...common} name="currency" label={t('currency')}>
             {({ field, id }) => (
-              <CurrencySelect id={id} value={field.value} onChange={(c: Currency) => field.onChange(c)} />
+              <CurrencySelect
+                id={id}
+                value={field.value}
+                currencies={currencies}
+                onChange={(c: Currency) => field.onChange(c)}
+              />
             )}
           </FormField>
         </div>
