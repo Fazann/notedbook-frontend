@@ -10,16 +10,20 @@ import { useMounted } from '@/hooks/use-mounted';
 import { formatMonth } from '@/lib/calendar-locale';
 import { todayInTz } from '@/lib/time';
 
-import { useHolidays } from '../hooks';
+import { useHolidays, useScheduleOccurrences } from '../hooks';
 import { useCalendarFormat } from '../use-calendar-format';
 import { useCalendarParams } from '../use-calendar-params';
-import { groupHolidays, holidayQuery, holidaysByDate } from '../utils';
+import { gridRange, groupHolidays, holidayQuery, holidaysByDate, monthWeeks, occurrencesByDate } from '../utils';
 
 import { CalendarToolbar } from './calendar-toolbar';
 import { HolidayList } from './holiday-list';
 import { MonthGrid } from './month-grid';
+import { ScheduleList } from './schedule-list';
 
-/** A month calendar: international only, or with Khmer lunar / Hijri dates, holidays in red and listed below. */
+/**
+ * A month calendar: international only, or with Khmer lunar / Hijri dates, holidays in red and listed below, plus the
+ * user's schedule on the shown dates (in the grid and listed below).
+ */
 export function CalendarPage() {
   const t = useTranslations('calendar');
   const locale = useLocale();
@@ -36,6 +40,11 @@ export function CalendarPage() {
   const byDate = useMemo(() => holidaysByDate(holidays.data ?? []), [holidays.data]);
   const ranges = useMemo(() => holidays.data && groupHolidays(holidays.data, month), [holidays.data, month]);
   const monthLabel = formatMonth(month, locale);
+
+  // The user's schedule on every date the grid shows (incl. the days of the previous / next month that fill the rows).
+  const { from, to } = useMemo(() => gridRange(monthWeeks(month)), [month]);
+  const occurrences = useScheduleOccurrences(from, to);
+  const schedule = useMemo(() => occurrences.data && occurrencesByDate(occurrences.data), [occurrences.data]);
 
   return (
     <div className="space-y-4 md:space-y-6">
@@ -66,7 +75,14 @@ export function CalendarPage() {
             ))}
         </div>
         {mounted ? (
-          <MonthGrid month={month} system={system} today={today} holidays={byDate} label={monthLabel} />
+          <MonthGrid
+            month={month}
+            system={system}
+            today={today}
+            holidays={byDate}
+            schedule={schedule}
+            label={monthLabel}
+          />
         ) : (
           <Skeleton className="mx-4 mb-4 h-96 md:mx-6" />
         )}
@@ -87,6 +103,15 @@ export function CalendarPage() {
           onRetry={() => void holidays.refetch()}
         />
       )}
+
+      <ScheduleList
+        from={from}
+        to={to}
+        today={today}
+        schedule={mounted ? schedule : undefined}
+        isError={occurrences.isError}
+        onRetry={() => void occurrences.refetch()}
+      />
     </div>
   );
 }

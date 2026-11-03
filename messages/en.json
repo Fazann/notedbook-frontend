@@ -679,6 +679,9 @@
     "today": "Today",
     "legend": "Holiday",
     "holidayLabel": "Holiday: {name}",
+    "scheduleCount": "{count, plural, one {# activity} other {# activities}}",
+    "scheduleItem": "{time} {title}",
+    "scheduleMore": "+{count} more",
     "lunarDay": "{day} {phase, select, waxing {Kert} other {Roach}}",
     "lunarDate": "{day} {phase, select, waxing {Kert} other {Roach}}, {month}",
     "khmerMonthNote": "{months} · {year} BE",
@@ -732,6 +735,15 @@
       "empty": "No holidays this month",
       "loadError": "Could not load holidays",
       "note": "Dates of lunar and Islamic holidays can differ by a day from the official announcement."
+    },
+    "schedule": {
+      "title": "My schedule",
+      "description": "Your activities from {range}",
+      "empty": "Nothing scheduled on these dates",
+      "loadError": "Could not load your schedule",
+      "open": "Open schedule",
+      "today": "Today",
+      "repeats": "Repeats"
     },
     "holidayNames": {
       "newYear": "International New Year's Day",

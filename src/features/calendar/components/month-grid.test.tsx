@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 
 import { renderWithIntl } from '@/test/render';
 
-import { holidaysByDate } from '../utils';
+import { holidaysByDate, occurrencesByDate } from '../utils';
 
 import { MonthGrid } from './month-grid';
 
@@ -40,5 +40,40 @@ describe('MonthGrid', () => {
       locale: 'km',
     });
     expect(screen.getByText('9រោច', { selector: 'span:not(.sr-only)' })).toBeInTheDocument();
+  });
+
+  it('shows the schedule on every shown day, with "+N more" past two', () => {
+    const occ = (key: string, date: string, startTime: string) => ({
+      key,
+      activityId: 1,
+      date,
+      title: key,
+      type: 'meeting' as const,
+      startTime,
+      endTime: '23:00',
+      location: '',
+      note: '',
+      isRecurring: false,
+    });
+    const schedule = occurrencesByDate([
+      occ('Stand-up', '2026-11-04', '09:00'),
+      occ('Review', '2026-11-04', '10:00'),
+      occ('Retro', '2026-11-04', '16:00'),
+      occ('Lunch', '2026-10-29', '12:00'),
+    ]);
+    renderWithIntl(
+      <MonthGrid
+        month="2026-11"
+        system="gregorian"
+        today="2026-11-02"
+        holidays={new Map()}
+        schedule={schedule}
+        label="Nov"
+      />
+    );
+    const day = cell(/^Wednesday, 4 November 2026/);
+    expect(day).toHaveTextContent('3 activities');
+    expect(within(day).getByText('+1 more')).toBeInTheDocument();
+    expect(cell(/^Thursday, 29 October 2026/)).toHaveTextContent('Lunch');
   });
 });

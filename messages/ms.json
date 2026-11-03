@@ -679,6 +679,9 @@
     "today": "Hari ini",
     "legend": "Hari cuti",
     "holidayLabel": "Hari cuti: {name}",
+    "scheduleCount": "{count, plural, other {# aktiviti}}",
+    "scheduleItem": "{time} {title}",
+    "scheduleMore": "+{count} lagi",
     "lunarDay": "{day} {phase, select, waxing {Kert} other {Roach}}",
     "lunarDate": "{day} {phase, select, waxing {Kert} other {Roach}}, {month}",
     "khmerMonthNote": "{months} · {year} BE",
@@ -732,6 +735,15 @@
       "empty": "Tiada hari cuti bulan ini",
       "loadError": "Tidak dapat memuatkan hari cuti",
       "note": "Tarikh cuti lunar dan Islam mungkin berbeza sehari daripada pengumuman rasmi."
+    },
+    "schedule": {
+      "title": "Jadual saya",
+      "description": "Aktiviti anda dari {range}",
+      "empty": "Tiada jadual pada tarikh ini",
+      "loadError": "Tidak dapat memuatkan jadual anda",
+      "open": "Buka jadual",
+      "today": "Hari ini",
+      "repeats": "Berulang"
     },
     "holidayNames": {
       "newYear": "Tahun Baru",

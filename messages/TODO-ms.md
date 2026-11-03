@@ -46,3 +46,7 @@ moon phases are romanized Khmer on purpose; `calendar.holidayNames.*` for Cambod
 ## Budget
 
 Machine-drafted — please review `nav.budgets`, `budget.*` and `errors.BUDGET_EXISTS`.
+
+## Calendar — schedule
+
+Machine-drafted — please review `calendar.scheduleCount`, `calendar.scheduleMore` and `calendar.schedule.*`.

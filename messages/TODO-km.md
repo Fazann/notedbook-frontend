@@ -129,3 +129,8 @@ Machine-drafted — please review `nav.calendar` and `calendar.*`, especially:
 ## Budget
 
 Machine-drafted — please review `nav.budgets`, `budget.*` and `errors.BUDGET_EXISTS`.
+
+## Calendar — schedule
+
+Machine-drafted — please review `calendar.scheduleCount`, `calendar.scheduleMore` and `calendar.schedule.*`
+(the user's activities shown in the calendar; `repeats` = the activity is part of a repeating series).

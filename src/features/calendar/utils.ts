@@ -1,3 +1,4 @@
+import type { Occurrence } from '@/features/schedule/types';
 import { addDays, startOfWeek } from '@/lib/time';
 
 import type { CalendarSystem, Holiday, HolidayQuery, HolidayRange } from './types';
@@ -43,5 +44,21 @@ export function groupHolidays(holidays: Holiday[], month: string): HolidayRange[
 export function holidaysByDate(holidays: Holiday[]): Map<string, Holiday[]> {
   const map = new Map<string, Holiday[]>();
   for (const holiday of holidays) map.set(holiday.date, [...(map.get(holiday.date) ?? []), holiday]);
+  return map;
+}
+
+/** First and last date the grid of `weeks` shows (see `monthWeeks`). */
+export function gridRange(weeks: string[][]): { from: string; to: string } {
+  return { from: weeks[0][0], to: weeks.at(-1)?.at(-1) ?? weeks[0][0] };
+}
+
+/** Schedule occurrences by date, each day sorted by start time, then end time. */
+export function occurrencesByDate(occurrences: Occurrence[]): Map<string, Occurrence[]> {
+  const map = new Map<string, Occurrence[]>();
+  const sorted = [...occurrences].sort(
+    (a, b) =>
+      a.date.localeCompare(b.date) || a.startTime.localeCompare(b.startTime) || a.endTime.localeCompare(b.endTime)
+  );
+  for (const o of sorted) map.set(o.date, [...(map.get(o.date) ?? []), o]);
   return map;
 }

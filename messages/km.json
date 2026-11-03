@@ -679,6 +679,9 @@
     "today": "ថ្ងៃនេះ",
     "legend": "ថ្ងៃឈប់សម្រាក",
     "holidayLabel": "ថ្ងៃឈប់សម្រាក៖ {name}",
+    "scheduleCount": "សកម្មភាព {count}",
+    "scheduleItem": "{time} {title}",
+    "scheduleMore": "+{count} ទៀត",
     "lunarDay": "{day}{phase, select, waxing {កើត} other {រោច}}",
     "lunarDate": "{day}{phase, select, waxing {កើត} other {រោច}} ខែ{month}",
     "khmerMonthNote": "ខែ{months} ព.ស. {year}",
@@ -732,6 +735,15 @@
       "empty": "គ្មានថ្ងៃឈប់សម្រាកក្នុងខែនេះទេ",
       "loadError": "មិនអាចផ្ទុកថ្ងៃឈប់សម្រាកបានទេ",
       "note": "កាលបរិច្ឆេទថ្ងៃបុណ្យតាមចន្ទគតិ និងអ៊ីស្លាម អាចខុសពីការប្រកាសផ្លូវការមួយថ្ងៃ។"
+    },
+    "schedule": {
+      "title": "កាលវិភាគរបស់ខ្ញុំ",
+      "description": "សកម្មភាពរបស់អ្នកពី {range}",
+      "empty": "គ្មានកាលវិភាគនៅថ្ងៃទាំងនេះទេ",
+      "loadError": "មិនអាចផ្ទុកកាលវិភាគរបស់អ្នកបានទេ",
+      "open": "បើកកាលវិភាគ",
+      "today": "ថ្ងៃនេះ",
+      "repeats": "ធ្វើម្ដងទៀត"
     },
     "holidayNames": {
       "newYear": "ទិវាចូលឆ្នាំសកល",

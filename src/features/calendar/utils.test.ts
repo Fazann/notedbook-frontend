@@ -1,7 +1,9 @@
 import { describe, expect, it } from 'vitest';
 
+import type { Occurrence } from '@/features/schedule/types';
+
 import type { Holiday } from './types';
-import { groupHolidays, holidayQuery, holidaysByDate, monthWeeks } from './utils';
+import { gridRange, groupHolidays, holidayQuery, holidaysByDate, monthWeeks, occurrencesByDate } from './utils';
 
 describe('monthWeeks', () => {
   it('fills whole weeks from Monday (October 2026 starts on a Thursday)', () => {
@@ -67,5 +69,32 @@ describe('holidaysByDate', () => {
     const map = holidaysByDate([h('2026-01-01', 'a'), h('2026-01-01', 'b'), h('2026-01-07', 'c')]);
     expect(map.get('2026-01-01')?.map((x) => x.key)).toEqual(['a', 'b']);
     expect(map.get('2026-01-07')).toHaveLength(1);
+  });
+});
+
+describe('gridRange', () => {
+  it('spans the first to the last date the grid shows', () => {
+    expect(gridRange(monthWeeks('2026-10'))).toEqual({ from: '2026-09-28', to: '2026-11-01' });
+  });
+});
+
+describe('occurrencesByDate', () => {
+  const occ = (date: string, startTime: string, key = `${date}-${startTime}`): Occurrence => ({
+    key,
+    activityId: 1,
+    date,
+    title: key,
+    type: 'work',
+    startTime,
+    endTime: '23:00',
+    location: '',
+    note: '',
+    isRecurring: false,
+  });
+
+  it('groups by date in date order, each day sorted by start time', () => {
+    const map = occurrencesByDate([occ('2026-11-05', '14:00'), occ('2026-11-03', '09:00'), occ('2026-11-05', '08:00')]);
+    expect([...map.keys()]).toEqual(['2026-11-03', '2026-11-05']);
+    expect(map.get('2026-11-05')?.map((o) => o.startTime)).toEqual(['08:00', '14:00']);
   });
 });
