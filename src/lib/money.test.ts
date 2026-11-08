@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import {
+  estimateTotal,
   formatMoney,
   minorToInput,
   parseMoneyInput,
@@ -110,5 +111,49 @@ describe('withDefaultCurrency', () => {
       enabled: ['USD', 'KHR'],
       defaultCurrency: 'KHR',
     });
+  });
+});
+
+describe('estimateTotal', () => {
+  // Rates against USD: 1 USD = 4000 KHR = 4 MYR.
+  const usd = { USD: 1, KHR: 4000, MYR: 4 };
+
+  it('adds every currency into the target, in its minor units', () => {
+    // $12.50 + ៛40,000 ($10) + RM 20.00 ($5) = $27.50
+    const totals = [
+      { currency: 'USD' as const, amount: 1250 },
+      { currency: 'KHR' as const, amount: 40000 },
+      { currency: 'MYR' as const, amount: 2000 },
+    ];
+    expect(estimateTotal(totals, 'USD', usd)).toBe(2750);
+  });
+
+  it('rounds once, to whole riel for KHR', () => {
+    const toKhr = { KHR: 1, USD: 1 / 4000.5, MYR: 4 / 4000.5 };
+    expect(estimateTotal([{ currency: 'USD', amount: 1 }], 'KHR', toKhr)).toBe(40);
+    expect(
+      estimateTotal(
+        [
+          { currency: 'USD', amount: 1250 },
+          { currency: 'KHR', amount: 500 },
+        ],
+        'KHR',
+        toKhr
+      )
+    ).toBe(50506);
+  });
+
+  it('skips empty totals and needs a rate only for currencies with an amount', () => {
+    expect(
+      estimateTotal(
+        [
+          { currency: 'MYR', amount: 0 },
+          { currency: 'USD', amount: 100 },
+        ],
+        'USD',
+        { USD: 1 }
+      )
+    ).toBe(100);
+    expect(estimateTotal([{ currency: 'MYR', amount: 100 }], 'USD', { USD: 1 })).toBeNull();
   });
 });

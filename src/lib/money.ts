@@ -102,3 +102,26 @@ export function minorToInput(amount: number, currency: Currency): string {
   const text = String(Math.abs(amount)).padStart(digits + 1, '0');
   return `${amount < 0 ? '-' : ''}${text.slice(0, -digits)}.${text.slice(-digits)}`;
 }
+
+/**
+ * Estimates the sum of totals in several currencies as one amount in `target` (integer minor units), using `rates`
+ * against `target` (1 target = rates[code] code, as `GET /exchange-rates?base=target` sends them).
+ *
+ * This is the one place currencies are added together, and only for an "≈" display at today's rates: the result is
+ * never stored or used in other money math, so the float conversion (rounded once, at the end) is acceptable.
+ * Returns null when a currency with an amount has no rate.
+ */
+export function estimateTotal(
+  totals: readonly { currency: Currency; amount: number }[],
+  target: Currency,
+  rates: Readonly<Record<string, number>>
+): number | null {
+  let major = 0;
+  for (const { currency, amount } of totals) {
+    if (amount === 0) continue;
+    const rate = currency === target ? 1 : rates[currency];
+    if (!rate || rate <= 0) return null;
+    major += amount / 10 ** MINOR_DIGITS[currency] / rate;
+  }
+  return Math.round(major * 10 ** MINOR_DIGITS[target]);
+}

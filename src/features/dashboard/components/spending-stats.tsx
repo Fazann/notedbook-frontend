@@ -4,12 +4,14 @@ import { ArrowDownRight, ArrowUpRight, Banknote, CalendarClock, Coins, Minus, Tr
 import { useTranslations } from 'next-intl';
 
 import { ErrorState } from '@/components/shared/error-state';
+import { EstimatedTotalCard } from '@/components/shared/estimated-total-card';
 import { MoneyText } from '@/components/shared/money-text';
 import { StatCard } from '@/components/shared/stat-card';
 import { Card } from '@/components/ui/card';
 import { useDueCards } from '@/features/board/hooks';
 import { useExpenseSummary } from '@/features/expense/hooks';
 import { useEnabledCurrencies } from '@/hooks/use-currencies';
+import { useEstimatedTotal } from '@/hooks/use-estimated-total';
 import { shiftMonth, todayIso } from '@/lib/dates';
 import { type Currency } from '@/lib/money';
 import { cn } from '@/lib/utils';
@@ -29,6 +31,7 @@ export function SpendingStats({ month }: SpendingStatsProps) {
   const summary = useExpenseSummary(month);
   const previous = useExpenseSummary(shiftMonth(month, -1));
   const dueCards = useDueCards(7);
+  const estimate = useEstimatedTotal(summary.data?.totals);
   // Enabled currencies, plus a disabled one that still has expenses this month.
   const currencies = useEnabledCurrencies(summary.data?.totals.filter((x) => x.count > 0).map((x) => x.currency) ?? []);
 
@@ -51,7 +54,21 @@ export function SpendingStats({ month }: SpendingStatsProps) {
   const overdue = dueCards.data?.filter((c) => c.due_date !== null && c.due_date < today).length ?? 0;
 
   return (
-    <div className={cn('col-span-full grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4', 'xl:grid-cols-5')}>
+    <div
+      className={cn(
+        'col-span-full grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4',
+        estimate.show ? 'xl:grid-cols-6' : 'xl:grid-cols-5'
+      )}
+    >
+      {estimate.show && (
+        <EstimatedTotalCard
+          currency={estimate.currency}
+          amount={estimate.amount}
+          isLoading={isLoading || estimate.isLoading}
+          isError={estimate.isError}
+          className="col-span-2 md:col-span-1"
+        />
+      )}
       {currencies.map((c) => {
         const total = totalFor(summary.data, c);
         return (

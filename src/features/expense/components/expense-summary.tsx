@@ -4,11 +4,14 @@ import { Banknote, Coins, Receipt, Wallet } from 'lucide-react';
 import { useFormatter, useTranslations } from 'next-intl';
 
 import { ErrorState } from '@/components/shared/error-state';
+import { EstimatedTotalCard } from '@/components/shared/estimated-total-card';
 import { MoneyText } from '@/components/shared/money-text';
 import { StatCard } from '@/components/shared/stat-card';
 import { Card } from '@/components/ui/card';
 import { useEnabledCurrencies } from '@/hooks/use-currencies';
+import { useEstimatedTotal } from '@/hooks/use-estimated-total';
 import { type Currency } from '@/lib/money';
+import { cn } from '@/lib/utils';
 
 import { useExpenseSummary } from '../hooks';
 
@@ -21,8 +24,9 @@ const CURRENCY_CARDS = {
 } as const satisfies Record<Currency, { label: string; icon: React.ReactNode }>;
 
 /**
- * Month totals: each enabled currency separately (never summed) — plus a disabled one that still has expenses this
- * month — and the number of expenses in all currencies.
+ * Month totals: each enabled currency separately — plus a disabled one that still has expenses this month — and the
+ * number of expenses in all currencies. With spending in two or more currencies, an "≈" total in the default
+ * currency at today's rates comes first (an estimate; the per-currency totals are never summed otherwise).
  */
 export function ExpenseSummary({ month }: ExpenseSummaryProps) {
   const t = useTranslations('expense');
@@ -30,6 +34,7 @@ export function ExpenseSummary({ month }: ExpenseSummaryProps) {
   const summary = useExpenseSummary(month);
   const used = summary.data?.totals.filter((x) => x.count > 0).map((x) => x.currency) ?? [];
   const currencies = useEnabledCurrencies(used);
+  const estimate = useEstimatedTotal(summary.data?.totals);
 
   if (summary.isError) {
     return (
@@ -44,7 +49,21 @@ export function ExpenseSummary({ month }: ExpenseSummaryProps) {
   const count = summary.data?.totals.reduce((sum, x) => sum + x.count, 0) ?? 0;
 
   return (
-    <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
+    <div
+      className={cn(
+        'grid grid-cols-2 gap-3 md:gap-4',
+        estimate.show ? 'md:grid-cols-3 xl:grid-cols-5' : 'md:grid-cols-4'
+      )}
+    >
+      {estimate.show && (
+        <EstimatedTotalCard
+          currency={estimate.currency}
+          amount={estimate.amount}
+          isLoading={summary.isPending || estimate.isLoading}
+          isError={estimate.isError}
+          className="col-span-2 md:col-span-1"
+        />
+      )}
       {currencies.map((c) => (
         <StatCard
           key={c}

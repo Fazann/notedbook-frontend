@@ -8,8 +8,8 @@ import { ErrorState } from '@/components/shared/error-state';
 import { PageHeader } from '@/components/shared/page-header';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useDefaultCurrency, useEnabledCurrencies } from '@/hooks/use-currencies';
+import { useExchangeRates } from '@/hooks/use-exchange-rates';
 
-import { useExchangeRates } from '../hooks';
 import { visibleCurrencies } from '../utils';
 
 import { ConverterCard } from './converter-card';

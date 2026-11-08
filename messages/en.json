@@ -70,6 +70,12 @@
     "KHR": "KHR",
     "MYR": "MYR"
   },
+  "estimate": {
+    "label": "Total in {currency}",
+    "approx": "≈ {amount}",
+    "hint": "All currencies at today's rates, an estimate. <link>See rates</link>",
+    "unavailable": "Rates are not available right now. <link>See rates</link>"
+  },
   "list": {
     "search": "Search…",
     "clearSearch": "Clear search",

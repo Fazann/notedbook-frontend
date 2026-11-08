@@ -70,6 +70,12 @@
     "KHR": "KHR",
     "MYR": "MYR"
   },
+  "estimate": {
+    "label": "Jumlah dalam {currency}",
+    "approx": "≈ {amount}",
+    "hint": "Semua mata wang pada kadar hari ini, satu anggaran. <link>Lihat kadar</link>",
+    "unavailable": "Kadar tidak tersedia buat masa ini. <link>Lihat kadar</link>"
+  },
   "list": {
     "search": "Cari…",
     "clearSearch": "Kosongkan carian",

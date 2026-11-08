@@ -149,3 +149,7 @@ Machine-drafted — please review `calendar.schedule.empty`, `calendar.schedule.
 ## Currency exchange
 
 Machine-drafted — please review `nav.exchange` and every key in `exchange.*`.
+
+## Estimated total
+
+Machine-drafted — please review every key in `estimate.*` (the "≈ Total in …" card on the dashboard and expenses page).
