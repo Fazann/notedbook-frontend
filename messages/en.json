@@ -22,6 +22,7 @@
     "dashboard": "Dashboard",
     "expenses": "Expenses",
     "budgets": "Budget",
+    "exchange": "Exchange",
     "planning": "Planning",
     "schedule": "Schedule",
     "calendar": "Calendar",
@@ -776,6 +777,28 @@
       "eidAlFitr": "Eid al-Fitr",
       "eidAlAdha": "Eid al-Adha"
     }
+  },
+  "exchange": {
+    "title": "Currency exchange",
+    "description": "Convert between currencies with the latest daily rates.",
+    "converter": "Converter",
+    "amount": "Amount",
+    "invalidAmount": "Enter a number, for example 25 or 1,250.50",
+    "from": "From",
+    "to": "To",
+    "swap": "Swap currencies",
+    "pickerLabel": "{label}: {code}",
+    "rateLine": "1 {from} = {rate} {to}",
+    "ratesTitle": "Today's rates",
+    "ratesDescription": "Value of 1 {base}. Tap a currency to convert into it.",
+    "searchCurrency": "Search country or currency…",
+    "noCurrency": "No currency found",
+    "yourCurrencies": "Your currencies",
+    "allCurrencies": "All currencies",
+    "updated": "Rates updated {date}.",
+    "source": "Rates by <link>{provider}</link>.",
+    "stale": "These rates may be out of date. Showing the last rates we received.",
+    "loadError": "Could not load exchange rates"
   },
   "auth": {
     "loginTitle": "Log in",

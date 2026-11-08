@@ -22,6 +22,7 @@
     "dashboard": "Papan Pemuka",
     "expenses": "Perbelanjaan",
     "budgets": "Bajet",
+    "exchange": "Pertukaran",
     "planning": "Perancangan",
     "schedule": "Jadual",
     "calendar": "Kalendar",
@@ -776,6 +777,28 @@
       "eidAlFitr": "Hari Raya Aidilfitri",
       "eidAlAdha": "Hari Raya Haji"
     }
+  },
+  "exchange": {
+    "title": "Pertukaran mata wang",
+    "description": "Tukar antara mata wang dengan kadar harian terkini.",
+    "converter": "Penukar",
+    "amount": "Jumlah",
+    "invalidAmount": "Masukkan nombor, contohnya 25 atau 1,250.50",
+    "from": "Daripada",
+    "to": "Kepada",
+    "swap": "Tukar ganti mata wang",
+    "pickerLabel": "{label}: {code}",
+    "rateLine": "1 {from} = {rate} {to}",
+    "ratesTitle": "Kadar hari ini",
+    "ratesDescription": "Nilai 1 {base}. Ketik mata wang untuk menukar kepadanya.",
+    "searchCurrency": "Cari negara atau mata wang…",
+    "noCurrency": "Tiada mata wang ditemui",
+    "yourCurrencies": "Mata wang anda",
+    "allCurrencies": "Semua mata wang",
+    "updated": "Kadar dikemas kini {date}.",
+    "source": "Kadar oleh <link>{provider}</link>.",
+    "stale": "Kadar ini mungkin sudah lapuk. Memaparkan kadar terakhir yang kami terima.",
+    "loadError": "Tidak dapat memuatkan kadar pertukaran"
   },
   "auth": {
     "loginTitle": "Log masuk",

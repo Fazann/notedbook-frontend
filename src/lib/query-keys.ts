@@ -37,6 +37,9 @@ export const qk = {
     summary: (from: string, to: string) => ['schedule', 'summary', from, to] as const,
     activity: (id: number) => ['schedule', 'activity', id] as const,
   },
+  exchange: {
+    rates: (base: string) => ['exchange', 'rates', base] as const,
+  },
   calendar: {
     all: ['calendar'] as const,
     holidays: (year: number, country: string, kind: string) => ['calendar', 'holidays', year, country, kind] as const,

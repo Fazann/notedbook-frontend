@@ -48,6 +48,8 @@ export enum ApiEndpoint {
 
   Holidays = '/holidays',
 
+  ExchangeRates = '/exchange-rates',
+
   Boards = '/boards',
   CardsDue = '/cards/due',
 }

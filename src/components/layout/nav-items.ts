@@ -1,4 +1,5 @@
 import {
+  ArrowLeftRight,
   CalendarDays,
   CalendarRange,
   CircleDollarSign,
@@ -10,7 +11,7 @@ import {
 } from 'lucide-react';
 
 export type NavKey =
-  'dashboard' | 'expenses' | 'budgets' | 'planning' | 'schedule' | 'calendar' | 'boards' | 'settings';
+  'dashboard' | 'expenses' | 'budgets' | 'exchange' | 'planning' | 'schedule' | 'calendar' | 'boards' | 'settings';
 
 export type NavItem = { key: NavKey; href: `/${string}`; icon: LucideIcon };
 
@@ -19,6 +20,7 @@ export const MAIN_NAV: NavItem[] = [
   { key: 'dashboard', href: '/dashboard', icon: LayoutDashboard },
   { key: 'expenses', href: '/expenses', icon: Wallet },
   { key: 'budgets', href: '/budgets', icon: CircleDollarSign },
+  { key: 'exchange', href: '/exchange', icon: ArrowLeftRight },
   { key: 'planning', href: '/planning', icon: Target },
   { key: 'schedule', href: '/schedule', icon: CalendarDays },
   { key: 'calendar', href: '/calendar', icon: CalendarRange },

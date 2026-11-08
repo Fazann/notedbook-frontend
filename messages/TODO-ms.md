@@ -60,3 +60,7 @@ Machine-drafted — please review `settings.tabCurrencies`, `settings.descriptio
 
 Machine-drafted — please review `calendar.schedule.empty`, `calendar.schedule.open`, `calendar.schedule.holidays` and
 `calendar.schedule.activities`.
+
+## Currency exchange
+
+Machine-drafted — please review `nav.exchange` and every key in `exchange.*`.
