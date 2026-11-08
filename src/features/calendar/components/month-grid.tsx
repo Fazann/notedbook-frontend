@@ -177,7 +177,7 @@ export function MonthGrid({
                         <span
                           className={cn(
                             'text-muted-foreground max-w-full text-center text-[10px] leading-snug break-words',
-                            'md:ml-auto md:pt-1 md:text-right md:text-xs'
+                            'line-clamp-2 md:ml-auto md:line-clamp-none md:pt-1 md:text-right md:text-xs'
                           )}
                         >
                           {note}

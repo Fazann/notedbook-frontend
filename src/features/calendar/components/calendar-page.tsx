@@ -81,24 +81,15 @@ export function CalendarPage() {
         )}
       >
         <Card className="min-w-0 gap-0 overflow-hidden py-0">
-          <div className="flex items-center gap-2 px-4 py-3 md:px-6 md:py-4">
-            <div className="min-w-0 flex-1 space-y-0.5">
-              <h2 className="text-xl font-semibold md:text-2xl" aria-live="polite">
-                {monthLabel}
-              </h2>
-              {system !== 'gregorian' &&
-                (mounted ? (
-                  <p className="text-muted-foreground text-sm leading-relaxed break-words">
-                    {format.monthNote(month, system)}
-                  </p>
-                ) : (
-                  <Skeleton className="h-5 w-48" />
-                ))}
-            </div>
-            <Button variant="outline" size="touch" onClick={goToday} disabled={selected === today}>
+          {/* The month note takes its own full-width row on phones, so it never squeezes beside the buttons. */}
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-1 px-4 py-3 md:px-6 md:py-4">
+            <h2 className="min-w-0 flex-1 text-lg font-semibold break-words sm:text-xl md:text-2xl" aria-live="polite">
+              {monthLabel}
+            </h2>
+            <Button variant="outline" size="touch" onClick={goToday} disabled={selected === today} className="shrink-0">
               {t('today')}
             </Button>
-            <div className="flex items-center">
+            <div className="flex shrink-0 items-center">
               <Button
                 variant="ghost"
                 size="icon-touch"
@@ -116,6 +107,16 @@ export function CalendarPage() {
                 <ChevronRight aria-hidden />
               </Button>
             </div>
+            {system !== 'gregorian' &&
+              (mounted ? (
+                <p className="text-muted-foreground basis-full text-sm leading-relaxed break-words">
+                  {format.monthNote(month, system)}
+                </p>
+              ) : (
+                <div className="basis-full">
+                  <Skeleton className="h-5 w-48" />
+                </div>
+              ))}
           </div>
           {mounted ? (
             <MonthGrid
