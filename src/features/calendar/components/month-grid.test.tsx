@@ -1,5 +1,5 @@
-import { screen, within } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { fireEvent, screen, within } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
 
 import { renderWithIntl } from '@/test/render';
 
@@ -40,6 +40,33 @@ describe('MonthGrid', () => {
       locale: 'km',
     });
     expect(screen.getByText('9រោច', { selector: 'span:not(.sr-only)' })).toBeInTheDocument();
+  });
+
+  it('picks a day on click and moves with the arrow keys, also into the next month', () => {
+    const onSelect = vi.fn();
+    const props = { month: '2026-11', system: 'gregorian' as const, today: '2026-11-02', holidays: new Map() };
+    const { rerender } = renderWithIntl(<MonthGrid {...props} selected="2026-11-02" onSelect={onSelect} label="Nov" />);
+    const day = (text: RegExp) => screen.getByRole('button', { name: text });
+
+    expect(day(/^Monday, 2 November 2026/)).toHaveAttribute('aria-pressed', 'true');
+    expect(day(/^Monday, 2 November 2026/)).toHaveAttribute('tabindex', '0');
+    expect(day(/^Tuesday, 3 November 2026/)).toHaveAttribute('tabindex', '-1');
+
+    fireEvent.click(day(/^Friday, 13 November 2026/));
+    expect(onSelect).toHaveBeenLastCalledWith('2026-11-13');
+
+    fireEvent.keyDown(day(/^Monday, 2 November 2026/), { key: 'ArrowRight' });
+    expect(onSelect).toHaveBeenLastCalledWith('2026-11-03');
+    fireEvent.keyDown(day(/^Monday, 2 November 2026/), { key: 'ArrowDown' });
+    expect(onSelect).toHaveBeenLastCalledWith('2026-11-09');
+    fireEvent.keyDown(day(/^Wednesday, 4 November 2026/), { key: 'End' });
+    expect(onSelect).toHaveBeenLastCalledWith('2026-11-08');
+
+    // Moving past the grid asks for a day in the next month; once shown, focus follows it.
+    fireEvent.keyDown(day(/^Monday, 30 November 2026/), { key: 'ArrowDown' });
+    expect(onSelect).toHaveBeenLastCalledWith('2026-12-07');
+    rerender(<MonthGrid {...props} month="2026-12" selected="2026-12-07" onSelect={onSelect} label="Dec" />);
+    expect(day(/^Monday, 7 December 2026/)).toHaveFocus();
   });
 
   it('shows the schedule on every shown day, with "+N more" past two', () => {

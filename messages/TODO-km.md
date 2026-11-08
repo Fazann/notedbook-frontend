@@ -140,3 +140,8 @@ Machine-drafted — please review `calendar.scheduleCount`, `calendar.scheduleMo
 Machine-drafted — please review `settings.tabCurrencies`, `settings.description`, `settings.currencies.*` and
 `budget.spending.*` (the "Spent this month" card on the budgets page), and `errors.NO_CURRENCY_ENABLED` /
 `errors.DEFAULT_CURRENCY_NOT_ENABLED` (same text as the API's `pkg/i18n/locales/km.yml`).
+
+## Calendar day panel
+
+Machine-drafted — please review `calendar.schedule.empty`, `calendar.schedule.open`, `calendar.schedule.holidays` and
+`calendar.schedule.activities`.

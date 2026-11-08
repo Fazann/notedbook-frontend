@@ -744,13 +744,13 @@
       "note": "Dates of lunar and Islamic holidays can differ by a day from the official announcement."
     },
     "schedule": {
-      "title": "My schedule",
-      "description": "Your activities from {range}",
-      "empty": "Nothing scheduled on these dates",
+      "empty": "Nothing scheduled on this day",
       "loadError": "Could not load your schedule",
-      "open": "Open schedule",
+      "open": "Open in schedule",
       "today": "Today",
-      "repeats": "Repeats"
+      "repeats": "Repeats",
+      "holidays": "Holidays",
+      "activities": "Activities"
     },
     "holidayNames": {
       "newYear": "International New Year's Day",

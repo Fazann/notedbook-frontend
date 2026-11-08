@@ -744,13 +744,13 @@
       "note": "Tarikh cuti lunar dan Islam mungkin berbeza sehari daripada pengumuman rasmi."
     },
     "schedule": {
-      "title": "Jadual saya",
-      "description": "Aktiviti anda dari {range}",
-      "empty": "Tiada jadual pada tarikh ini",
+      "empty": "Tiada jadual pada hari ini",
       "loadError": "Tidak dapat memuatkan jadual anda",
-      "open": "Buka jadual",
+      "open": "Buka dalam jadual",
       "today": "Hari ini",
-      "repeats": "Berulang"
+      "repeats": "Berulang",
+      "holidays": "Cuti",
+      "activities": "Aktiviti"
     },
     "holidayNames": {
       "newYear": "Tahun Baru",
