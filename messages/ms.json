@@ -757,7 +757,8 @@
       "today": "Hari ini",
       "repeats": "Berulang",
       "holidays": "Cuti",
-      "activities": "Aktiviti"
+      "activities": "Aktiviti",
+      "add": "Tambah aktiviti"
     },
     "holidayNames": {
       "newYear": "Tahun Baru",

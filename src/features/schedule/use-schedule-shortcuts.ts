@@ -42,7 +42,8 @@ export function useScheduleShortcuts(handlers: ScheduleShortcuts, enabled: boole
   useEffect(() => {
     if (!enabled) return;
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey || isBusy(e.target)) return;
+      // Chrome autofill sends keydown events without a key, despite the type.
+      if (!e.key || e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey || isBusy(e.target)) return;
       // Arrow keys on a focused block belong to drag-and-drop, not to navigation.
       if (e.key.startsWith('Arrow') && e.target instanceof HTMLElement && e.target.closest('[data-movable]')) {
         return;

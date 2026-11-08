@@ -1,6 +1,6 @@
 'use client';
 
-import { CalendarDays, Flag, MapPin, Repeat } from 'lucide-react';
+import { CalendarDays, Flag, MapPin, Plus, Repeat } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 import { EmptyState } from '@/components/shared/empty-state';
@@ -30,10 +30,15 @@ export type DayDetailsProps = {
   activities: Occurrence[] | undefined;
   isError: boolean;
   onRetry: () => void;
+  /** Opens the activity form for this day; the button is hidden without it. */
+  onAddActivity?: () => void;
   className?: string;
 };
 
-/** The picked day: its date (and lunar / Hijri date), holidays and the user's activities, plus a schedule link. */
+/**
+ * The picked day: its date (and lunar / Hijri date), holidays and the user's activities, with "Add activity" for that
+ * day and a link to the schedule.
+ */
 export function DayDetails({
   date,
   today,
@@ -42,6 +47,7 @@ export function DayDetails({
   activities,
   isError,
   onRetry,
+  onAddActivity,
   className,
 }: DayDetailsProps) {
   const t = useTranslations('calendar.schedule');
@@ -133,9 +139,17 @@ export function DayDetails({
           {renderActivities()}
         </section>
 
-        <Button asChild variant="outline" size="touch" className="w-full">
-          <Link href={{ pathname: '/schedule', query: { view: 'day', date } }}>{t('open')}</Link>
-        </Button>
+        <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+          {onAddActivity && (
+            <Button size="touch" onClick={onAddActivity}>
+              <Plus aria-hidden />
+              {t('add')}
+            </Button>
+          )}
+          <Button asChild variant="outline" size="touch" className={cn(!onAddActivity && 'col-span-full')}>
+            <Link href={{ pathname: '/schedule', query: { view: 'day', date } }}>{t('open')}</Link>
+          </Button>
+        </div>
       </div>
     </SectionCard>
   );

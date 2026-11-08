@@ -757,7 +757,8 @@
       "today": "Today",
       "repeats": "Repeats",
       "holidays": "Holidays",
-      "activities": "Activities"
+      "activities": "Activities",
+      "add": "Add activity"
     },
     "holidayNames": {
       "newYear": "International New Year's Day",

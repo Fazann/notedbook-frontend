@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
 import type { Occurrence } from '@/features/schedule/types';
@@ -74,5 +74,15 @@ describe('DayDetails', () => {
     expect(screen.getByText('Nothing scheduled on this day')).toBeInTheDocument();
     rerender(<DayDetails {...props} activities={undefined} isError />);
     expect(screen.getByRole('alert')).toHaveTextContent('Could not load your schedule');
+  });
+
+  it('shows "Add activity" only when the page can open the form, and calls it', () => {
+    const onAddActivity = vi.fn();
+    const { rerender } = renderWithIntl(<DayDetails {...props} activities={[]} />);
+    expect(screen.queryByRole('button', { name: 'Add activity' })).not.toBeInTheDocument();
+
+    rerender(<DayDetails {...props} activities={[]} onAddActivity={onAddActivity} />);
+    fireEvent.click(screen.getByRole('button', { name: 'Add activity' }));
+    expect(onAddActivity).toHaveBeenCalledOnce();
   });
 });

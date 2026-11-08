@@ -8,10 +8,12 @@ import { PageHeader } from '@/components/shared/page-header';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
+import { ActivityFormDialog, type ActivityFormTarget } from '@/features/schedule/components/activity-form-dialog';
+import { nextHalfHour } from '@/features/schedule/utils';
 import { useMounted } from '@/hooks/use-mounted';
 import { formatMonth } from '@/lib/calendar-locale';
 import { shiftMonth } from '@/lib/dates';
-import { todayInTz } from '@/lib/time';
+import { nowMinutesInTz, todayInTz } from '@/lib/time';
 import { cn } from '@/lib/utils';
 
 import { useHolidays, useScheduleOccurrences } from '../hooks';
@@ -52,6 +54,15 @@ export function CalendarPage() {
     setPicked(today);
     setMonth(currentMonth);
   };
+
+  // "Add activity" opens the schedule's own form on the picked day: the next half hour today, 09:00 on other days.
+  const [formTarget, setFormTarget] = useState<ActivityFormTarget | null>(null);
+  const addActivity = () =>
+    setFormTarget({
+      kind: 'new',
+      date: selected,
+      startTime: selected === today ? nextHalfHour(nowMinutesInTz()) : '09:00',
+    });
 
   const query = holidayQuery(system, region, Number(month.slice(0, 4)));
   const holidays = useHolidays(query);
@@ -150,6 +161,7 @@ export function CalendarPage() {
               activities={schedule ? (schedule.get(selected) ?? []) : undefined}
               isError={occurrences.isError}
               onRetry={() => void occurrences.refetch()}
+              onAddActivity={addActivity}
             />
           ) : (
             <Skeleton className="h-64 w-full rounded-xl" />
@@ -166,6 +178,7 @@ export function CalendarPage() {
           )}
         </div>
       </div>
+      <ActivityFormDialog target={formTarget} onClose={() => setFormTarget(null)} />
     </div>
   );
 }

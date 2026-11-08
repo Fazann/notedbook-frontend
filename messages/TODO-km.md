@@ -153,3 +153,7 @@ Machine-drafted — please review `nav.exchange` and every key in `exchange.*`.
 ## Estimated total
 
 Machine-drafted — please review every key in `estimate.*` (the "≈ Total in …" card on the dashboard and expenses page).
+
+## Calendar "Add activity"
+
+Machine-drafted — please review `calendar.schedule.add`.

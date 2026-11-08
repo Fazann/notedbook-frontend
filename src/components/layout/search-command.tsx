@@ -25,6 +25,8 @@ export function SearchCommand() {
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
+      // Chrome autofill sends keydown events without a key, despite the type.
+      if (!e.key) return;
       if (e.key.toLowerCase() === 'k' && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
         setOpen(!useUiStore.getState().isSearchOpen);
