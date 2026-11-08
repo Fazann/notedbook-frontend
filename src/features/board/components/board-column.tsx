@@ -44,7 +44,13 @@ export function BoardColumn({ boardId, column, done, today, onOpenCard }: BoardC
   const remove = useDeleteColumn(boardId);
   const [renaming, setRenaming] = useState(false);
   const [deleting, setDeleting] = useState(false);
-  const { setNodeRef, isOver } = useDroppable({ id: columnDndId(column.id), data: { type: 'column' } });
+  // The column itself is a drop target only while empty: with cards, drops land relative to a card. Otherwise its
+  // area (just below the first card) would be the "next item down" for keyboard moves and swallow ArrowDown.
+  const { setNodeRef, isOver } = useDroppable({
+    id: columnDndId(column.id),
+    data: { type: 'column' },
+    disabled: column.cards.length > 0,
+  });
   const headingId = `board-column-${column.id}`;
 
   return (
