@@ -5,9 +5,12 @@ import { useTranslations } from 'next-intl';
 import { Link, usePathname } from '@/i18n/navigation';
 import { cn } from '@/lib/utils';
 
-import { isActive, MAIN_NAV } from './nav-items';
+import { isActive, MOBILE_TABS } from './nav-items';
 
-/** Bottom tab bar on phones (hidden from `md`). */
+/**
+ * Bottom tab bar on phones (hidden from `md`): the four main tabs only. Every other page is in the sidebar, opened
+ * with the header's menu button.
+ */
 export function MobileNav() {
   const t = useTranslations('nav');
   const pathname = usePathname();
@@ -20,8 +23,8 @@ export function MobileNav() {
         'bg-background/95 backdrop-blur'
       )}
     >
-      <ul className="grid grid-cols-6">
-        {MAIN_NAV.map(({ key, href, icon: Icon }) => {
+      <ul className="grid grid-cols-4">
+        {MOBILE_TABS.map(({ key, href, icon: Icon }) => {
           const active = isActive(pathname, href);
           return (
             <li key={key}>
@@ -30,7 +33,7 @@ export function MobileNav() {
                 aria-current={active ? 'page' : undefined}
                 className={cn(
                   'flex min-h-14 flex-col items-center justify-center gap-0.5 px-0.5 py-1.5',
-                  'text-[10px] min-[400px]:text-[11px]',
+                  'text-[11px] min-[400px]:text-xs',
                   'focus-visible:ring-ring/50 outline-none focus-visible:ring-3',
                   active ? 'text-primary font-medium' : 'text-muted-foreground'
                 )}

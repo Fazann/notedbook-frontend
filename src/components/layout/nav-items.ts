@@ -29,6 +29,11 @@ export const SETTINGS_NAV: NavItem = { key: 'settings', href: '/settings', icon:
 
 export const ALL_NAV: NavItem[] = [...MAIN_NAV, SETTINGS_NAV];
 
+/** The tabs the phone bottom bar shows; every other page is reached from the sidebar (header menu button). */
+const MOBILE_TAB_KEYS: NavKey[] = ['dashboard', 'expenses', 'schedule', 'calendar'];
+
+export const MOBILE_TABS: NavItem[] = ALL_NAV.filter((item) => MOBILE_TAB_KEYS.includes(item.key));
+
 /** True when `pathname` (without locale) is the item's page or one of its sub-pages. */
 export function isActive(pathname: string, href: string): boolean {
   return pathname === href || pathname.startsWith(`${href}/`);
