@@ -51,7 +51,13 @@ export enum ApiEndpoint {
   ExchangeRates = '/exchange-rates',
 
   Boards = '/boards',
+  BoardDetail = '/boards/:id',
+  BoardColumns = '/boards/:id/columns',
+  ColumnDetail = '/columns/:id',
+  ColumnCards = '/columns/:id/cards',
   CardsDue = '/cards/due',
+  CardDetail = '/cards/:id',
+  CardMove = '/cards/:id/move',
 }
 
 /** Endpoints called without a session; a 401 from them means wrong input, not an expired token. */

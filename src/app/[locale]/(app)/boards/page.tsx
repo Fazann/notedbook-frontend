@@ -1,7 +1,15 @@
-import { placeholderPage } from '@/app/[locale]/(app)/placeholder-page';
+import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 
-// Placeholder until this module is built (see docs/starter.md, build order).
-const { generateMetadata, Page } = placeholderPage('boards');
+import { BoardsPage } from '@/features/board/components/boards-page';
+import type { Locale } from '@/i18n/routing';
 
-export { generateMetadata };
-export default Page;
+export async function generateMetadata({ params }: PageProps<'/[locale]/boards'>): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale: locale as Locale, namespace: 'board' });
+  return { title: t('title') };
+}
+
+export default function Page() {
+  return <BoardsPage />;
+}

@@ -7,21 +7,13 @@ import { EmptyState } from '@/components/shared/empty-state';
 import { ErrorState } from '@/components/shared/error-state';
 import { SectionCard } from '@/components/shared/section-card';
 import { Badge } from '@/components/ui/badge';
+import { LABEL_BG } from '@/features/board/components/card-label';
 import { useDueCards } from '@/features/board/hooks';
-import type { LabelColor } from '@/features/board/types';
 import { Link } from '@/i18n/navigation';
 import { todayIso, utcDate } from '@/lib/dates';
 import { cn } from '@/lib/utils';
 
 import { ListSkeleton } from './list-skeleton';
-
-const LABEL_BG: Record<LabelColor, string> = {
-  red: 'bg-label-red',
-  yellow: 'bg-label-yellow',
-  green: 'bg-label-green',
-  blue: 'bg-label-blue',
-  purple: 'bg-label-purple',
-};
 
 export type TasksDueSoonProps = { className?: string };
 

@@ -72,3 +72,7 @@ Machine-drafted — please review every key in `estimate.*` (the "≈ Total in �
 ## Calendar "Add activity"
 
 Machine-drafted — please review `calendar.schedule.add`.
+
+## Boards
+
+Machine-drafted — please review every key in `board.*` (boards list, board page, cards, drag-and-drop announcements).

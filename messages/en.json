@@ -807,6 +807,92 @@
     "stale": "These rates may be out of date. Showing the last rates we received.",
     "loadError": "Could not load exchange rates"
   },
+  "board": {
+    "title": "Boards",
+    "description": "Organise tasks on kanban boards and move cards from column to column.",
+    "new": "New board",
+    "empty": "No boards yet",
+    "emptyHint": "Create a board to start organising your tasks.",
+    "loadError": "Could not load your boards",
+    "boardLoadError": "Could not load this board",
+    "cardCount": "{count, plural, =0 {No cards} one {# card} other {# cards}}",
+    "back": "All boards",
+    "actions": "Board actions",
+    "rename": "Rename board",
+    "delete": "Delete board",
+    "deleteTitle": "Delete “{name}”?",
+    "deleteDescription": "All of its columns and cards are deleted too. This cannot be undone.",
+    "form": {
+      "createTitle": "New board",
+      "renameTitle": "Rename board",
+      "name": "Name",
+      "namePlaceholder": "e.g. Side project",
+      "create": "Create board"
+    },
+    "defaultColumns": {
+      "todo": "To do",
+      "doing": "In progress",
+      "done": "Done"
+    },
+    "column": {
+      "add": "Add column",
+      "name": "Column name",
+      "namePlaceholder": "e.g. In review",
+      "actions": "Actions for column {name}",
+      "rename": "Rename column",
+      "delete": "Delete column",
+      "deleteTitle": "Delete column “{name}”?",
+      "deleteDescription": "{count, plural, =0 {It has no cards.} one {Its # card is deleted too.} other {Its # cards are deleted too.}} This cannot be undone.",
+      "doneHint": "Cards here count as done",
+      "empty": "No cards yet"
+    },
+    "card": {
+      "add": "Add card",
+      "titlePlaceholder": "What needs to be done?",
+      "edit": "Edit card",
+      "title": "Title",
+      "description": "Description",
+      "descriptionPlaceholder": "Add more details…",
+      "dueDate": "Due date",
+      "pickDate": "Pick a date",
+      "clearDue": "Clear date",
+      "label": "Label",
+      "noLabel": "None",
+      "delete": "Delete card",
+      "deleteTitle": "Delete this card?",
+      "deleteDescription": "“{title}” is deleted. This cannot be undone.",
+      "overdue": "Overdue · {date}",
+      "due": "Due {date}",
+      "dragHandle": "Move card {title}",
+      "saving": "Saving…"
+    },
+    "labels": {
+      "red": "Red",
+      "yellow": "Yellow",
+      "green": "Green",
+      "blue": "Blue",
+      "purple": "Purple"
+    },
+    "dnd": {
+      "instructions": "To move a card, focus its handle and press space or enter. Use the arrow keys to move it, also to another column, then press space or enter to drop it, or escape to cancel.",
+      "picked": "Picked up card {title} in column {column}.",
+      "over": "Card {title} is in column {column}, position {position} of {total}.",
+      "dropped": "Card {title} dropped in column {column}, position {position} of {total}.",
+      "cancelled": "Moving card {title} was cancelled. It is back where it was."
+    },
+    "toast": {
+      "created": "Board created",
+      "deleted": "Board deleted",
+      "cardDeleted": "Card deleted",
+      "columnDeleted": "Column deleted"
+    },
+    "moveError": "Could not move the card. Please try again.",
+    "saveError": "Could not save your change. Please try again.",
+    "validation": {
+      "required": "This field is required",
+      "tooLong": "Must be at most {max} characters"
+    }
+  },
   "auth": {
     "loginTitle": "Log in",
     "loginDescription": "Welcome back! Log in to continue.",

@@ -5,6 +5,7 @@ import {
   CircleDollarSign,
   LayoutDashboard,
   Settings,
+  SquareKanban,
   Target,
   Wallet,
   type LucideIcon,
@@ -24,7 +25,7 @@ export const MAIN_NAV: NavItem[] = [
   { key: 'planning', href: '/planning', icon: Target },
   { key: 'schedule', href: '/schedule', icon: CalendarDays },
   { key: 'calendar', href: '/calendar', icon: CalendarRange },
-  // { key: 'boards', href: '/boards', icon: KanbanSquare },
+  { key: 'boards', href: '/boards', icon: SquareKanban },
 ];
 
 export const SETTINGS_NAV: NavItem = { key: 'settings', href: '/settings', icon: Settings };

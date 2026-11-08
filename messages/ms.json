@@ -807,6 +807,92 @@
     "stale": "Kadar ini mungkin sudah lapuk. Memaparkan kadar terakhir yang kami terima.",
     "loadError": "Tidak dapat memuatkan kadar pertukaran"
   },
+  "board": {
+    "title": "Papan",
+    "description": "Susun tugas pada papan kanban dan alihkan kad dari lajur ke lajur.",
+    "new": "Papan baharu",
+    "empty": "Belum ada papan",
+    "emptyHint": "Cipta papan untuk mula menyusun tugas anda.",
+    "loadError": "Tidak dapat memuatkan papan anda",
+    "boardLoadError": "Tidak dapat memuatkan papan ini",
+    "cardCount": "{count, plural, =0 {Tiada kad} one {# kad} other {# kad}}",
+    "back": "Semua papan",
+    "actions": "Tindakan papan",
+    "rename": "Namakan semula papan",
+    "delete": "Padam papan",
+    "deleteTitle": "Padam “{name}”?",
+    "deleteDescription": "Semua lajur dan kadnya turut dipadam. Tindakan ini tidak boleh dibatalkan.",
+    "form": {
+      "createTitle": "Papan baharu",
+      "renameTitle": "Namakan semula papan",
+      "name": "Nama",
+      "namePlaceholder": "cth. Projek sampingan",
+      "create": "Cipta papan"
+    },
+    "defaultColumns": {
+      "todo": "Perlu dibuat",
+      "doing": "Sedang dibuat",
+      "done": "Selesai"
+    },
+    "column": {
+      "add": "Tambah lajur",
+      "name": "Nama lajur",
+      "namePlaceholder": "cth. Dalam semakan",
+      "actions": "Tindakan untuk lajur {name}",
+      "rename": "Namakan semula lajur",
+      "delete": "Padam lajur",
+      "deleteTitle": "Padam lajur “{name}”?",
+      "deleteDescription": "{count, plural, =0 {Ia tiada kad.} one {# kadnya turut dipadam.} other {# kadnya turut dipadam.}} Tindakan ini tidak boleh dibatalkan.",
+      "doneHint": "Kad di sini dikira selesai",
+      "empty": "Belum ada kad"
+    },
+    "card": {
+      "add": "Tambah kad",
+      "titlePlaceholder": "Apa yang perlu dibuat?",
+      "edit": "Edit kad",
+      "title": "Tajuk",
+      "description": "Penerangan",
+      "descriptionPlaceholder": "Tambah butiran lanjut…",
+      "dueDate": "Tarikh akhir",
+      "pickDate": "Pilih tarikh",
+      "clearDue": "Kosongkan tarikh",
+      "label": "Label",
+      "noLabel": "Tiada",
+      "delete": "Padam kad",
+      "deleteTitle": "Padam kad ini?",
+      "deleteDescription": "“{title}” akan dipadam. Tindakan ini tidak boleh dibatalkan.",
+      "overdue": "Lewat · {date}",
+      "due": "Tamat {date}",
+      "dragHandle": "Alihkan kad {title}",
+      "saving": "Menyimpan…"
+    },
+    "labels": {
+      "red": "Merah",
+      "yellow": "Kuning",
+      "green": "Hijau",
+      "blue": "Biru",
+      "purple": "Ungu"
+    },
+    "dnd": {
+      "instructions": "Untuk mengalihkan kad, fokus pada pemegangnya dan tekan space atau enter. Gunakan kekunci anak panah untuk mengalihkannya, termasuk ke lajur lain, kemudian tekan space atau enter untuk melepaskannya, atau escape untuk membatalkan.",
+      "picked": "Kad {title} diangkat dalam lajur {column}.",
+      "over": "Kad {title} berada dalam lajur {column}, kedudukan {position} daripada {total}.",
+      "dropped": "Kad {title} dilepaskan dalam lajur {column}, kedudukan {position} daripada {total}.",
+      "cancelled": "Pengalihan kad {title} dibatalkan. Ia kembali ke tempat asal."
+    },
+    "toast": {
+      "created": "Papan dicipta",
+      "deleted": "Papan dipadam",
+      "cardDeleted": "Kad dipadam",
+      "columnDeleted": "Lajur dipadam"
+    },
+    "moveError": "Tidak dapat mengalihkan kad. Sila cuba lagi.",
+    "saveError": "Tidak dapat menyimpan perubahan anda. Sila cuba lagi.",
+    "validation": {
+      "required": "Medan ini wajib diisi",
+      "tooLong": "Mestilah tidak melebihi {max} aksara"
+    }
+  },
   "auth": {
     "loginTitle": "Log masuk",
     "loginDescription": "Selamat kembali! Log masuk untuk meneruskan.",
