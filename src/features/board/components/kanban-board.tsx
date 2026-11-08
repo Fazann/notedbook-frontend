@@ -2,7 +2,6 @@
 
 import {
   closestCenter,
-  closestCorners,
   DndContext,
   DragOverlay,
   KeyboardSensor,
@@ -21,7 +20,7 @@ import {
 import { sortableKeyboardCoordinates } from '@dnd-kit/sortable';
 import { Plus } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
@@ -30,7 +29,17 @@ import { cn } from '@/lib/utils';
 
 import { useCreateColumn, useMoveCard } from '../hooks';
 import { COLUMN_NAME_MAX, type Board, type Card } from '../types';
-import { dropTarget, findCardColumn, isDoneColumn, moveCardInBoard, parseDndId, placeCard, planMove } from '../utils';
+import {
+  cardDndId,
+  columnDndId,
+  dropTarget,
+  findCardColumn,
+  isDoneColumn,
+  moveCardInBoard,
+  parseDndId,
+  placeCard,
+  planMove,
+} from '../utils';
 
 import { BoardCardView } from './board-card';
 import { BoardColumn } from './board-column';
@@ -57,6 +66,16 @@ export function KanbanBoard({ board }: KanbanBoardProps) {
   const [openCardId, setOpenCardId] = useState<number | null>(null);
   const [addingColumn, setAddingColumn] = useState(false);
   const shown = preview?.base === board ? preview.board : board;
+  // dnd-kit's guards against a drag flipping between columns (React "Maximum update depth exceeded"): the last
+  // target, reused right after a card switches column (until the new layout is measured) and when nothing is hit.
+  const lastOverId = useRef<UniqueIdentifier | null>(null);
+  const movedToNewColumn = useRef(false);
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      movedToNewColumn.current = false;
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [preview]);
 
   // Pointer events, not mouse events: Chrome can skip `mouseup` after a drag (only `pointerup` arrives), which left a
   // MouseSensor drag stuck. Drags start only from the grip (`touch-action: none`), so swiping elsewhere still scrolls.
@@ -72,6 +91,7 @@ export function KanbanBoard({ board }: KanbanBoardProps) {
   const onDragStart = ({ active }: DragStartEvent) => {
     const card = parseDndId(active.id);
     if (card?.kind !== 'card') return;
+    lastOverId.current = active.id;
     setActiveId(card.id);
     setPreview({ base: board, board });
   };
@@ -85,6 +105,7 @@ export function KanbanBoard({ board }: KanbanBoardProps) {
       const to = dropTarget(current.board, over.id);
       const from = findCardColumn(current.board, card.id);
       if (!to || !from || to.columnId === from.id) return current;
+      movedToNewColumn.current = true;
       return { ...current, board: placeCard(current.board, card.id, to.columnId, to.index) };
     });
   };
@@ -111,23 +132,33 @@ export function KanbanBoard({ board }: KanbanBoardProps) {
 
   /**
    * What the card is over: what is under the pointer (keyboard: what the card overlaps). The nearest card under it
-   * wins; an empty column takes the drop itself; anywhere else (below the last card, between columns) the nearest
-   * target by corners.
+   * wins; otherwise its column, where the nearest card of that column wins, or the column itself when it has no other
+   * card. Right after a column switch, or over nothing, the last target is kept so the drag cannot oscillate.
    */
   const collisionDetection: CollisionDetection = (args) => {
+    const keep = () => (lastOverId.current ? [{ id: lastOverId.current }] : []);
+    if (movedToNewColumn.current && lastOverId.current) return keep();
+
     const hits = args.pointerCoordinates ? pointerWithin(args) : rectIntersection(args);
     const among = (ids: Set<string>) =>
       closestCenter({ ...args, droppableContainers: args.droppableContainers.filter((c) => ids.has(String(c.id))) });
 
-    const cardHits = hits.filter((h) => parseDndId(h.id)?.kind === 'card');
-    if (cardHits.length > 0) return among(new Set(cardHits.map((h) => String(h.id))));
-
-    // Only empty columns are droppable themselves (see BoardColumn).
-    const columnHits = hits.filter((h) => parseDndId(h.id)?.kind === 'column');
-    if (columnHits.length > 0) return columnHits;
-
-    // Below the last card of a column, or between columns: the nearest card or empty column.
-    return closestCorners(args);
+    let result = hits.filter((h) => parseDndId(h.id)?.kind === 'card');
+    if (result.length > 0) {
+      result = among(new Set(result.map((h) => String(h.id))));
+    } else {
+      const columnHit = hits.map((h) => parseDndId(h.id)).find((h) => h?.kind === 'column');
+      const column = columnHit ? shown.columns.find((c) => c.id === columnHit.id) : undefined;
+      if (column) {
+        const hasOthers = column.cards.some((c) => cardDndId(c.id) !== args.active.id);
+        result = hasOthers
+          ? among(new Set(column.cards.map((c) => cardDndId(c.id))))
+          : [{ id: columnDndId(column.id) }];
+      }
+    }
+    if (result.length === 0) return keep();
+    lastOverId.current = result[0].id;
+    return result;
   };
 
   const onDragCancel = () => {
@@ -177,8 +208,9 @@ export function KanbanBoard({ board }: KanbanBoardProps) {
         {/* The one place horizontal scrolling is allowed; it bleeds to the screen edges on phones. */}
         <div
           className={cn(
-            '-mx-4 snap-x snap-mandatory overflow-x-auto px-4 pb-4',
-            'md:-mx-6 md:snap-none md:px-6 lg:-mx-8 lg:px-8'
+            '-mx-4 overflow-x-auto px-4 pb-4 md:-mx-6 md:px-6 lg:-mx-8 lg:px-8',
+            // Snap fights dnd-kit's auto-scroll near the edge (the columns jump back and forth): off while dragging.
+            activeId === null && 'snap-x snap-mandatory md:snap-none'
           )}
         >
           <div className="flex items-start gap-3 md:gap-4">

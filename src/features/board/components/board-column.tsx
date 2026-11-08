@@ -44,17 +44,14 @@ export function BoardColumn({ boardId, column, done, today, onOpenCard }: BoardC
   const remove = useDeleteColumn(boardId);
   const [renaming, setRenaming] = useState(false);
   const [deleting, setDeleting] = useState(false);
-  // The column itself is a drop target only while empty: with cards, drops land relative to a card. Otherwise its
-  // area (just below the first card) would be the "next item down" for keyboard moves and swallow ArrowDown.
-  const { setNodeRef, isOver } = useDroppable({
-    id: columnDndId(column.id),
-    data: { type: 'column' },
-    disabled: column.cards.length > 0,
-  });
+  // The whole column (header included) is a drop target, always: it never disappears while a card moves in, so the
+  // drag cannot flip back and forth. Its top is the header, above every card, so keyboard ArrowDown never picks it.
+  const { setNodeRef, isOver } = useDroppable({ id: columnDndId(column.id), data: { type: 'column' } });
   const headingId = `board-column-${column.id}`;
 
   return (
     <section
+      ref={setNodeRef}
       aria-labelledby={headingId}
       className="bg-muted/50 flex w-[85vw] max-w-sm shrink-0 snap-start flex-col rounded-xl border md:w-72"
     >
@@ -90,7 +87,6 @@ export function BoardColumn({ boardId, column, done, today, onOpenCard }: BoardC
 
       <SortableContext items={column.cards.map((c) => cardDndId(c.id))} strategy={verticalListSortingStrategy}>
         <ul
-          ref={setNodeRef}
           aria-labelledby={headingId}
           className={cn(
             'flex min-h-16 flex-col gap-2 rounded-lg px-2 pb-2 transition-colors',
